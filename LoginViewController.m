@@ -76,9 +76,12 @@
     [super touchesBegan:touches withEvent:event];
 }
 
+
+#define USERFIELD_TAG 1
+#define PASSFIELD_TAG 2
 // Dictates how a field behaves when the return button is clicked - http://mobile.tutsplus.com/tutorials/iphone/ios-sdk-uitextfield-uitextfielddelegate/
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (textField.tag == 1) {
+    if (textField.tag == USERFIELD_TAG) {
         NSLog(@"Should switch to passwordTextField");
         [passwordTextField becomeFirstResponder];
     }

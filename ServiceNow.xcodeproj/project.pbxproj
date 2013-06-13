@@ -24,6 +24,9 @@
 		8B3802E9176900A20068C40C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802C1176900A10068C40C /* Foundation.framework */; };
 		8B3802F1176900A20068C40C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B3802EF176900A20068C40C /* InfoPlist.strings */; };
 		8B3802F4176900A20068C40C /* ServiceNowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3802F3176900A20068C40C /* ServiceNowTests.m */; };
+		8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380301176902660068C40C /* LoginViewController.m */; };
+		8B9B307E176908AD00BAAFAE /* MainMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380303176902660068C40C /* MainMenuTableViewController.m */; };
+		8B9B3081176A037B00BAAFAE /* OpenTicketsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,8 @@
 		8B380305176902660068C40C /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		8B380306176902660068C40C /* XMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		8B380307176902660068C40C /* XMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTicketsTableViewController.h; sourceTree = "<group>"; };
+		8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTicketsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +102,8 @@
 		8B3802B3176900A10068C40C = {
 			isa = PBXGroup;
 			children = (
+				8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */,
+				8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */,
 				8B380300176902660068C40C /* LoginViewController.h */,
 				8B380301176902660068C40C /* LoginViewController.m */,
 				8B380302176902660068C40C /* MainMenuTableViewController.h */,
@@ -293,6 +300,9 @@
 				8B3802CC176900A10068C40C /* main.m in Sources */,
 				8B3802D0176900A10068C40C /* AppDelegate.m in Sources */,
 				8B3802DF176900A10068C40C /* ViewController.m in Sources */,
+				8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */,
+				8B9B307E176908AD00BAAFAE /* MainMenuTableViewController.m in Sources */,
+				8B9B3081176A037B00BAAFAE /* OpenTicketsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +493,7 @@
 				8B3802F9176900A20068C40C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B3802FA176900A20068C40C /* Build configuration list for PBXNativeTarget "ServiceNowTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +502,7 @@
 				8B3802FC176900A20068C40C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
