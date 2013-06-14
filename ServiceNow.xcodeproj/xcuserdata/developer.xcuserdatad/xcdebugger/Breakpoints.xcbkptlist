@@ -7,13 +7,26 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "OpenTicketsTableViewController.m"
-         timestampString = "392831150.531111"
+         filePath = "Ticket.m"
+         timestampString = "392919901.21586"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         startingLineNumber = "15"
+         endingLineNumber = "15"
+         landmarkName = "-dealloc"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "LoginViewController.m"
+         timestampString = "392924204.246966"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
+         landmarkName = "-attemptlogin:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

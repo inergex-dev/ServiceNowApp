@@ -174,9 +174,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="oaK-cC-7Zl" kind="push" id="EkI-hp-Mtc"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -185,15 +182,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Open Tickets" id="VyM-Bq-o6H"/>
+                    <connections>
+                        <segue destination="oaK-cC-7Zl" kind="push" identifier="openTicketSegue" id="iad-F4-wg1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KyF-gt-qk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-380" y="-160"/>
         </scene>
-        <!--View Controller - Ticket-->
+        <!--Ticket View Controller - Ticket-->
         <scene sceneID="aQA-uR-AuO">
             <objects>
-                <viewController id="oaK-cC-7Zl" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4XQ-M9-gpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="oaK-cC-7Zl" customClass="TicketViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NHZ-rT-OnC">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -215,9 +216,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ticket" id="iyv-Wo-xQN"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4XQ-M9-gpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10" y="-160"/>
+            <point key="canvasLocation" x="-10" y="213"/>
         </scene>
         <!--View Controller - Closed Tickets-->
         <scene sceneID="1Ie-V7-V7W">
@@ -238,9 +238,6 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="JL9-Ul-1iR" kind="push" id="X6k-BV-rFM"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -254,39 +251,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Closed Tickets" id="jkn-MG-SLH"/>
+                    <connections>
+                        <segue destination="oaK-cC-7Zl" kind="push" identifier="closedTicketSegue" id="zwt-T3-eS0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeU-uA-siR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-380" y="561"/>
-        </scene>
-        <!--View Controller - Ticket-->
-        <scene sceneID="NSx-A1-37f">
-            <objects>
-                <viewController id="JL9-Ul-1iR" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XqP-uz-BzA">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEc-BU-yai">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="NEc-BU-yai" firstAttribute="bottom" secondItem="XqP-uz-BzA" secondAttribute="bottom" type="default" id="2Cf-Wt-srt"/>
-                            <constraint firstItem="NEc-BU-yai" firstAttribute="top" secondItem="XqP-uz-BzA" secondAttribute="top" type="default" id="TKx-8I-BOr"/>
-                            <constraint firstItem="NEc-BU-yai" firstAttribute="leading" secondItem="XqP-uz-BzA" secondAttribute="leading" type="default" id="ZoW-ci-Jjd"/>
-                            <constraint firstItem="NEc-BU-yai" firstAttribute="trailing" secondItem="XqP-uz-BzA" secondAttribute="trailing" type="default" id="hyh-w9-acL"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Ticket" id="WFL-dL-Ui0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qvE-7s-yyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-10" y="561"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="v3J-i1-d1g">
@@ -327,15 +298,18 @@
                                     <outlet property="delegate" destination="HyE-4v-mYc" id="h4V-kn-5b4"/>
                                 </connections>
                             </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gx9-Q4-h9e"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0Bd-j3-cd6" firstAttribute="trailing" secondItem="Obj-1D-XIp" secondAttribute="trailing" type="default" id="1En-MQ-qfp"/>
-                            <constraint firstItem="0Bd-j3-cd6" firstAttribute="centerX" secondItem="sY5-8h-P4p" secondAttribute="centerX" type="default" id="1X0-RF-KV0"/>
                             <constraint firstItem="vhm-EJ-Skn" firstAttribute="leading" secondItem="Obj-1D-XIp" secondAttribute="leading" type="default" id="5Q8-kq-xec"/>
-                            <constraint firstItem="Obj-1D-XIp" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="82" id="VRz-2R-PK2"/>
+                            <constraint firstItem="Gx9-Q4-h9e" firstAttribute="leading" secondItem="sY5-8h-P4p" secondAttribute="leading" constant="146" id="A1w-Id-urc"/>
+                            <constraint firstItem="Obj-1D-XIp" firstAttribute="centerX" secondItem="sY5-8h-P4p" secondAttribute="centerX" type="default" id="O1n-Zd-dx5"/>
+                            <constraint firstItem="Gx9-Q4-h9e" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="58" id="aHm-eX-p6Z"/>
                             <constraint firstItem="Obj-1D-XIp" firstAttribute="trailing" secondItem="vhm-EJ-Skn" secondAttribute="trailing" type="default" id="hCb-3c-aDS"/>
                             <constraint firstItem="0Bd-j3-cd6" firstAttribute="leading" secondItem="Obj-1D-XIp" secondAttribute="leading" type="default" id="igr-gl-7lQ"/>
+                            <constraint firstItem="Obj-1D-XIp" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="82" id="ilV-cw-gdI"/>
                             <constraint firstItem="0Bd-j3-cd6" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="25" id="ocE-Kf-mBM"/>
                             <constraint firstItem="vhm-EJ-Skn" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="139" id="zEu-Fu-vYN"/>
                         </constraints>
@@ -343,17 +317,17 @@
                     <connections>
                         <outlet property="passwordTextField" destination="Obj-1D-XIp" id="ugh-CG-Obu"/>
                         <outlet property="usernameTextField" destination="0Bd-j3-cd6" id="W4a-p3-XWQ"/>
-                        <segue destination="2BR-Im-nVW" kind="modal" identifier="loginSegue" modalTransitionStyle="flipHorizontal" id="wNH-75-GGj"/>
+                        <segue destination="2BR-Im-nVW" kind="modal" identifier="loginSegue" modalTransitionStyle="flipHorizontal" animates="NO" id="wNH-75-GGj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7t5-2k-Wub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1470" y="-160"/>
         </scene>
-        <!--View Controller - Create Ticket-->
+        <!--Create Ticket View Controller - Create Ticket-->
         <scene sceneID="8eo-HE-BQK">
             <objects>
-                <viewController id="aLF-8Y-gx9" sceneMemberID="viewController">
+                <viewController id="aLF-8Y-gx9" customClass="CreateTicketViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nyC-hE-08m">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -361,7 +335,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mdw-k7-7sM">
                                 <items>
                                     <barButtonItem title="Send" width="149" id="fo5-7Y-t3l"/>
-                                    <barButtonItem title="Cancel" width="149" id="Kw7-W2-UT6"/>
+                                    <barButtonItem title="Cancel" width="149" id="Kw7-W2-UT6">
+                                        <connections>
+                                            <action selector="cancel:" destination="aLF-8Y-gx9" id="qyS-n0-IgF"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -398,32 +376,12 @@
             <point key="canvasLocation" x="-1108" y="-160"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="attemptlogin:"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainMenuTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="logout:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="OpenTicketsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OpenTicketsTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="zwt-T3-eS0"/>
+    </inferredMetricsTieBreakers>
 </document>

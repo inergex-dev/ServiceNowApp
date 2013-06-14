@@ -9,13 +9,23 @@
 #import "Ticket.h"
 
 @implementation Ticket
-@synthesize userName, firstName, lastName;
+@synthesize shortDesc, userName, firstName, lastName;
 
 - (void) dealloc {
     [userName release];
     [firstName release];
     [lastName release];
     [super dealloc];
+}
+
+-(id)init:(NSString *)sDesc
+{
+    self.shortDesc = sDesc;
+    self.firstName = @"";
+    self.lastName = @"";
+    self.userName = @"";
+    
+    return self;
 }
 
 @end

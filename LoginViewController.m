@@ -54,6 +54,12 @@
         [[NSUserDefaults standardUserDefaults] setObject:usernameTextField.text forKey:@"username"];
         [[NSUserDefaults standardUserDefaults] setObject:passwordTextField.text forKey:@"password"];
         
+        NSString* msg = @"Credentials stored - username:";
+        msg = [msg stringByAppendingString:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]];
+        msg = [msg stringByAppendingString: @" password:"];
+        msg = [msg stringByAppendingString:[[NSUserDefaults standardUserDefaults] valueForKey:@"password"]];
+        NSLog(@"%@",msg);
+        
         [self performSegueWithIdentifier:@"loginSegue" sender:self];
     }
 }

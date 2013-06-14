@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Ticket;
 
-@interface OpenTicketsTableViewController : UITableViewController
+@interface OpenTicketsTableViewController : UITableViewController {
+    Ticket *selectedTicket;
+}
 
 @property (nonatomic, retain) NSArray *ticketsArray;
 

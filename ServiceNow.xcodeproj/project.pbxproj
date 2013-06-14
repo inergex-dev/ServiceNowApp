@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B3802C0176900A10068C40C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802BF176900A10068C40C /* UIKit.framework */; };
-		8B3802C2176900A10068C40C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802C1176900A10068C40C /* Foundation.framework */; };
+		8B3802C2176900A10068C40C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802C1176900A10068C40C /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		8B3802C4176900A10068C40C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802C3176900A10068C40C /* CoreGraphics.framework */; };
 		8B3802CA176900A10068C40C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B3802C8176900A10068C40C /* InfoPlist.strings */; };
 		8B3802CC176900A10068C40C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3802CB176900A10068C40C /* main.m */; };
@@ -27,6 +27,10 @@
 		8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380301176902660068C40C /* LoginViewController.m */; };
 		8B9B307E176908AD00BAAFAE /* MainMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380303176902660068C40C /* MainMenuTableViewController.m */; };
 		8B9B3081176A037B00BAAFAE /* OpenTicketsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */; };
+		8B9B3084176B623700BAAFAE /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3083176B623700BAAFAE /* TicketViewController.m */; };
+		8B9B3085176B798600BAAFAE /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380305176902660068C40C /* Ticket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8B9B3088176B90E900BAAFAE /* CreateTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3087176B90E800BAAFAE /* CreateTicketViewController.m */; };
+		8B9B3089176B99F700BAAFAE /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380307176902660068C40C /* XMLParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,16 +67,20 @@
 		8B3802F0176900A20068C40C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8B3802F2176900A20068C40C /* ServiceNowTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceNowTests.h; sourceTree = "<group>"; };
 		8B3802F3176900A20068C40C /* ServiceNowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceNowTests.m; sourceTree = "<group>"; };
-		8B380300176902660068C40C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		8B380301176902660068C40C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		8B380302176902660068C40C /* MainMenuTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuTableViewController.h; sourceTree = "<group>"; };
-		8B380303176902660068C40C /* MainMenuTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuTableViewController.m; sourceTree = "<group>"; };
-		8B380304176902660068C40C /* Ticket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
-		8B380305176902660068C40C /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
-		8B380306176902660068C40C /* XMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
-		8B380307176902660068C40C /* XMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
-		8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTicketsTableViewController.h; sourceTree = "<group>"; };
-		8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTicketsTableViewController.m; sourceTree = "<group>"; };
+		8B380300176902660068C40C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
+		8B380301176902660068C40C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
+		8B380302176902660068C40C /* MainMenuTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainMenuTableViewController.h; path = ../MainMenuTableViewController.h; sourceTree = "<group>"; };
+		8B380303176902660068C40C /* MainMenuTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainMenuTableViewController.m; path = ../MainMenuTableViewController.m; sourceTree = "<group>"; };
+		8B380304176902660068C40C /* Ticket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = ../Ticket.h; sourceTree = "<group>"; };
+		8B380305176902660068C40C /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = ../Ticket.m; sourceTree = "<group>"; };
+		8B380306176902660068C40C /* XMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XMLParser.h; path = ../XMLParser.h; sourceTree = "<group>"; };
+		8B380307176902660068C40C /* XMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XMLParser.m; path = ../XMLParser.m; sourceTree = "<group>"; };
+		8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenTicketsTableViewController.h; path = ../OpenTicketsTableViewController.h; sourceTree = "<group>"; };
+		8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenTicketsTableViewController.m; path = ../OpenTicketsTableViewController.m; sourceTree = "<group>"; };
+		8B9B3082176B623700BAAFAE /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketViewController.h; path = ../TicketViewController.h; sourceTree = "<group>"; };
+		8B9B3083176B623700BAAFAE /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketViewController.m; path = ../TicketViewController.m; sourceTree = "<group>"; };
+		8B9B3086176B90E800BAAFAE /* CreateTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTicketViewController.h; sourceTree = "<group>"; };
+		8B9B3087176B90E800BAAFAE /* CreateTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTicketViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,16 +110,6 @@
 		8B3802B3176900A10068C40C = {
 			isa = PBXGroup;
 			children = (
-				8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */,
-				8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */,
-				8B380300176902660068C40C /* LoginViewController.h */,
-				8B380301176902660068C40C /* LoginViewController.m */,
-				8B380302176902660068C40C /* MainMenuTableViewController.h */,
-				8B380303176902660068C40C /* MainMenuTableViewController.m */,
-				8B380304176902660068C40C /* Ticket.h */,
-				8B380305176902660068C40C /* Ticket.m */,
-				8B380306176902660068C40C /* XMLParser.h */,
-				8B380307176902660068C40C /* XMLParser.m */,
 				8B3802C5176900A10068C40C /* ServiceNow */,
 				8B3802EC176900A20068C40C /* ServiceNowTests */,
 				8B3802BE176900A10068C40C /* Frameworks */,
@@ -142,6 +140,20 @@
 		8B3802C5176900A10068C40C /* ServiceNow */ = {
 			isa = PBXGroup;
 			children = (
+				8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */,
+				8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */,
+				8B9B3082176B623700BAAFAE /* TicketViewController.h */,
+				8B9B3083176B623700BAAFAE /* TicketViewController.m */,
+				8B9B3086176B90E800BAAFAE /* CreateTicketViewController.h */,
+				8B9B3087176B90E800BAAFAE /* CreateTicketViewController.m */,
+				8B380300176902660068C40C /* LoginViewController.h */,
+				8B380301176902660068C40C /* LoginViewController.m */,
+				8B380302176902660068C40C /* MainMenuTableViewController.h */,
+				8B380303176902660068C40C /* MainMenuTableViewController.m */,
+				8B380304176902660068C40C /* Ticket.h */,
+				8B380305176902660068C40C /* Ticket.m */,
+				8B380306176902660068C40C /* XMLParser.h */,
+				8B380307176902660068C40C /* XMLParser.m */,
 				8B3802CE176900A10068C40C /* AppDelegate.h */,
 				8B3802CF176900A10068C40C /* AppDelegate.m */,
 				8B3802D7176900A10068C40C /* MainStoryboard_iPhone.storyboard */,
@@ -297,12 +309,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9B3089176B99F700BAAFAE /* XMLParser.m in Sources */,
+				8B9B3085176B798600BAAFAE /* Ticket.m in Sources */,
 				8B3802CC176900A10068C40C /* main.m in Sources */,
 				8B3802D0176900A10068C40C /* AppDelegate.m in Sources */,
 				8B3802DF176900A10068C40C /* ViewController.m in Sources */,
 				8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */,
 				8B9B307E176908AD00BAAFAE /* MainMenuTableViewController.m in Sources */,
 				8B9B3081176A037B00BAAFAE /* OpenTicketsTableViewController.m in Sources */,
+				8B9B3084176B623700BAAFAE /* TicketViewController.m in Sources */,
+				8B9B3088176B90E900BAAFAE /* CreateTicketViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +437,7 @@
 		8B3802F8176900A20068C40C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ServiceNow/ServiceNow-Prefix.pch";
 				INFOPLIST_FILE = "ServiceNow/ServiceNow-Info.plist";
@@ -432,6 +449,7 @@
 		8B3802F9176900A20068C40C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ServiceNow/ServiceNow-Prefix.pch";
 				INFOPLIST_FILE = "ServiceNow/ServiceNow-Info.plist";
