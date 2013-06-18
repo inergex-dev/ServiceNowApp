@@ -9,7 +9,7 @@
 //
 
 #import "XMLParser.h"
-#import "Ticket.h";
+#import "Ticket.h"
 
 @implementation XMLParser
 @synthesize ticket, tickets;
@@ -21,12 +21,16 @@
     return self;
 }
 
+//didStartElement
 - (void)parser:         (NSXMLParser *) parser
         didStartElement:(NSString *)    elementName
         namespaceURI:   (NSString *)    namespaceURI
         qualifiedName:  (NSString *)    qualifiedName
         attributes:     (NSDictionary *)attributeDict
 {
+    //http://wiki.cs.unh.edu/wiki/index.php/Parsing_XML_data_with_NSXMLParser
+    //http://stackoverflow.com/questions/4705588/nsxmlparser-example
+    
     if ([elementName isEqualToString:@"ticket"]) {
         NSLog(@"ticket element found – create a new instance of Ticket class...");
         ticket = [[Ticket alloc] init];
@@ -35,25 +39,26 @@
     }
 }
 
+//foundCharacters
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    if (!currentElementValue) {
-        // init the ad hoc string with the value
-        currentElementValue = [[NSMutableString alloc] initWithString:string];
-    } else {
+    if (currentElementValue) {
         // append value to the ad hoc string
         [currentElementValue appendString:string];
+    } else {
+        // init the ad hoc string with the value
+        currentElementValue = [[NSMutableString alloc] initWithString:string];
     }
     NSLog(@"Processing value for : %@", string);
 }
 
+//didEndElement
 - (void)parser          :(NSXMLParser *)parser
         didEndElement   :(NSString *)   elementName
         namespaceURI    :(NSString *)   namespaceURI
         qualifiedName   :(NSString *)   qName
 {
     if ([elementName isEqualToString:@"tickets"]) {
-        // We reached the end of the XML document
-        return;
+        return; // We reached the end of the XML document
     }
     
     if ([elementName isEqualToString:@"ticket"]) {
@@ -67,6 +72,7 @@
         // The parser hit one of the element values.
         // This syntax is possible because Ticket object
         // property names match the XML user element names
+        [currentElementValue setString:[currentElementValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
         [ticket setValue:currentElementValue forKey:elementName];
     }
     

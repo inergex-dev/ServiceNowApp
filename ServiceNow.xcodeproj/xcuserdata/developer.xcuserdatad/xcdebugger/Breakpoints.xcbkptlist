@@ -21,12 +21,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "LoginViewController.m"
-         timestampString = "392924204.246966"
+         timestampString = "393258370.954405"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "59"
-         endingLineNumber = "59"
+         startingLineNumber = "62"
+         endingLineNumber = "62"
          landmarkName = "-attemptlogin:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "XMLParser.m"
+         timestampString = "393178666.417905"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "-parser:foundCharacters:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

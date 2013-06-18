@@ -16,9 +16,9 @@
 
 @synthesize ticketsArray;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {/*Custom initialization*/}
     return self;
 }
@@ -33,37 +33,39 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:@"test.xml"] ];
-    
-    // create and init NSXMLParser object
+    NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
     NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
+    XMLParser *parserDelagate = [[XMLParser alloc] initXMLParser];
+    [nsXmlParser setDelegate:parserDelagate];
     
-    // create and init our delegate
-    XMLParser *parser = [[XMLParser alloc] initXMLParser];
-    
-    // set delegate
-    [nsXmlParser setDelegate:parser];
-    
-    // parsing...
     BOOL success = [nsXmlParser parse];
-    
-    NSLog(@"%@", success ? @"Yes" : @"No");
-    
-    ticketsArray = [NSArray arrayWithObjects:
-                    [[Ticket alloc] init:@"Test"],
-                    [[Ticket alloc] init:@"Test2"],
-                    [[Ticket alloc] init:@"bob"],
-                    [[Ticket alloc] init:@"honey"],
-                    [[Ticket alloc] init:@"iFrog"],
-                    [[Ticket alloc] init:@"mexicans"],
-                    [[Ticket alloc] init:@"purple"],
-                    [[Ticket alloc] init:@"pride land"],
-                    [[Ticket alloc] init:@"number 4"],
-                    [[Ticket alloc] init:@"Fido"],
-                    [[Ticket alloc] init:@"Orphan"],
-                    nil
-                ];
+    if (success) {
+        NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
+        // get array of tickets here
+        ticketsArray = parserDelagate.tickets;
+    } else {
+        NSLog(@"Error parsing document!");
+    }
 }
+
+/*-(void)viewDidAppear:(BOOL)animated
+{
+    NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
+    NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
+    XMLParser *parserDelagate = [[XMLParser alloc] initXMLParser];
+    [nsXmlParser setDelegate:parserDelagate];
+    
+    BOOL success = [nsXmlParser parse];
+    if (success) {
+        NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
+        // get array of tickets here
+        ticketsArray = parserDelagate.tickets;
+    } else {
+        NSLog(@"Error parsing document!");
+    }
+    
+    [self.tableView reloadData];
+}*/
 
 #pragma mark - Table view data source
 

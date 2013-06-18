@@ -18,6 +18,12 @@
     [super dealloc];
 }
 
+-(id)init {
+    [super init];
+    shortDesc = @"Desc Needed";
+    return self;
+}
+
 -(id)init:(NSString *)sDesc
 {
     self.shortDesc = sDesc;

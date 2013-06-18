@@ -10,6 +10,8 @@
 
 @interface MainMenuTableViewController : UITableViewController
 
-- (IBAction)logout:(id)sender;
+- (NSMutableArray*)retrieveTicketsFromUrl:(NSString*)url;
+@property (weak, nonatomic) IBOutlet UITableViewCell *openTicketsCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *closedTicketsCell;
 
 @end
