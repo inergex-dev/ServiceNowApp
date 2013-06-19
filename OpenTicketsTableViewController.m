@@ -9,63 +9,18 @@
 #import "OpenTicketsTableViewController.h"
 #import "TicketViewController.h"
 #import "Ticket.h"
-
-#import "XMLParser.h"
+#import "XMLParserDelegate.h"
+#import "Reachability.h"
 
 @implementation OpenTicketsTableViewController
 
 @synthesize ticketsArray;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {/*Custom initialization*/}
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
-    NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
-    XMLParser *parserDelagate = [[XMLParser alloc] initXMLParser];
-    [nsXmlParser setDelegate:parserDelagate];
-    
-    BOOL success = [nsXmlParser parse];
-    if (success) {
-        NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
-        // get array of tickets here
-        ticketsArray = parserDelagate.tickets;
-    } else {
-        NSLog(@"Error parsing document!");
-    }
+    [self refresh]; // Loads information
 }
-
-/*-(void)viewDidAppear:(BOOL)animated
-{
-    NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
-    NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
-    XMLParser *parserDelagate = [[XMLParser alloc] initXMLParser];
-    [nsXmlParser setDelegate:parserDelagate];
-    
-    BOOL success = [nsXmlParser parse];
-    if (success) {
-        NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
-        // get array of tickets here
-        ticketsArray = parserDelagate.tickets;
-    } else {
-        NSLog(@"Error parsing document!");
-    }
-    
-    [self.tableView reloadData];
-}*/
 
 #pragma mark - Table view data source
 
@@ -148,6 +103,25 @@
         
         ticketViewController.ticket = selectedTicket;
     }
+}
+
+- (void)refresh {
+    NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
+    NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
+    XMLParserDelegate *parserDelagate = [[XMLParserDelegate alloc] init];
+    [nsXmlParser setDelegate:parserDelagate];
+    
+    BOOL success = [nsXmlParser parse];
+    if (success) {
+        NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
+        // get array of tickets here
+        ticketsArray = parserDelagate.tickets;
+    } else {
+        NSLog(@"Error parsing document!");
+    }
+    [self.tableView reloadData];
+    
+    [self performSelector:@selector(stopLoading) withObject:nil afterDelay:0.0];
 }
 
 @end

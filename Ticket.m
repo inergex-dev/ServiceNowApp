@@ -9,28 +9,16 @@
 #import "Ticket.h"
 
 @implementation Ticket
-@synthesize shortDesc, userName, firstName, lastName;
-
-- (void) dealloc {
-    [userName release];
-    [firstName release];
-    [lastName release];
-    [super dealloc];
-}
+@synthesize shortDesc, comments, opened, closed;
 
 -(id)init {
-    [super init];
-    shortDesc = @"Desc Needed";
-    return self;
-}
-
--(id)init:(NSString *)sDesc
-{
-    self.shortDesc = sDesc;
-    self.firstName = @"";
-    self.lastName = @"";
-    self.userName = @"";
-    
+    self = [super init];
+    if(self) {
+        self.shortDesc = @"";
+        self.comments = @"";
+        self.opened = @"";
+        self.closed = @"";
+    }
     return self;
 }
 

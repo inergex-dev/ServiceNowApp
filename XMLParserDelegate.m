@@ -8,13 +8,13 @@
 //  Based of of http://wiki.cs.unh.edu/wiki/index.php/Parsing_XML_data_with_NSXMLParser
 //
 
-#import "XMLParser.h"
+#import "XMLParserDelegate.h"
 #import "Ticket.h"
 
-@implementation XMLParser
+@implementation XMLParserDelegate
 @synthesize ticket, tickets;
 
-- (XMLParser *) initXMLParser {
+- (XMLParserDelegate *)init {
     [super init];
     // init array of user objects
     tickets = [[NSMutableArray alloc] init];
@@ -48,7 +48,7 @@
         // init the ad hoc string with the value
         currentElementValue = [[NSMutableString alloc] initWithString:string];
     }
-    NSLog(@"Processing value for : %@", string);
+    //NSLog(@"Processing value for : %@", string);
 }
 
 //didEndElement

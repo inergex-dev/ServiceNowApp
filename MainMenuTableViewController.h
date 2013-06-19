@@ -10,7 +10,6 @@
 
 @interface MainMenuTableViewController : UITableViewController
 
-- (NSMutableArray*)retrieveTicketsFromUrl:(NSString*)url;
 @property (weak, nonatomic) IBOutlet UITableViewCell *openTicketsCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *closedTicketsCell;
 

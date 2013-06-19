@@ -8,7 +8,6 @@
 
 #import "MainMenuTableViewController.h"
 #import "Ticket.h"
-#import "XMLParser.h"
 
 @interface MainMenuTableViewController ()@end
 
@@ -18,13 +17,6 @@
 #define LOGOUT_TAG 4
 
 @implementation MainMenuTableViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) { /*Custom initialization*/ }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -62,60 +54,29 @@
             break;
     }
     
-    /*UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [spinner startAnimating];
-    [cell setAccessoryView:spinner];
-    spinner = nil;
-    //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];*/
-    [cell setAccessoryView:Nil];
-    NSLog(@"1111");
+    [cell setAccessoryView:Nil]; // Gets rid of Activity Indicator if added in prepareForSeque
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"preparing for seque");
     if(sender == self.openTicketsCell)
     {
         UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [spinner startAnimating];
         [self.openTicketsCell setAccessoryView:spinner];
         spinner = nil;
-        //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-
     }
     else if(sender == self.closedTicketsCell)
     {
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [spinner startAnimating];
+        [self.openTicketsCell setAccessoryView:spinner];
+        spinner = nil;
         
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     }
-}
-
-- (NSMutableArray*)retrieveTicketsFromUrl:(NSString*)url
-{
-    // Get Array
-    NSMutableArray *tickets = Nil;
-    NSData *xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url] ];
-    NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
-    XMLParser *parserDelagate = [[XMLParser alloc] initXMLParser];
-    [nsXmlParser setDelegate:parserDelagate];
-    
-    BOOL success = [nsXmlParser parse];
-    if (success) {
-        NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
-        // get array of tickets here
-        tickets = parserDelagate.tickets;
-    } else {
-        NSLog(@"Error parsing document!");
-    }
-    
-    xmlData = Nil;
-    nsXmlParser = Nil;
-    parserDelagate = Nil;
-    
-    return tickets;
 }
 
 @end

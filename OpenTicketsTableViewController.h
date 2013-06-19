@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullRefreshTableViewController.h"
 @class Ticket;
+@class Reachability;
 
-@interface OpenTicketsTableViewController : UITableViewController {
+@interface OpenTicketsTableViewController : PullRefreshTableViewController {
     Ticket *selectedTicket;
+    
+    Reachability *internetReachableFoo;
 }
 
 @property (nonatomic, retain) NSArray *ticketsArray;

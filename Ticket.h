@@ -9,18 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface Ticket : NSObject {
+    int *number;
     NSString *shortDesc;
-    
-    NSString *userName;
-    NSString *firstName;
-    NSString *lastName;
+    NSString *comments;
+    NSString *opened;
+    NSString *closed;
 }
 
+@property int number;
 @property (nonatomic, retain) NSString *shortDesc;
-@property (nonatomic, retain) NSString *userName;
-@property (nonatomic, retain) NSString *firstName;
-@property (nonatomic, retain) NSString *lastName;
-
--(id)init:(NSString *)shortDesc;
+@property (nonatomic, retain) NSString *comments;
+@property (nonatomic, retain) NSString *opened;
+@property (nonatomic, retain) NSString *closed;
 
 @end

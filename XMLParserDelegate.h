@@ -10,7 +10,7 @@
 
 @class Ticket;
 
-@interface XMLParser : NSObject <NSXMLParserDelegate> {
+@interface XMLParserDelegate : NSObject <NSXMLParserDelegate> {
     NSMutableString *currentElementValue; // an ad hoc string to hold element value
     Ticket *ticket; // user object
     NSMutableArray *tickets; // array of user objects
@@ -18,7 +18,5 @@
 
 @property (nonatomic, retain) Ticket *ticket;
 @property (nonatomic, retain) NSMutableArray *tickets;
-
-- (XMLParser *) initXMLParser;
 
 @end
