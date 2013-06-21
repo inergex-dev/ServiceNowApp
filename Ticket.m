@@ -9,11 +9,12 @@
 #import "Ticket.h"
 
 @implementation Ticket
-@synthesize shortDesc, comments, opened, closed;
+@synthesize number, shortDesc, comments, opened, closed;
 
 -(id)init {
     self = [super init];
     if(self) {
+        self.number = 0;
         self.shortDesc = @"";
         self.comments = @"";
         self.opened = @"";

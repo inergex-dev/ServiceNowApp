@@ -134,35 +134,6 @@
             </objects>
             <point key="canvasLocation" x="-741" y="-160"/>
         </scene>
-        <!--Ticket View Controller - Ticket-->
-        <scene sceneID="aQA-uR-AuO">
-            <objects>
-                <viewController id="oaK-cC-7Zl" customClass="TicketViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NHZ-rT-OnC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHS-G3-AMq">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="qHS-G3-AMq" firstAttribute="trailing" secondItem="NHZ-rT-OnC" secondAttribute="trailing" type="default" id="GmT-EF-fZ5"/>
-                            <constraint firstItem="qHS-G3-AMq" firstAttribute="top" secondItem="NHZ-rT-OnC" secondAttribute="top" type="default" id="NN1-7X-Icn"/>
-                            <constraint firstItem="qHS-G3-AMq" firstAttribute="bottom" secondItem="NHZ-rT-OnC" secondAttribute="bottom" type="default" id="hHA-lg-IWo"/>
-                            <constraint firstItem="qHS-G3-AMq" firstAttribute="leading" secondItem="NHZ-rT-OnC" secondAttribute="leading" type="default" id="hdB-mU-9VQ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Ticket" id="iyv-Wo-xQN"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4XQ-M9-gpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-10" y="213"/>
-        </scene>
         <!--Table View Controller - Closed Tickets-->
         <scene sceneID="NFP-3g-9l4">
             <objects>
@@ -196,7 +167,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Closed Tickets" id="76b-8N-3Pb"/>
                     <connections>
-                        <segue destination="oaK-cC-7Zl" kind="push" identifier="closedTicketSegue" id="G1W-aC-WyH"/>
+                        <segue destination="zCZ-Kg-FFN" kind="push" identifier="closedTicketSegue" id="JZ1-aB-U1e"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zyt-vY-h49" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -260,6 +231,7 @@
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="Obj-1D-XIp" id="ugh-CG-Obu"/>
+                        <outlet property="spinner" destination="Gx9-Q4-h9e" id="C3N-6d-zjo"/>
                         <outlet property="usernameTextField" destination="0Bd-j3-cd6" id="W4a-p3-XWQ"/>
                         <segue destination="2BR-Im-nVW" kind="modal" identifier="loginSegue" modalTransitionStyle="flipHorizontal" animates="NO" id="wNH-75-GGj"/>
                     </connections>
@@ -267,63 +239,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7t5-2k-Wub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1470" y="-160"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="sdb-6R-ntt">
-            <objects>
-                <viewController id="zhF-Ri-zvL" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uCJ-Pd-dPv">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connection not found." lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ey-TV-mgo">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="279" id="g4p-1o-Hz5"/>
-                                    <constraint firstAttribute="height" constant="103" id="p8K-A2-G6i"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="... coulda sworn it was right there..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Syd-YP-HE1">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nB5-ot-jfD">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Help find it">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3t3-aA-E7G">
-                                <items>
-                                    <navigationItem title="No Connection" id="s1M-cL-5cm"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Syd-YP-HE1" firstAttribute="trailing" secondItem="uCJ-Pd-dPv" secondAttribute="trailing" type="default" id="0EM-uR-6n2"/>
-                            <constraint firstItem="3t3-aA-E7G" firstAttribute="trailing" secondItem="uCJ-Pd-dPv" secondAttribute="trailing" type="default" id="2bz-nM-KQO"/>
-                            <constraint firstItem="3t3-aA-E7G" firstAttribute="leading" secondItem="uCJ-Pd-dPv" secondAttribute="leading" type="default" id="54V-Ye-a0Z"/>
-                            <constraint firstItem="Syd-YP-HE1" firstAttribute="top" secondItem="uCJ-Pd-dPv" secondAttribute="top" constant="263" id="5eU-Rf-By4"/>
-                            <constraint firstItem="nB5-ot-jfD" firstAttribute="leading" secondItem="uCJ-Pd-dPv" secondAttribute="leading" constant="100" id="Ect-Y8-mBr"/>
-                            <constraint firstItem="2Ey-TV-mgo" firstAttribute="leading" secondItem="uCJ-Pd-dPv" secondAttribute="leading" constant="6" id="MhL-Ur-JwC"/>
-                            <constraint firstAttribute="bottom" secondItem="nB5-ot-jfD" secondAttribute="bottom" constant="107" id="S9g-eZ-EmP"/>
-                            <constraint firstItem="2Ey-TV-mgo" firstAttribute="top" secondItem="uCJ-Pd-dPv" secondAttribute="top" constant="88" id="Uwm-KE-jGJ"/>
-                            <constraint firstItem="3t3-aA-E7G" firstAttribute="top" secondItem="uCJ-Pd-dPv" secondAttribute="top" type="default" id="kDZ-fb-g0r"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="uFw-gM-9us"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ynh-r8-pWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1156" y="-881"/>
         </scene>
         <!--Create Ticket View Controller - Create Ticket-->
         <scene sceneID="8eo-HE-BQK">
@@ -356,6 +271,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLa-rX-6z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-380" y="-881"/>
+        </scene>
+        <!--Ticket Table View Controller - Ticket-->
+        <scene sceneID="JjH-Wx-X4G">
+            <objects>
+                <tableViewController id="zCZ-Kg-FFN" customClass="TicketTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ynj-Ml-BeL">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ticketCell" id="1UC-tL-syS">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zCZ-Kg-FFN" id="CFf-8q-3Bd"/>
+                            <outlet property="delegate" destination="zCZ-Kg-FFN" id="3ad-6o-GHe"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Ticket" id="mXk-Z3-ogn"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mJ8-st-ayN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4" y="215"/>
         </scene>
         <!--Navigation Controller - navigationController-->
         <scene sceneID="rrI-b4-6af">
@@ -411,8 +356,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Open Tickets" id="Kab-BB-t1i"/>
                     <connections>
-                        <segue destination="oaK-cC-7Zl" kind="push" identifier="openTicketSegue" id="SCk-sx-TPz"/>
-                        <segue destination="zhF-Ri-zvL" kind="push" identifier="noConnectionSegue" id="uhh-xc-fgr"/>
+                        <segue destination="zCZ-Kg-FFN" kind="push" identifier="openTicketSegue" id="pWK-1T-9Kr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vwd-pY-hBs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -420,48 +364,12 @@
             <point key="canvasLocation" x="-380" y="-160"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CreateTicketViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateTicketViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="attemptlogin:"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainMenuTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="closedTicketsCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="openTicketsCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="OpenTicketsTableViewController" superclassName="PullRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OpenTicketsTableViewController.h"/>
-        </class>
-        <class className="PullRefreshTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullRefreshTableViewController.h"/>
-        </class>
-        <class className="TicketViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TicketViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SCk-sx-TPz"/>
+        <segue reference="pWK-1T-9Kr"/>
     </inferredMetricsTieBreakers>
 </document>

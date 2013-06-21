@@ -14,9 +14,11 @@
 @interface OpenTicketsTableViewController : PullRefreshTableViewController {
     Ticket *selectedTicket;
     
-    Reachability *internetReachableFoo;
+    Reachability *reach;
 }
 
+@property (strong, nonatomic) Ticket *selectedTicket;
 @property (nonatomic, retain) NSArray *ticketsArray;
+@property (nonatomic, retain) Reachability *reach;
 
 @end

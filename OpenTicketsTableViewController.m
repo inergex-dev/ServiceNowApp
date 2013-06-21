@@ -7,19 +7,39 @@
 //
 
 #import "OpenTicketsTableViewController.h"
-#import "TicketViewController.h"
+#import "TicketTableViewController.h"
 #import "Ticket.h"
 #import "XMLParserDelegate.h"
 #import "Reachability.h"
 
 @implementation OpenTicketsTableViewController
 
-@synthesize ticketsArray;
+@synthesize selectedTicket, ticketsArray, reach;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self refresh]; // Loads information
+    
+    reach = [Reachability reachabilityWithHostname:@"www.bing.com"];
+    [reach startNotifier];
+    
+    __weak typeof(self) weakSelf = self; // Used to avoid self being retained in the blocks.
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf refresh]; // Loads information
+            weakSelf.reach.reachableBlock = Nil;
+        });
+    };
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf refresh]; // Loads information
+            weakSelf.reach.unreachableBlock = Nil;
+        });
+    };
 }
 
 #pragma mark - Table view data source
@@ -99,29 +119,80 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"openTicketSegue"]) {
-        TicketViewController *ticketViewController = (TicketViewController *)segue.destinationViewController;
+        TicketTableViewController *ticketTableViewController = segue.destinationViewController;
         
-        ticketViewController.ticket = selectedTicket;
+        ticketTableViewController.ticket = selectedTicket;
     }
 }
 
-- (void)refresh {
-    NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
-    NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
-    XMLParserDelegate *parserDelagate = [[XMLParserDelegate alloc] init];
-    [nsXmlParser setDelegate:parserDelagate];
-    
-    BOOL success = [nsXmlParser parse];
-    if (success) {
-        NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
-        // get array of tickets here
-        ticketsArray = parserDelagate.tickets;
-    } else {
-        NSLog(@"Error parsing document!");
+- (void)refresh
+{
+    if(reach.isReachable)
+    {
+        NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
+        NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
+        XMLParserDelegate *parserDelagate = [[XMLParserDelegate alloc] init];
+        [nsXmlParser setDelegate:parserDelagate];
+        
+        BOOL success = [nsXmlParser parse];
+        if (success) {
+            NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
+            // get array of tickets here
+            self.ticketsArray = parserDelagate.tickets;
+        } else {
+            NSLog(@"Error parsing document!");
+        }
+        [self.tableView reloadData];
     }
-    [self.tableView reloadData];
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
     
     [self performSelector:@selector(stopLoading) withObject:nil afterDelay:0.0];
+    
+    /*
+    __weak typeof(self) weakSelf = self; // Used to avoid self being retained in the blocks.
+    // set the blocks
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"REACHABLE!");
+            NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
+            NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
+            XMLParserDelegate *parserDelagate = [[XMLParserDelegate alloc] init];
+            [nsXmlParser setDelegate:parserDelagate];
+            
+            BOOL success = [nsXmlParser parse];
+            if (success) {
+                NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
+                // get array of tickets here
+                weakSelf.ticketsArray = parserDelagate.tickets;
+            } else {
+                NSLog(@"Error parsing document!");
+            }
+            [weakSelf.tableView reloadData];
+            
+            [weakSelf performSelector:@selector(stopLoading) withObject:nil afterDelay:0.0];
+        });
+    };
+    
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"UNREACHABLE!");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No internet connection found, please connect and try again." delegate:weakSelf cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        });
+    };*/
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //[self refresh];
 }
 
 @end

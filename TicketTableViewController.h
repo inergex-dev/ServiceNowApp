@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 @class Ticket;
 
-@interface TicketViewController : UIViewController {
+@interface TicketTableViewController : UITableViewController {
     Ticket *ticket;
 }
 
-@property (nonatomic, retain) Ticket *ticket;
+@property (strong, nonatomic) Ticket *ticket;
 
 @end

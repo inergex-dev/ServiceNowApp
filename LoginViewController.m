@@ -7,15 +7,15 @@
 //
 
 #import "LoginViewController.h"
-@interface LoginViewController ()@end
+#import "Reachability.h"
 
 @implementation LoginViewController
 
 #define USERFIELD_TAG 1
 #define PASSFIELD_TAG 2
 
-@synthesize usernameTextField;
-@synthesize passwordTextField;
+@synthesize usernameTextField, passwordTextField, loginButton, spinner;
+@synthesize reach;
 
 - (void)viewDidLoad
 {
@@ -28,6 +28,28 @@
     [super viewDidAppear:animated];
 	// Do any additional setup after view appears.
     
+    reach = [Reachability reachabilityWithHostname:@"www.bing.com"];
+    [reach startNotifier];
+    
+    // Check if login information is stored.
+    NSString* username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    NSString* password = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
+    //NSLog(@"%@", username ? [@"Username: " stringByAppendingString: username] : @"No Username");
+    //NSLog(@"%@", password ? [@"Password: " stringByAppendingString: password] : @"No Password");
+    
+    // If: credentials are stored
+    if (username && password) {
+        // Then: imput them into fields
+        usernameTextField.text = username;
+        passwordTextField.text = password;
+    }
+
+    
+    //[self autoLogin];
+}
+
+/*- (void)autoLogin
+{
     NSString* username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     NSString* password = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
     
@@ -36,39 +58,59 @@
     
     // If: credentials are stored
     if (username && password) {
+        // Then: assume valid
+        [self performSegueWithIdentifier:@"loginSegue" sender:self];
+        
         // Then: load them and check if true
-        if([self confirmLoginUsername:username password:password]) {
-            [self performSegueWithIdentifier:@"loginSegue" sender:self];
-        }
+        //if([self confirmLoginUsername:username password:password]) {
+        //    [self performSegueWithIdentifier:@"loginSegue" sender:self];
+        //}
     }
-}
+}*/
 
 - (IBAction)attemptlogin:(id)sender
 {
-    if([self confirmLoginUsername: usernameTextField.text password: passwordTextField.text]) {
-        // Store the passwords
-        [[NSUserDefaults standardUserDefaults] setObject:usernameTextField.text forKey:@"username"];
-        [[NSUserDefaults standardUserDefaults] setObject:passwordTextField.text forKey:@"password"];
-        
-        NSString* msg = @"Credentials stored - username:";
-        msg = [msg stringByAppendingString:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]];
-        msg = [msg stringByAppendingString: @" password:"];
-        msg = [msg stringByAppendingString:[[NSUserDefaults standardUserDefaults] valueForKey:@"password"]];
-        NSLog(@"%@",msg);
-        
-        [self performSegueWithIdentifier:@"loginSegue" sender:self];
+    if(reach.isReachable)
+    {
+        if([self confirmLoginUsername: usernameTextField.text password: passwordTextField.text]) {
+            // Store the passwords
+            [[NSUserDefaults standardUserDefaults] setObject:usernameTextField.text forKey:@"username"];
+            [[NSUserDefaults standardUserDefaults] setObject:passwordTextField.text forKey:@"password"];
+            
+            NSString* msg = @"Credentials stored - username:";
+            msg = [msg stringByAppendingString:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]];
+            msg = [msg stringByAppendingString: @" password:"];
+            msg = [msg stringByAppendingString:[[NSUserDefaults standardUserDefaults] valueForKey:@"password"]];
+            NSLog(@"%@",msg);
+            
+            // Stops and removes it.
+            [reach stopNotifier];
+            reach = Nil;
+            
+            [self performSegueWithIdentifier:@"loginSegue" sender:self];
+        }
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
     }
 }
 
 - (BOOL)confirmLoginUsername:(NSString*)username password:(NSString*)password
 {
+    BOOL correctLogin = NO;
+    
+    [self.spinner startAnimating];
     // check if correct via internet
-    if ([username isEqualToString:@"admin"] && [password isEqualToString:@"pass"]) {
-        
+    if ([username isEqualToString:@"admin"] && [password isEqualToString:@"pass"])
+    {
         // show the login screen
-        return true;
+        correctLogin = YES;
     }
-    return false;
+    
+    [self.spinner stopAnimating];
+    return correctLogin;
 }
 
 // Keyboard disappears if user touches screen - http://mobile.tutsplus.com/tutorials/iphone/ios-sdk-uitextfield-uitextfielddelegate/

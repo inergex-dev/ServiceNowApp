@@ -32,7 +32,7 @@
     //http://stackoverflow.com/questions/4705588/nsxmlparser-example
     
     if ([elementName isEqualToString:@"ticket"]) {
-        NSLog(@"ticket element found – create a new instance of Ticket class...");
+        //NSLog(@"ticket element found – create a new instance of Ticket class...");
         ticket = [[Ticket alloc] init];
         // You can extract attributes here:
         // user.att = [[attributeDict objectForKey:@"<att name>"] ...];

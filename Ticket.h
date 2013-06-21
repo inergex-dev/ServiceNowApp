@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Ticket : NSObject {
-    int *number;
+    int number;
     NSString *shortDesc;
     NSString *comments;
     NSString *opened;
