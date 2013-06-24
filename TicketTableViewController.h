@@ -11,6 +11,7 @@
 
 @interface TicketTableViewController : UITableViewController {
     Ticket *ticket;
+    NSMutableArray *sections;
 }
 
 @property (strong, nonatomic) Ticket *ticket;

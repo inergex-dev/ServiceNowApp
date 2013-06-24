@@ -40,6 +40,7 @@
 		8B9B30BB1772130900BAAFAE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30B81772130900BAAFAE /* Reachability.m */; };
 		8B9B30BC1772130900BAAFAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30B91772130900BAAFAE /* README.md */; };
 		8B9B30BE17723E1800BAAFAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9B30BD17723E1800BAAFAE /* SystemConfiguration.framework */; };
+		8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,8 @@
 		8B9B30B81772130900BAAFAE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "../../Downloads/Reachability-master/Reachability.m"; sourceTree = "<group>"; };
 		8B9B30B91772130900BAAFAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = "../../Downloads/Reachability-master/README.md"; sourceTree = "<group>"; };
 		8B9B30BD17723E1800BAAFAE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosedTicketsTableViewController.h; sourceTree = "<group>"; };
+		8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosedTicketsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 				8B9B30B5177212D300BAAFAE /*  Reachability */,
 				8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */,
 				8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */,
+				8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTableViewController.h */,
+				8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTableViewController.m */,
 				8B9B3082176B623700BAAFAE /* TicketTableViewController.h */,
 				8B9B3083176B623700BAAFAE /* TicketTableViewController.m */,
 				8B9B3086176B90E800BAAFAE /* CreateTicketViewController.h */,
@@ -383,6 +388,7 @@
 				8B9B3088176B90E900BAAFAE /* CreateTicketViewController.m in Sources */,
 				8B9B30AB1771D15500BAAFAE /* PullRefreshTableViewController.m in Sources */,
 				8B9B30BB1772130900BAAFAE /* Reachability.m in Sources */,
+				8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
