@@ -12,12 +12,16 @@
 #import "Ticket.h"
 
 @implementation XMLParserDelegate
-@synthesize ticket, tickets;
+@synthesize ticket, tickets, acceptedKeys;
+
+#define TICKETS @"getRecordsResponse"
+#define TICKET @"getRecordsResult"
 
 - (XMLParserDelegate *)init {
     [super init];
     // init array of user objects
     tickets = [[NSMutableArray alloc] init];
+    acceptedKeys = [NSArray arrayWithObjects:@"short_description", @"comments", nil];
     return self;
 }
 
@@ -31,7 +35,7 @@
     //http://wiki.cs.unh.edu/wiki/index.php/Parsing_XML_data_with_NSXMLParser
     //http://stackoverflow.com/questions/4705588/nsxmlparser-example
     
-    if ([elementName isEqualToString:@"ticket"]) {
+    if ([elementName isEqualToString:TICKET]) {
         //NSLog(@"ticket element found – create a new instance of Ticket class...");
         ticket = [[Ticket alloc] init];
         // You can extract attributes here:
@@ -57,11 +61,11 @@
         namespaceURI    :(NSString *)   namespaceURI
         qualifiedName   :(NSString *)   qName
 {
-    if ([elementName isEqualToString:@"tickets"]) {
+    if ([elementName isEqualToString:TICKETS]) {
         return; // We reached the end of the XML document
     }
     
-    if ([elementName isEqualToString:@"ticket"]) {
+    if ([elementName isEqualToString:TICKET]) {
         // We are done with user entry – add the parsed ticket
         // object to our ticket array
         [tickets addObject:ticket];
@@ -70,10 +74,16 @@
         ticket = nil;
     } else {
         // The parser hit one of the element values.
-        // This syntax is possible because Ticket object
-        // property names match the XML user element names
-        [currentElementValue setString:[currentElementValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-        [ticket setValue:currentElementValue forKey:elementName];
+        if([self.acceptedKeys containsObject:elementName]) {
+            [currentElementValue setString:[currentElementValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+            if([elementName isEqualToString:@"someLongKeyThatWasShortenedInTicket"]) {
+                [ticket setValue:currentElementValue forKey:@"actualKey"];
+            }
+            else {
+                // This syntax is possible because Ticket object property names match the XML user element names
+                [ticket setValue:currentElementValue forKey:elementName];
+            }
+        }
     }
     
     [currentElementValue release];

@@ -21,13 +21,13 @@
     [super viewDidLoad];
     
     // Display Ticket
-    self.navigationItem.title = ticket.shortDesc;
+    //self.navigationItem.title = ticket.short_description;
     
     //http://www.icodeblog.com/2010/12/10/implementing-uitableview-sections-from-an-nsarray-of-nsdictionary-objects/
     sections = [[NSMutableArray alloc] init];
     
-    if([ticket.shortDesc isEqualToString:@""] == NO) {
-        [sections addObject:[NSArray arrayWithObjects:@"Short Description", ticket.shortDesc, Nil]];
+    if([ticket.short_description isEqualToString:@""] == NO) {
+        [sections addObject:[NSArray arrayWithObjects:@"Short Description", ticket.short_description, Nil]];
     }
     if([ticket.comments isEqualToString:@""] == NO) {
         [sections addObject:[NSArray arrayWithObjects:@"Comments", ticket.comments, Nil]];

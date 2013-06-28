@@ -10,14 +10,14 @@
 
 @interface Ticket : NSObject {
     int number;
-    NSString *shortDesc;
+    NSString *short_description;
     NSString *comments;
     NSString *opened;
     NSString *closed;
 }
 
 @property int number;
-@property (nonatomic, retain) NSString *shortDesc;
+@property (nonatomic, retain) NSString *short_description;
 @property (nonatomic, retain) NSString *comments;
 @property (nonatomic, retain) NSString *opened;
 @property (nonatomic, retain) NSString *closed;

@@ -63,7 +63,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = ((Ticket *)[ticketsArray objectAtIndex:indexPath.row]).shortDesc;
+    cell.textLabel.text = ((Ticket *)[ticketsArray objectAtIndex:indexPath.row]).short_description;
     
     return cell;
 }

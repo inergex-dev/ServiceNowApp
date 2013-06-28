@@ -14,9 +14,12 @@
     NSMutableString *currentElementValue; // an ad hoc string to hold element value
     Ticket *ticket; // user object
     NSMutableArray *tickets; // array of user objects
+    
+    NSArray *acceptedKeys;
 }
 
 @property (nonatomic, retain) Ticket *ticket;
 @property (nonatomic, retain) NSMutableArray *tickets;
+@property (readonly) NSArray *acceptedKeys;
 
 @end
