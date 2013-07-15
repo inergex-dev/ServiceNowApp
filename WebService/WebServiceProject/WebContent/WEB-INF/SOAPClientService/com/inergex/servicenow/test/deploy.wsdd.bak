@@ -1,0 +1,41 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SOAPClientService WSDL service -->
+
+  <service name="SOAPClient" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://test.servicenow.inergex.com"/>
+      <parameter name="wsdlServiceElement" value="SOAPClientService"/>
+      <parameter name="schemaQualified" value="http://test.servicenow.inergex.com"/>
+      <parameter name="wsdlServicePort" value="SOAPClient"/>
+      <parameter name="className" value="com.inergex.servicenow.test.SOAPClientSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="SOAPClient"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getTickets" qname="operNS:getTickets" xmlns:operNS="http://test.servicenow.inergex.com" returnQName="retNS:getTicketsReturn" xmlns:retNS="http://test.servicenow.inergex.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://test.servicenow.inergex.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pass" xmlns:pns="http://test.servicenow.inergex.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:open" xmlns:pns="http://test.servicenow.inergex.com" type="tns:boolean" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="authenticatLogin" qname="operNS:authenticatLogin" xmlns:operNS="http://test.servicenow.inergex.com" returnQName="retNS:authenticatLoginReturn" xmlns:retNS="http://test.servicenow.inergex.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://test.servicenow.inergex.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pass" xmlns:pns="http://test.servicenow.inergex.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="createIncident" qname="operNS:createIncident" xmlns:operNS="http://test.servicenow.inergex.com" returnQName="retNS:createIncidentReturn" xmlns:retNS="http://test.servicenow.inergex.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://test.servicenow.inergex.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pass" xmlns:pns="http://test.servicenow.inergex.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:short_description" xmlns:pns="http://test.servicenow.inergex.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:comments" xmlns:pns="http://test.servicenow.inergex.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="createIncident authenticatLogin getTickets"/>
+
+  </service>
+</deployment>

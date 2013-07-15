@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://test.servicenow.inergex.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://test.servicenow.inergex.com" xmlns:intf="http://test.servicenow.inergex.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://test.servicenow.inergex.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getTickets">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+      <element name="open" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTicketsResponse">
+    <complexType>
+     <sequence>
+      <element name="getTicketsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="authenticatLogin">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="authenticatLoginResponse">
+    <complexType>
+     <sequence>
+      <element name="authenticatLoginReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createIncident">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:string"/>
+      <element name="in1" type="xsd:string"/>
+      <element name="in2" type="xsd:string"/>
+      <element name="in3" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createIncidentResponse">
+    <complexType>
+     <sequence>
+      <element name="createIncidentReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="createIncidentRequest">
+
+      <wsdl:part element="impl:createIncident" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTicketsRequest">
+
+      <wsdl:part element="impl:getTickets" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createIncidentResponse">
+
+      <wsdl:part element="impl:createIncidentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticatLoginRequest">
+
+      <wsdl:part element="impl:authenticatLogin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticatLoginResponse">
+
+      <wsdl:part element="impl:authenticatLoginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTicketsResponse">
+
+      <wsdl:part element="impl:getTicketsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SOAPClient">
+
+      <wsdl:operation name="getTickets">
+
+         <wsdl:input message="impl:getTicketsRequest" name="getTicketsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTicketsResponse" name="getTicketsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticatLogin">
+
+         <wsdl:input message="impl:authenticatLoginRequest" name="authenticatLoginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:authenticatLoginResponse" name="authenticatLoginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createIncident">
+
+         <wsdl:input message="impl:createIncidentRequest" name="createIncidentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createIncidentResponse" name="createIncidentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SOAPClientSoapBinding" type="impl:SOAPClient">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getTickets">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTicketsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTicketsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticatLogin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="authenticatLoginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="authenticatLoginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createIncident">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createIncidentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createIncidentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SOAPClientService">
+
+      <wsdl:port binding="impl:SOAPClientSoapBinding" name="SOAPClient">
+
+         <wsdlsoap:address location="http://localhost:8080/WebServiceProject/services/SOAPClient"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
