@@ -4,10 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Main Menu Table View Controller - ServiceNow-->
+        <!--Main MenuTVC - ServiceNow-->
         <scene sceneID="w4p-6d-9Lh">
             <objects>
-                <tableViewController id="EAR-oj-aSJ" customClass="MainMenuTableViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ca-SI-PHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="EAR-oj-aSJ" customClass="MainMenuTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Kai-10-tKU">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +32,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="aLF-8Y-gx9" kind="push" id="3iC-FM-TLE"/>
+                                            <segue destination="pJW-LN-MX4" kind="push" id="Ity-TR-UP6"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell tag="2" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="M8L-zk-48O" style="IBUITableViewCellStyleDefault" id="44o-hF-eia">
@@ -130,14 +131,13 @@
                         <outlet property="openTicketsCell" destination="44o-hF-eia" id="s2e-bi-va0"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3ca-SI-PHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-741" y="-160"/>
         </scene>
-        <!--Closed Tickets Table View Controller - Closed Tickets-->
+        <!--Closed TicketsTVC - Closed Tickets-->
         <scene sceneID="NFP-3g-9l4">
             <objects>
-                <tableViewController id="0b0-4a-QDz" customClass="ClosedTicketsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="0b0-4a-QDz" customClass="ClosedTicketsTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="U8J-Cp-d3r">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,42 +240,51 @@
             </objects>
             <point key="canvasLocation" x="-1470" y="-160"/>
         </scene>
-        <!--Create Ticket View Controller - Create Ticket-->
-        <scene sceneID="8eo-HE-BQK">
+        <!--Create TicketTVC - Create Ticket-->
+        <scene sceneID="ica-Bn-G0q">
             <objects>
-                <viewController id="aLF-8Y-gx9" customClass="CreateTicketViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nyC-hE-08m">
+                <tableViewController id="pJW-LN-MX4" customClass="CreateTicketTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ge6-sQ-nvo">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mdw-k7-7sM">
-                                <items>
-                                    <barButtonItem title="Send" width="149" id="fo5-7Y-t3l"/>
-                                    <barButtonItem title="Cancel" width="149" id="Kw7-W2-UT6">
-                                        <connections>
-                                            <action selector="cancel:" destination="aLF-8Y-gx9" id="qyS-n0-IgF"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Mdw-k7-7sM" firstAttribute="bottom" secondItem="nyC-hE-08m" secondAttribute="bottom" type="default" id="AlB-ag-1Kl"/>
-                            <constraint firstItem="Mdw-k7-7sM" firstAttribute="leading" secondItem="nyC-hE-08m" secondAttribute="leading" type="default" id="VjM-Jl-RAz"/>
-                            <constraint firstItem="Mdw-k7-7sM" firstAttribute="trailing" secondItem="nyC-hE-08m" secondAttribute="trailing" type="default" id="jmE-EH-mX1"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Create Ticket" id="U9u-vz-OsS"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RLa-rX-6z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Mdw-k7-7sM">
+                            <rect key="frame" x="0.0" y="102" width="320" height="44"/>
+                            <items>
+                                <barButtonItem title="Send" width="149" id="fo5-7Y-t3l"/>
+                                <barButtonItem title="Cancel" width="149" id="Kw7-W2-UT6">
+                                    <connections>
+                                        <action selector="cancel:" destination="pJW-LN-MX4" id="zub-RW-3L9"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ticketCell" id="QJU-cM-ogK">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pJW-LN-MX4" id="hYt-X2-5mQ"/>
+                            <outlet property="delegate" destination="pJW-LN-MX4" id="WNr-4y-fdg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Create Ticket" id="8bn-zi-sH8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bWb-fz-gxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-380" y="-881"/>
         </scene>
-        <!--Ticket Table View Controller - Ticket-->
+        <!--TicketTVC - Ticket-->
         <scene sceneID="JjH-Wx-X4G">
             <objects>
-                <tableViewController id="zCZ-Kg-FFN" customClass="TicketTableViewController" sceneMemberID="viewController">
+                <tableViewController id="zCZ-Kg-FFN" customClass="TicketTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ynj-Ml-BeL">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,6 +329,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="7JV-NW-viD">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="EAR-oj-aSJ" kind="relationship" relationship="rootViewController" id="cxN-nZ-vHp"/>
                     </connections>
@@ -328,10 +341,10 @@
             </objects>
             <point key="canvasLocation" x="-1108" y="-160"/>
         </scene>
-        <!--Open Tickets Table View Controller - Open Tickets-->
+        <!--Open TicketsTVC - Open Tickets-->
         <scene sceneID="zFl-8K-LZX">
             <objects>
-                <tableViewController id="ymE-5P-qBH" customClass="OpenTicketsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="ymE-5P-qBH" customClass="OpenTicketsTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Nsz-Om-Cnt">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -372,11 +385,14 @@
         </scene>
     </scenes>
     <classes>
-        <class className="ClosedTicketsTableViewController" superclassName="PullRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClosedTicketsTableViewController.h"/>
+        <class className="ClosedTicketsTVC" superclassName="PullRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClosedTicketsTVC.h"/>
         </class>
-        <class className="CreateTicketViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateTicketViewController.h"/>
+        <class className="CreateTicketTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateTicketTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+            </relationships>
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
@@ -388,8 +404,8 @@
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="MainMenuTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuTableViewController.h"/>
+        <class className="MainMenuTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuTVC.h"/>
             <relationships>
                 <relationship kind="outlet" name="closedTicketsCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="openTicketsCell" candidateClass="UITableViewCell"/>
@@ -398,14 +414,14 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
-        <class className="OpenTicketsTableViewController" superclassName="PullRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OpenTicketsTableViewController.h"/>
+        <class className="OpenTicketsTVC" superclassName="PullRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OpenTicketsTVC.h"/>
         </class>
         <class className="PullRefreshTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PullRefreshTableViewController.h"/>
         </class>
-        <class className="TicketTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TicketTableViewController.h"/>
+        <class className="TicketTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TicketTVC.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -414,6 +430,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JZ1-aB-U1e"/>
+        <segue reference="pWK-1T-9Kr"/>
     </inferredMetricsTieBreakers>
 </document>

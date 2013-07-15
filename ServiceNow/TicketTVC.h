@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class Ticket;
 
-@interface TicketTableViewController : UITableViewController {
+@interface TicketTVC : UITableViewController {
     Ticket *ticket;
     NSMutableArray *sections;
 }

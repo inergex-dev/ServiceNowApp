@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateTicketViewController : UIViewController
+@interface CreateTicketTVC : UITableViewController {
+    NSMutableArray *sections;
+}
+
+- (IBAction)cancel:(id)sender;
 
 @end

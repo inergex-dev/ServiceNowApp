@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Inergex. All rights reserved.
 //
 
-#import "OpenTicketsTableViewController.h"
-#import "TicketTableViewController.h"
+#import "OpenTicketsTVC.h"
+#import "TicketTVC.h"
 #import "Ticket.h"
 #import "XMLParserDelegate.h"
 #import "Reachability.h"
 
-@implementation OpenTicketsTableViewController
+@implementation OpenTicketsTVC
 
 @synthesize selectedTicket, ticketsArray, reach;
 
@@ -119,7 +119,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"openTicketSegue"]) {
-        TicketTableViewController *ticketTableViewController = segue.destinationViewController;
+        TicketTVC *ticketTableViewController = segue.destinationViewController;
         
         ticketTableViewController.ticket = selectedTicket;
     }

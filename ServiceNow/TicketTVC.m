@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Inergex. All rights reserved.
 //
 
-#import "TicketTableViewController.h"
+#import "TicketTVC.h"
 #import "Ticket.h"
 
 #define TITLE 0
 #define CONTENT 1
 
-@implementation TicketTableViewController
+@implementation TicketTVC
 
 @synthesize ticket;
 
@@ -49,7 +49,7 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize maximumSize1 = CGSizeMake(280, 9999);
     NSString *myString1 = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
@@ -60,17 +60,19 @@
                                  constrainedToSize:maximumSize1
                                      lineBreakMode:lbl_Title.lineBreakMode];
     return stringSize.height + 3;
-}
+}*/
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"4)Create cell");
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    
+    UITextField *textField = [[UITextField alloc] init];
+    
     
     cell.textLabel.font = [UIFont systemFontOfSize:17];
     cell.textLabel.numberOfLines = 0;

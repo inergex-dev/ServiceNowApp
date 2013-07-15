@@ -11,7 +11,7 @@
 @class Ticket;
 @class Reachability;
 
-@interface OpenTicketsTableViewController : PullRefreshTableViewController {
+@interface OpenTicketsTVC : PullRefreshTableViewController {
     Ticket *selectedTicket;
     
     Reachability *reach;

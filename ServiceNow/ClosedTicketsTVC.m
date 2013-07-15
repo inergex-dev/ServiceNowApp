@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Inergex. All rights reserved.
 //
 
-#import "ClosedTicketsTableViewController.h"
-#import "TicketTableViewController.h"
+#import "ClosedTicketsTVC.h"
+#import "TicketTVC.h"
 #import "Ticket.h"
 #import "XMLParserDelegate.h"
 #import "Reachability.h"
 
-@implementation ClosedTicketsTableViewController
+@implementation ClosedTicketsTVC
 
 @synthesize selectedTicket, ticketsArray, reach;
 
@@ -113,7 +113,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"closedTicketSegue"]) {
-        TicketTableViewController *ticketTableViewController = segue.destinationViewController;
+        TicketTVC *ticketTableViewController = segue.destinationViewController;
         
         ticketTableViewController.ticket = selectedTicket;
     }

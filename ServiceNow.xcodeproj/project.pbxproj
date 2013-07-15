@@ -25,11 +25,11 @@
 		8B3802F1176900A20068C40C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B3802EF176900A20068C40C /* InfoPlist.strings */; };
 		8B3802F4176900A20068C40C /* ServiceNowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3802F3176900A20068C40C /* ServiceNowTests.m */; };
 		8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380301176902660068C40C /* LoginViewController.m */; };
-		8B9B307E176908AD00BAAFAE /* MainMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380303176902660068C40C /* MainMenuTableViewController.m */; };
-		8B9B3081176A037B00BAAFAE /* OpenTicketsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */; };
-		8B9B3084176B623700BAAFAE /* TicketTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3083176B623700BAAFAE /* TicketTableViewController.m */; };
+		8B9B307E176908AD00BAAFAE /* MainMenuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380303176902660068C40C /* MainMenuTVC.m */; };
+		8B9B3081176A037B00BAAFAE /* OpenTicketsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */; };
+		8B9B3084176B623700BAAFAE /* TicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3083176B623700BAAFAE /* TicketTVC.m */; };
 		8B9B3085176B798600BAAFAE /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380305176902660068C40C /* Ticket.m */; };
-		8B9B3088176B90E900BAAFAE /* CreateTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3087176B90E800BAAFAE /* CreateTicketViewController.m */; };
+		8B9B3088176B90E900BAAFAE /* CreateTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */; };
 		8B9B3089176B99F700BAAFAE /* XMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380307176902660068C40C /* XMLParserDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8B9B30AB1771D15500BAAFAE /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30AA1771D15500BAAFAE /* PullRefreshTableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8B9B30AD1771D16400BAAFAE /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30AC1771D16400BAAFAE /* arrow.png */; };
@@ -40,7 +40,7 @@
 		8B9B30BB1772130900BAAFAE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30B81772130900BAAFAE /* Reachability.m */; };
 		8B9B30BC1772130900BAAFAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30B91772130900BAAFAE /* README.md */; };
 		8B9B30BE17723E1800BAAFAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9B30BD17723E1800BAAFAE /* SystemConfiguration.framework */; };
-		8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTableViewController.m */; };
+		8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,20 +77,20 @@
 		8B3802F0176900A20068C40C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8B3802F2176900A20068C40C /* ServiceNowTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceNowTests.h; sourceTree = "<group>"; };
 		8B3802F3176900A20068C40C /* ServiceNowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceNowTests.m; sourceTree = "<group>"; };
-		8B380300176902660068C40C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
-		8B380301176902660068C40C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
-		8B380302176902660068C40C /* MainMenuTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainMenuTableViewController.h; path = ../MainMenuTableViewController.h; sourceTree = "<group>"; };
-		8B380303176902660068C40C /* MainMenuTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainMenuTableViewController.m; path = ../MainMenuTableViewController.m; sourceTree = "<group>"; };
-		8B380304176902660068C40C /* Ticket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = ../Ticket.h; sourceTree = "<group>"; };
-		8B380305176902660068C40C /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = ../Ticket.m; sourceTree = "<group>"; };
-		8B380306176902660068C40C /* XMLParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XMLParserDelegate.h; path = ../XMLParserDelegate.h; sourceTree = "<group>"; };
-		8B380307176902660068C40C /* XMLParserDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XMLParserDelegate.m; path = ../XMLParserDelegate.m; sourceTree = "<group>"; };
-		8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenTicketsTableViewController.h; path = ../OpenTicketsTableViewController.h; sourceTree = "<group>"; };
-		8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenTicketsTableViewController.m; path = ../OpenTicketsTableViewController.m; sourceTree = "<group>"; };
-		8B9B3082176B623700BAAFAE /* TicketTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketTableViewController.h; path = ../TicketTableViewController.h; sourceTree = "<group>"; };
-		8B9B3083176B623700BAAFAE /* TicketTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketTableViewController.m; path = ../TicketTableViewController.m; sourceTree = "<group>"; };
-		8B9B3086176B90E800BAAFAE /* CreateTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTicketViewController.h; sourceTree = "<group>"; };
-		8B9B3087176B90E800BAAFAE /* CreateTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTicketViewController.m; sourceTree = "<group>"; };
+		8B380300176902660068C40C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8B380301176902660068C40C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		8B380302176902660068C40C /* MainMenuTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenuTVC.h; sourceTree = "<group>"; };
+		8B380303176902660068C40C /* MainMenuTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuTVC.m; sourceTree = "<group>"; };
+		8B380304176902660068C40C /* Ticket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
+		8B380305176902660068C40C /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
+		8B380306176902660068C40C /* XMLParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLParserDelegate.h; sourceTree = "<group>"; };
+		8B380307176902660068C40C /* XMLParserDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLParserDelegate.m; sourceTree = "<group>"; };
+		8B9B307F176A037B00BAAFAE /* OpenTicketsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTicketsTVC.h; sourceTree = "<group>"; };
+		8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTicketsTVC.m; sourceTree = "<group>"; };
+		8B9B3082176B623700BAAFAE /* TicketTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketTVC.h; sourceTree = "<group>"; };
+		8B9B3083176B623700BAAFAE /* TicketTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketTVC.m; sourceTree = "<group>"; };
+		8B9B3086176B90E800BAAFAE /* CreateTicketTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTicketTVC.h; sourceTree = "<group>"; };
+		8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTicketTVC.m; sourceTree = "<group>"; };
 		8B9B30A91771D15500BAAFAE /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		8B9B30AA1771D15500BAAFAE /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		8B9B30AC1771D16400BAAFAE /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -102,8 +102,8 @@
 		8B9B30B81772130900BAAFAE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "../../Downloads/Reachability-master/Reachability.m"; sourceTree = "<group>"; };
 		8B9B30B91772130900BAAFAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = "../../Downloads/Reachability-master/README.md"; sourceTree = "<group>"; };
 		8B9B30BD17723E1800BAAFAE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosedTicketsTableViewController.h; sourceTree = "<group>"; };
-		8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosedTicketsTableViewController.m; sourceTree = "<group>"; };
+		8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosedTicketsTVC.h; sourceTree = "<group>"; };
+		8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosedTicketsTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,18 +169,18 @@
 			children = (
 				8B9B308A1771D0F300BAAFAE /* PullToRefresh */,
 				8B9B30B5177212D300BAAFAE /*  Reachability */,
-				8B9B307F176A037B00BAAFAE /* OpenTicketsTableViewController.h */,
-				8B9B3080176A037B00BAAFAE /* OpenTicketsTableViewController.m */,
-				8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTableViewController.h */,
-				8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTableViewController.m */,
-				8B9B3082176B623700BAAFAE /* TicketTableViewController.h */,
-				8B9B3083176B623700BAAFAE /* TicketTableViewController.m */,
-				8B9B3086176B90E800BAAFAE /* CreateTicketViewController.h */,
-				8B9B3087176B90E800BAAFAE /* CreateTicketViewController.m */,
+				8B9B307F176A037B00BAAFAE /* OpenTicketsTVC.h */,
+				8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */,
+				8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTVC.h */,
+				8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */,
+				8B9B3082176B623700BAAFAE /* TicketTVC.h */,
+				8B9B3083176B623700BAAFAE /* TicketTVC.m */,
+				8B9B3086176B90E800BAAFAE /* CreateTicketTVC.h */,
+				8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */,
 				8B380300176902660068C40C /* LoginViewController.h */,
 				8B380301176902660068C40C /* LoginViewController.m */,
-				8B380302176902660068C40C /* MainMenuTableViewController.h */,
-				8B380303176902660068C40C /* MainMenuTableViewController.m */,
+				8B380302176902660068C40C /* MainMenuTVC.h */,
+				8B380303176902660068C40C /* MainMenuTVC.m */,
 				8B380304176902660068C40C /* Ticket.h */,
 				8B380305176902660068C40C /* Ticket.m */,
 				8B380306176902660068C40C /* XMLParserDelegate.h */,
@@ -382,13 +382,13 @@
 				8B3802D0176900A10068C40C /* AppDelegate.m in Sources */,
 				8B3802DF176900A10068C40C /* ViewController.m in Sources */,
 				8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */,
-				8B9B307E176908AD00BAAFAE /* MainMenuTableViewController.m in Sources */,
-				8B9B3081176A037B00BAAFAE /* OpenTicketsTableViewController.m in Sources */,
-				8B9B3084176B623700BAAFAE /* TicketTableViewController.m in Sources */,
-				8B9B3088176B90E900BAAFAE /* CreateTicketViewController.m in Sources */,
+				8B9B307E176908AD00BAAFAE /* MainMenuTVC.m in Sources */,
+				8B9B3081176A037B00BAAFAE /* OpenTicketsTVC.m in Sources */,
+				8B9B3084176B623700BAAFAE /* TicketTVC.m in Sources */,
+				8B9B3088176B90E900BAAFAE /* CreateTicketTVC.m in Sources */,
 				8B9B30AB1771D15500BAAFAE /* PullRefreshTableViewController.m in Sources */,
 				8B9B30BB1772130900BAAFAE /* Reachability.m in Sources */,
-				8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTableViewController.m in Sources */,
+				8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

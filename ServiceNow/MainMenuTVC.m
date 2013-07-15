@@ -6,17 +6,15 @@
 //  Copyright (c) 2013 Inergex. All rights reserved.
 //
 
-#import "MainMenuTableViewController.h"
+#import "MainMenuTVC.h"
 #import "Ticket.h"
-
-@interface MainMenuTableViewController ()@end
 
 #define CREATE_TAG 1
 #define OPEN_TAG 2
 #define CLOSED_TAG 3
 #define LOGOUT_TAG 4
 
-@implementation MainMenuTableViewController
+@implementation MainMenuTVC
 
 - (void)viewDidLoad
 {

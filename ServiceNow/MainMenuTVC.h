@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainMenuTableViewController : UITableViewController
+@interface MainMenuTVC : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *openTicketsCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *closedTicketsCell;
