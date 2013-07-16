@@ -71,13 +71,19 @@ valid = false;
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="pass18" SIZE=20></TD>
 </TR>
 </TABLE>
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">open:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="open20" SIZE=20></TD>
+</TR>
+</TABLE>
 <BR>
 <INPUT TYPE="SUBMIT" VALUE="Invoke">
 <INPUT TYPE="RESET" VALUE="Clear">
 </FORM>
 <%
 break;
-case 20:
+case 22:
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -85,54 +91,48 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">user:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="user23" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="user25" SIZE=20></TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">pass:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="pass25" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="pass27" SIZE=20></TD>
+</TR>
+</TABLE>
+<BR>
+<INPUT TYPE="SUBMIT" VALUE="Invoke">
+<INPUT TYPE="RESET" VALUE="Clear">
+</FORM>
+<%
+break;
+case 29:
+valid = false;
+%>
+<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
+<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">user:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="user32" SIZE=20></TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">pass:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="pass34" SIZE=20></TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">short_description:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="short_description27" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="short_description36" SIZE=20></TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">comments:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="comments29" SIZE=20></TD>
-</TR>
-</TABLE>
-<BR>
-<INPUT TYPE="SUBMIT" VALUE="Invoke">
-<INPUT TYPE="RESET" VALUE="Clear">
-</FORM>
-<%
-break;
-case 31:
-valid = false;
-%>
-<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
-<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
-<TABLE>
-<TR>
-<TD COLSPAN="1" ALIGN="LEFT">user:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="user34" SIZE=20></TD>
-</TR>
-</TABLE>
-<TABLE>
-<TR>
-<TD COLSPAN="1" ALIGN="LEFT">pass:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="pass36" SIZE=20></TD>
-</TR>
-</TABLE>
-<TABLE>
-<TR>
-<TD COLSPAN="1" ALIGN="LEFT">open:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="open38" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="comments38" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>
