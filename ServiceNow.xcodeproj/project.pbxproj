@@ -41,6 +41,7 @@
 		8B9B30BC1772130900BAAFAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30B91772130900BAAFAE /* README.md */; };
 		8B9B30BE17723E1800BAAFAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9B30BD17723E1800BAAFAE /* SystemConfiguration.framework */; };
 		8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */; };
+		8B9B30C71799A90200BAAFAE /* EditTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30C61799A90200BAAFAE /* EditTicketTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		8B9B30BD17723E1800BAAFAE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosedTicketsTVC.h; sourceTree = "<group>"; };
 		8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosedTicketsTVC.m; sourceTree = "<group>"; };
+		8B9B30C51799A90100BAAFAE /* EditTicketTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTicketTVC.h; sourceTree = "<group>"; };
+		8B9B30C61799A90200BAAFAE /* EditTicketTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTicketTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,8 @@
 				8B3802DA176900A10068C40C /* MainStoryboard_iPad.storyboard */,
 				8B9B30B41771E31300BAAFAE /* Important Files */,
 				8B3802C6176900A10068C40C /* Supporting Files */,
+				8B9B30C51799A90100BAAFAE /* EditTicketTVC.h */,
+				8B9B30C61799A90200BAAFAE /* EditTicketTVC.m */,
 			);
 			path = ServiceNow;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				8B9B30AB1771D15500BAAFAE /* PullRefreshTableViewController.m in Sources */,
 				8B9B30BB1772130900BAAFAE /* Reachability.m in Sources */,
 				8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTVC.m in Sources */,
+				8B9B30C71799A90200BAAFAE /* EditTicketTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

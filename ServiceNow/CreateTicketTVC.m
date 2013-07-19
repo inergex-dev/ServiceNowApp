@@ -15,8 +15,10 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [super viewDidLoad]; // Do any additional setup after loading the view.
+    
+    sections = [[NSMutableArray alloc] init];
+    [sections addObject:[NSArray arrayWithObjects:@"Short Description", @"Test", Nil]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,7 +51,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize maximumSize1 = CGSizeMake(280, 9999);
+    /*CGSize maximumSize1 = CGSizeMake(280, 9999);
     NSString *myString1 = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
     UIFont *myFont1 = [UIFont systemFontOfSize:17];
     UILabel *lbl_Title=[[UILabel alloc] init];
@@ -57,12 +59,12 @@
     CGSize stringSize = [myString1 sizeWithFont:myFont1
                               constrainedToSize:maximumSize1
                                   lineBreakMode:lbl_Title.lineBreakMode];
-    return stringSize.height + 3;
+    return stringSize.height + 3;*/
+    return 30;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"4)Create cell");
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -70,9 +72,17 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.font = [UIFont systemFontOfSize:17];
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
+    //UITextField *textField = [[UITextField alloc] init];
+    //[cell addSubview:textField];
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(2.0, 4.0, 300.0, 30.0)];
+    //textField.delegate = self;
+    textField.placeholder = [[sections objectAtIndex:indexPath.section] objectAtIndex:TITLE];
+    [cell.contentView addSubview:textField];
+    
+    //cell.textLabel.font = [UIFont systemFontOfSize:17];
+    //cell.textLabel.numberOfLines = 0;
+    //cell.textLabel.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
     
     return cell;
 }

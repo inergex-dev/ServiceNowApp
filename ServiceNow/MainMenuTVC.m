@@ -57,20 +57,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if(sender == self.openTicketsCell)
+    if(sender == self.openTicketsCell || sender == self.closedTicketsCell)
     {
         UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [spinner startAnimating];
-        [self.openTicketsCell setAccessoryView:spinner];
-        spinner = nil;
-        
-        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    }
-    else if(sender == self.closedTicketsCell)
-    {
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [spinner startAnimating];
-        [self.openTicketsCell setAccessoryView:spinner];
+        [sender setAccessoryView:spinner];
         spinner = nil;
         
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];

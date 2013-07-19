@@ -249,7 +249,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Mdw-k7-7sM">
-                            <rect key="frame" x="0.0" y="102" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                             <items>
                                 <barButtonItem title="Send" width="149" id="fo5-7Y-t3l"/>
                                 <barButtonItem title="Cancel" width="149" id="Kw7-W2-UT6">
@@ -260,11 +260,11 @@
                             </items>
                         </toolbar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ticketCell" id="QJU-cM-ogK">
-                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ticketCell" rowHeight="30" id="QJU-cM-ogK" customClass="CreateTicketCell">
+                                <rect key="frame" x="0.0" y="46" width="320" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <rect key="frame" x="10" y="1" width="300" height="29"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -281,7 +281,7 @@
             </objects>
             <point key="canvasLocation" x="-380" y="-881"/>
         </scene>
-        <!--TicketTVC - Ticket-->
+        <!--TicketTVC - Title-->
         <scene sceneID="JjH-Wx-X4G">
             <objects>
                 <tableViewController id="zCZ-Kg-FFN" customClass="TicketTVC" sceneMemberID="viewController">
@@ -312,7 +312,13 @@
                             <outlet property="delegate" destination="zCZ-Kg-FFN" id="3ad-6o-GHe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Ticket" id="mXk-Z3-ogn"/>
+                    <navigationItem key="navigationItem" title="Title" id="DkS-yb-Lhf">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="k3l-Uc-Bbw">
+                            <connections>
+                                <segue destination="Osp-hR-yWk" kind="push" identifier="editTicketSegue" id="R1c-02-4r2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJ8-st-ayN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -383,6 +389,47 @@
             </objects>
             <point key="canvasLocation" x="-380" y="-160"/>
         </scene>
+        <!--Edit TicketTVC - Edit Ticket-->
+        <scene sceneID="Nc2-5B-9jt">
+            <objects>
+                <tableViewController id="Osp-hR-yWk" customClass="EditTicketTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="mav-Wf-yeu">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8YC-UJ-tFo">
+                            <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                            <items>
+                                <barButtonItem title="Send" width="149" id="WrX-ZF-jiE"/>
+                                <barButtonItem title="Cancel" width="149" id="s1Q-VV-STY">
+                                    <connections>
+                                        <action selector="cancel:" destination="Osp-hR-yWk" id="rPr-mJ-7TG"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ticketCell" rowHeight="30" id="TRR-Re-0AE" customClass="CreateTicketCell">
+                                <rect key="frame" x="0.0" y="46" width="320" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="29"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Osp-hR-yWk" id="EFI-a9-Edi"/>
+                            <outlet property="delegate" destination="Osp-hR-yWk" id="GBb-62-Rrf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Edit Ticket" id="v46-1s-t88"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekv-fx-ZBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="361" y="215"/>
+        </scene>
     </scenes>
     <classes>
         <class className="ClosedTicketsTVC" superclassName="PullRefreshTableViewController">
@@ -390,6 +437,12 @@
         </class>
         <class className="CreateTicketTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateTicketTVC.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+            </relationships>
+        </class>
+        <class className="EditTicketTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditTicketTVC.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
             </relationships>
