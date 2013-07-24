@@ -10,6 +10,7 @@
 
 #define TITLE 0
 #define CONTENT 1
+#define MAX_LENGTH 2
 
 @implementation CreateTicketTVC
 
@@ -18,7 +19,7 @@
     [super viewDidLoad]; // Do any additional setup after loading the view.
     
     sections = [[NSMutableArray alloc] init];
-    [sections addObject:[NSArray arrayWithObjects:@"Short Description", @"Test", Nil]];
+    [sections addObject:[NSArray arrayWithObjects:@"Short Description", @"Test", 80, Nil]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,5 +88,20 @@
     return cell;
 }
 
+// This will make sure text doesn't excede the expected max length.
+// http://stackoverflow.com/questions/2523501/set-uitextfield-maximum-length
+- (BOOL)textField:(UITextField *) textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSUInteger oldLength = [textField.text length];
+    NSUInteger replacementLength = [string length];
+    NSUInteger rangeLength = range.length;
+    NSUInteger textFieldMaxLength = (NSUInteger)[[sections objectAtIndex:textField.tag] objectAtIndex:MAX_LENGTH];
+    
+    NSUInteger newLength = oldLength - rangeLength + replacementLength;
+    
+    BOOL returnKey = [string rangeOfString: @"\n"].location != NSNotFound;
+    
+    return newLength <= textFieldMaxLength || returnKey;
+}
 
 @end

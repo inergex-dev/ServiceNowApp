@@ -8,18 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Ticket : NSObject {
-    int number;
+@interface Ticket : NSObject <NSCopying> {
+    NSString *number;
+    int state;
     NSString *short_description;
     NSString *comments;
-    NSString *opened;
-    NSString *closed;
+    int severity;
+    int impact;
+    NSString *opened_at;
+    NSString *closed_at;
 }
 
-@property int number;
+@property (nonatomic, retain) NSString *number;
+@property int state;
 @property (nonatomic, retain) NSString *short_description;
 @property (nonatomic, retain) NSString *comments;
-@property (nonatomic, retain) NSString *opened;
-@property (nonatomic, retain) NSString *closed;
+@property int severity;
+@property int impact;
+@property (nonatomic, retain) NSString *opened_at;
+@property (nonatomic, retain) NSString *closed_at;
 
 @end

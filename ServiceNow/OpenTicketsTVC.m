@@ -11,6 +11,7 @@
 #import "Ticket.h"
 #import "XMLParserDelegate.h"
 #import "Reachability.h"
+#import "Utility.h"
 
 @implementation OpenTicketsTVC
 
@@ -20,7 +21,7 @@
 {
     [super viewDidLoad];
     
-    reach = [Reachability reachabilityWithHostname:@"www.bing.com"];
+    reach = [Reachability reachabilityWithHostname:[Utility getHost]];
     [reach startNotifier];
     
     __weak typeof(self) weakSelf = self; // Used to avoid self being retained in the blocks.

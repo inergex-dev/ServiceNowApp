@@ -8,6 +8,7 @@
 
 #import "TicketTVC.h"
 #import "EditTicketTVC.h"
+#import "Utility.h"
 #import "Ticket.h"
 
 #define TITLE 0
@@ -30,6 +31,7 @@
     if([ticket.short_description isEqualToString:@""] == NO) {
         [sections addObject:[NSArray arrayWithObjects:@"Short Description", ticket.short_description, Nil]];
     }
+    [sections addObject:[NSArray arrayWithObjects:@"Impact", [Utility impactIntToString:ticket.impact], Nil]];
     if([ticket.comments isEqualToString:@""] == NO) {
         [sections addObject:[NSArray arrayWithObjects:@"Comments", ticket.comments, Nil]];
     }
@@ -84,7 +86,7 @@
     if ([segue.identifier isEqualToString:@"editTicketSegue"]) {
         EditTicketTVC *editTicketTableViewController = segue.destinationViewController;
         
-        editTicketTableViewController.ticket = self.ticket;
+        editTicketTableViewController.realTicket = self.ticket;
     }
 }
 

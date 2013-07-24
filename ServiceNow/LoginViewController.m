@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "Reachability.h"
+#import "Utility.h"
 
 @implementation LoginViewController
 
@@ -21,6 +22,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [Utility initialize];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -28,7 +30,7 @@
     [super viewDidAppear:animated];
 	// Do any additional setup after view appears.
     
-    reach = [Reachability reachabilityWithHostname:@"www.bing.com"];
+    reach = [Reachability reachabilityWithHostname:[Utility getHost]];
     [reach startNotifier];
     
     // Check if login information is stored.

@@ -9,18 +9,36 @@
 #import "Ticket.h"
 
 @implementation Ticket
-@synthesize number, short_description, comments, opened, closed;
+@synthesize number, state, short_description, comments, severity, impact, opened_at, closed_at;
 
 -(id)init {
     self = [super init];
     if(self) {
-        self.number = 0;
+        self.number = @"";
+        self.state = 0;
         self.short_description = @"";
         self.comments = @"";
-        self.opened = @"";
-        self.closed = @"";
+        self.severity = 3;
+        self.impact = 3;
+        self.opened_at = @"";
+        self.closed_at = @"";
     }
     return self;
+}
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    Ticket *ticket = [[Ticket alloc] init];
+    ticket.number               = [self.number copyWithZone:zone];
+    ticket.state                =  self.state;
+    ticket.short_description    = [self.short_description copyWithZone:zone];
+    ticket.comments             = [self.comments copyWithZone:zone];
+    ticket.severity             =  self.severity;
+    ticket.impact               =  self.impact;
+    ticket.opened_at            = [self.opened_at copyWithZone:zone];
+    ticket.closed_at            = [self.closed_at copyWithZone:zone];
+    
+    return ticket;
 }
 
 @end
