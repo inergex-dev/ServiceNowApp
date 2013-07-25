@@ -8,22 +8,28 @@
 
 #import <UIKit/UIKit.h>
 @class Ticket;
+@class SelectedRow;
 
 @interface EditTicketTVC : UITableViewController <UITextFieldDelegate> {
     Ticket *realTicket;
     Ticket *ticket;
     
     NSMutableArray *sections;
-    UITextField *shortDesc;
-    UITableViewCell *impact;
-    UITextField *comments;
+    
+    int selectedForPickerTag;
+    SelectedRow *pickerRow;
+    
+    UITableViewCell *impactCell;
+    UITableViewCell *stateCell;
+    UITextField *shortDescTB;
+    UITextField *commentsTB;
 }
 
 @property (strong, nonatomic) Ticket *realTicket;
 @property (strong, nonatomic) Ticket *ticket;
 
+- (void)getSectionsFromTicket;
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
-- (void)setTicketImpact:(int)num;
 
 @end

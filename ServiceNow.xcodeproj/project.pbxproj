@@ -18,7 +18,6 @@
 		8B3802D6176900A10068C40C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B3802D5176900A10068C40C /* Default-568h@2x.png */; };
 		8B3802D9176900A10068C40C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B3802D7176900A10068C40C /* MainStoryboard_iPhone.storyboard */; };
 		8B3802DC176900A10068C40C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B3802DA176900A10068C40C /* MainStoryboard_iPad.storyboard */; };
-		8B3802DF176900A10068C40C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3802DE176900A10068C40C /* ViewController.m */; };
 		8B3802E7176900A20068C40C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802E6176900A20068C40C /* SenTestingKit.framework */; };
 		8B3802E8176900A20068C40C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802BF176900A10068C40C /* UIKit.framework */; };
 		8B3802E9176900A20068C40C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802C1176900A10068C40C /* Foundation.framework */; };
@@ -27,7 +26,7 @@
 		8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380301176902660068C40C /* LoginViewController.m */; };
 		8B9B307E176908AD00BAAFAE /* MainMenuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380303176902660068C40C /* MainMenuTVC.m */; };
 		8B9B3081176A037B00BAAFAE /* OpenTicketsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */; };
-		8B9B3084176B623700BAAFAE /* TicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3083176B623700BAAFAE /* TicketTVC.m */; };
+		8B9B3084176B623700BAAFAE /* ViewOpenTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3083176B623700BAAFAE /* ViewOpenTicketTVC.m */; };
 		8B9B3085176B798600BAAFAE /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380305176902660068C40C /* Ticket.m */; };
 		8B9B3088176B90E900BAAFAE /* CreateTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */; };
 		8B9B3089176B99F700BAAFAE /* XMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380307176902660068C40C /* XMLParserDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -43,7 +42,8 @@
 		8B9B30C71799A90200BAAFAE /* EditTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30C61799A90200BAAFAE /* EditTicketTVC.m */; };
 		8B9B30C8179EECD000BAAFAE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30B91772130900BAAFAE /* Reachability.m */; };
 		8B9B30CB179EFBF000BAAFAE /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30CA179EFBF000BAAFAE /* Utility.m */; };
-		8B9B30CE17A0202000BAAFAE /* ImpactPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30CD17A0201F00BAAFAE /* ImpactPickerController.m */; };
+		8B9B30CE17A0202000BAAFAE /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30CD17A0201F00BAAFAE /* PickerController.m */; };
+		8B9B30D117A178E000BAAFAE /* ViewClosedTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30D017A178DF00BAAFAE /* ViewClosedTicketTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +72,6 @@
 		8B3802D5176900A10068C40C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Supporting Files/Default-568h@2x.png"; sourceTree = "<group>"; };
 		8B3802D8176900A10068C40C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		8B3802DB176900A10068C40C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		8B3802DD176900A10068C40C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8B3802DE176900A10068C40C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8B3802E5176900A20068C40C /* ServiceNowTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ServiceNowTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3802E6176900A20068C40C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8B3802EE176900A20068C40C /* ServiceNowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ServiceNowTests-Info.plist"; sourceTree = "<group>"; };
@@ -90,8 +88,8 @@
 		8B380307176902660068C40C /* XMLParserDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLParserDelegate.m; sourceTree = "<group>"; };
 		8B9B307F176A037B00BAAFAE /* OpenTicketsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTicketsTVC.h; sourceTree = "<group>"; };
 		8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTicketsTVC.m; sourceTree = "<group>"; };
-		8B9B3082176B623700BAAFAE /* TicketTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketTVC.h; sourceTree = "<group>"; };
-		8B9B3083176B623700BAAFAE /* TicketTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketTVC.m; sourceTree = "<group>"; };
+		8B9B3082176B623700BAAFAE /* ViewOpenTicketTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOpenTicketTVC.h; sourceTree = "<group>"; };
+		8B9B3083176B623700BAAFAE /* ViewOpenTicketTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewOpenTicketTVC.m; sourceTree = "<group>"; };
 		8B9B3086176B90E800BAAFAE /* CreateTicketTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTicketTVC.h; sourceTree = "<group>"; };
 		8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTicketTVC.m; sourceTree = "<group>"; };
 		8B9B30A91771D15500BAAFAE /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullRefreshTableViewController.h; path = PullToRefresh/PullRefreshTableViewController.h; sourceTree = "<group>"; };
@@ -111,8 +109,10 @@
 		8B9B30C61799A90200BAAFAE /* EditTicketTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTicketTVC.m; sourceTree = "<group>"; };
 		8B9B30C9179EFBEF00BAAFAE /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		8B9B30CA179EFBF000BAAFAE /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
-		8B9B30CC17A0201E00BAAFAE /* ImpactPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImpactPickerController.h; sourceTree = "<group>"; };
-		8B9B30CD17A0201F00BAAFAE /* ImpactPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImpactPickerController.m; sourceTree = "<group>"; };
+		8B9B30CC17A0201E00BAAFAE /* PickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerController.h; sourceTree = "<group>"; };
+		8B9B30CD17A0201F00BAAFAE /* PickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerController.m; sourceTree = "<group>"; };
+		8B9B30CF17A178DF00BAAFAE /* ViewClosedTicketTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewClosedTicketTVC.h; sourceTree = "<group>"; };
+		8B9B30D017A178DF00BAAFAE /* ViewClosedTicketTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewClosedTicketTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,32 +178,25 @@
 			children = (
 				8B9B308A1771D0F300BAAFAE /* PullToRefresh */,
 				8B9B30B5177212D300BAAFAE /*  Reachability */,
-				8B9B307F176A037B00BAAFAE /* OpenTicketsTVC.h */,
-				8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */,
-				8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTVC.h */,
-				8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */,
-				8B9B3082176B623700BAAFAE /* TicketTVC.h */,
-				8B9B3083176B623700BAAFAE /* TicketTVC.m */,
-				8B9B3086176B90E800BAAFAE /* CreateTicketTVC.h */,
-				8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */,
 				8B380300176902660068C40C /* LoginViewController.h */,
 				8B380301176902660068C40C /* LoginViewController.m */,
 				8B380302176902660068C40C /* MainMenuTVC.h */,
 				8B380303176902660068C40C /* MainMenuTVC.m */,
+				8B9B3086176B90E800BAAFAE /* CreateTicketTVC.h */,
+				8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */,
+				8B9B30D317A17B6500BAAFAE /* Open */,
+				8B9B30D217A17B4800BAAFAE /* Closed */,
 				8B380304176902660068C40C /* Ticket.h */,
 				8B380305176902660068C40C /* Ticket.m */,
 				8B380306176902660068C40C /* XMLParserDelegate.h */,
 				8B380307176902660068C40C /* XMLParserDelegate.m */,
-				8B3802D7176900A10068C40C /* MainStoryboard_iPhone.storyboard */,
-				8B3802DA176900A10068C40C /* MainStoryboard_iPad.storyboard */,
-				8B9B30B41771E31300BAAFAE /* Important Files */,
+				8B9B30CC17A0201E00BAAFAE /* PickerController.h */,
+				8B9B30CD17A0201F00BAAFAE /* PickerController.m */,
+				8B3802C6176900A10068C40C /* Supporting Files */,
 				8B9B30C9179EFBEF00BAAFAE /* Utility.h */,
 				8B9B30CA179EFBF000BAAFAE /* Utility.m */,
-				8B3802C6176900A10068C40C /* Supporting Files */,
-				8B9B30CC17A0201E00BAAFAE /* ImpactPickerController.h */,
-				8B9B30CD17A0201F00BAAFAE /* ImpactPickerController.m */,
-				8B9B30C51799A90100BAAFAE /* EditTicketTVC.h */,
-				8B9B30C61799A90200BAAFAE /* EditTicketTVC.m */,
+				8B3802D7176900A10068C40C /* MainStoryboard_iPhone.storyboard */,
+				8B3802DA176900A10068C40C /* MainStoryboard_iPad.storyboard */,
 			);
 			path = ServiceNow;
 			sourceTree = "<group>";
@@ -211,6 +204,8 @@
 		8B3802C6176900A10068C40C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8B3802CE176900A10068C40C /* AppDelegate.h */,
+				8B3802CF176900A10068C40C /* AppDelegate.m */,
 				8B3802C7176900A10068C40C /* ServiceNow-Info.plist */,
 				8B3802C8176900A10068C40C /* InfoPlist.strings */,
 				8B3802CB176900A10068C40C /* main.m */,
@@ -253,17 +248,6 @@
 			name = PullToRefresh;
 			sourceTree = "<group>";
 		};
-		8B9B30B41771E31300BAAFAE /* Important Files */ = {
-			isa = PBXGroup;
-			children = (
-				8B3802CE176900A10068C40C /* AppDelegate.h */,
-				8B3802CF176900A10068C40C /* AppDelegate.m */,
-				8B3802DD176900A10068C40C /* ViewController.h */,
-				8B3802DE176900A10068C40C /* ViewController.m */,
-			);
-			name = "Important Files";
-			sourceTree = "<group>";
-		};
 		8B9B30B5177212D300BAAFAE /*  Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +257,30 @@
 				8B9B30B81772130900BAAFAE /* README.md */,
 			);
 			name = " Reachability";
+			sourceTree = "<group>";
+		};
+		8B9B30D217A17B4800BAAFAE /* Closed */ = {
+			isa = PBXGroup;
+			children = (
+				8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTVC.h */,
+				8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */,
+				8B9B30CF17A178DF00BAAFAE /* ViewClosedTicketTVC.h */,
+				8B9B30D017A178DF00BAAFAE /* ViewClosedTicketTVC.m */,
+			);
+			name = Closed;
+			sourceTree = "<group>";
+		};
+		8B9B30D317A17B6500BAAFAE /* Open */ = {
+			isa = PBXGroup;
+			children = (
+				8B9B307F176A037B00BAAFAE /* OpenTicketsTVC.h */,
+				8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */,
+				8B9B3082176B623700BAAFAE /* ViewOpenTicketTVC.h */,
+				8B9B3083176B623700BAAFAE /* ViewOpenTicketTVC.m */,
+				8B9B30C51799A90100BAAFAE /* EditTicketTVC.h */,
+				8B9B30C61799A90200BAAFAE /* EditTicketTVC.m */,
+			);
+			name = Open;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,17 +404,17 @@
 				8B9B3085176B798600BAAFAE /* Ticket.m in Sources */,
 				8B3802CC176900A10068C40C /* main.m in Sources */,
 				8B3802D0176900A10068C40C /* AppDelegate.m in Sources */,
-				8B3802DF176900A10068C40C /* ViewController.m in Sources */,
 				8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */,
 				8B9B307E176908AD00BAAFAE /* MainMenuTVC.m in Sources */,
 				8B9B3081176A037B00BAAFAE /* OpenTicketsTVC.m in Sources */,
-				8B9B3084176B623700BAAFAE /* TicketTVC.m in Sources */,
+				8B9B3084176B623700BAAFAE /* ViewOpenTicketTVC.m in Sources */,
 				8B9B3088176B90E900BAAFAE /* CreateTicketTVC.m in Sources */,
 				8B9B30AB1771D15500BAAFAE /* PullRefreshTableViewController.m in Sources */,
 				8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTVC.m in Sources */,
 				8B9B30C71799A90200BAAFAE /* EditTicketTVC.m in Sources */,
 				8B9B30CB179EFBF000BAAFAE /* Utility.m in Sources */,
-				8B9B30CE17A0202000BAAFAE /* ImpactPickerController.m in Sources */,
+				8B9B30CE17A0202000BAAFAE /* PickerController.m in Sources */,
+				8B9B30D117A178E000BAAFAE /* ViewClosedTicketTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

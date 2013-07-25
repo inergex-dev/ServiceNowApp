@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Inergex. All rights reserved.
 //
 
-#import "TicketTVC.h"
+#import "ViewOpenTicketTVC.h"
 #import "EditTicketTVC.h"
 #import "Utility.h"
 #import "Ticket.h"
@@ -14,7 +14,7 @@
 #define TITLE 0
 #define CONTENT 1
 
-@implementation TicketTVC
+@implementation ViewOpenTicketTVC
 
 @synthesize ticket;
 
@@ -28,10 +28,10 @@
     //http://www.icodeblog.com/2010/12/10/implementing-uitableview-sections-from-an-nsarray-of-nsdictionary-objects/
     sections = [[NSMutableArray alloc] init];
     
-    if([ticket.short_description isEqualToString:@""] == NO) {
-        [sections addObject:[NSArray arrayWithObjects:@"Short Description", ticket.short_description, Nil]];
-    }
+    [sections addObject:[NSArray arrayWithObjects:@"Short Description", ticket.short_description, Nil]];
+    [sections addObject:[NSArray arrayWithObjects:@"Opened", ticket.opened_at, Nil]];
     [sections addObject:[NSArray arrayWithObjects:@"Impact", [Utility impactIntToString:ticket.impact], Nil]];
+    [sections addObject:[NSArray arrayWithObjects:@"State", [Utility stateIntToString:ticket.state], Nil]];
     if([ticket.comments isEqualToString:@""] == NO) {
         [sections addObject:[NSArray arrayWithObjects:@"Comments", ticket.comments, Nil]];
     }
@@ -84,9 +84,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"editTicketSegue"]) {
-        EditTicketTVC *editTicketTableViewController = segue.destinationViewController;
+        EditTicketTVC *sequeController = segue.destinationViewController;
         
-        editTicketTableViewController.realTicket = self.ticket;
+        sequeController.realTicket = self.ticket;
     }
 }
 

@@ -21,7 +21,15 @@
     [super init];
     // init array of user objects
     tickets = [[NSMutableArray alloc] init];
-    acceptedKeys = [NSArray arrayWithObjects:@"short_description", @"comments", nil];
+    acceptedKeys = [NSArray arrayWithObjects:
+                    @"short_description",
+                    @"comments",
+                    @"impact",
+                    @"severity",
+                    @"state",
+                    @"opened_at",
+                    @"closed_at",
+                    nil];
     return self;
 }
 

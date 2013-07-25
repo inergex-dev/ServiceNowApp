@@ -7,7 +7,7 @@
 //
 
 #import "OpenTicketsTVC.h"
-#import "TicketTVC.h"
+#import "ViewOpenTicketTVC.h"
 #import "Ticket.h"
 #import "XMLParserDelegate.h"
 #import "Reachability.h"
@@ -120,9 +120,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"openTicketSegue"]) {
-        TicketTVC *ticketTableViewController = segue.destinationViewController;
+        ViewOpenTicketTVC *sequeController = segue.destinationViewController;
         
-        ticketTableViewController.ticket = selectedTicket;
+        sequeController.ticket = selectedTicket;
     }
 }
 
@@ -130,7 +130,7 @@
 {
     if(reach.isReachable)
     {
-        NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
+        NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test2.xml"] ];
         NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
         XMLParserDelegate *parserDelagate = [[XMLParserDelegate alloc] init];
         [nsXmlParser setDelegate:parserDelagate];

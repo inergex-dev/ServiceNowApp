@@ -6,27 +6,26 @@
 //  Copyright (c) 2013 Inergex. All rights reserved.
 //
 
-#import "ImpactPickerController.h"
+#import "PickerController.h"
 #import "EditTicketTVC.h"
+#import "Ticket.h"
 #import "Utility.h"
 
-@implementation ImpactPickerController
-@synthesize delegate, impactPicker, selectedRow;
+@implementation PickerController
+@synthesize picker, pickerArray, pickerRow, ticket;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    impactArray = [Utility getImpactStringArray];
-    impactPicker.delegate = self;
+    picker.delegate = self;
     
-    [impactPicker selectRow:selectedRow inComponent:0 animated:NO];
+    [picker reloadAllComponents];
+    [picker selectRow:pickerRow.row inComponent:0 animated:YES];
 }
 
 - (IBAction)confirmed:(id)sender
 {
-    EditTicketTVC *myController = self.delegate;
-    [myController setTicketImpact:selectedRow];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -38,26 +37,31 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSLog(@"%i row selected.", row);
-    selectedRow = row;
+    pickerRow.row = row;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 {
-    return impactArray.count;
+    return pickerArray.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
-    return [impactArray objectAtIndex:row];
+    return [pickerArray objectAtIndex:row];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSLog(@"testing");
-    EditTicketTVC *ticketTableViewController = segue.destinationViewController;
+@end
+
+
+
+@implementation SelectedRow
+@synthesize row;
+
+- (id)initWithRow:(int)myRow {
+    self = [super init];
+    self.row = myRow;
     
-    [ticketTableViewController setTicketImpact: selectedRow];
+    return self;
 }
 
 @end

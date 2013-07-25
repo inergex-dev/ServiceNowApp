@@ -7,7 +7,7 @@
 //
 
 #import "ClosedTicketsTVC.h"
-#import "TicketTVC.h"
+#import "ViewClosedTicketTVC.h"
 #import "Ticket.h"
 #import "XMLParserDelegate.h"
 #import "Reachability.h"
@@ -114,9 +114,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"closedTicketSegue"]) {
-        TicketTVC *ticketTableViewController = segue.destinationViewController;
+        ViewClosedTicketTVC *sequeController = segue.destinationViewController;
         
-        ticketTableViewController.ticket = selectedTicket;
+        sequeController.ticket = selectedTicket;
     }
 }
 

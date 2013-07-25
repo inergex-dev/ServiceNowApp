@@ -7,11 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Ticket;
+@class SelectedRow;
 
-@interface CreateTicketTVC : UITableViewController {
+@interface CreateTicketTVC : UITableViewController <UITextFieldDelegate> {
+    Ticket *ticket;
     NSMutableArray *sections;
+    
+    SelectedRow *pickerRow;
+    
+    UITableViewCell *severityCell;
+    UITextField *shortDescTB;
+    UITextField *commentsTB;
 }
 
+@property (strong, nonatomic) Ticket *ticket;
+
+- (IBAction)send:(id)sender;
 - (IBAction)cancel:(id)sender;
 
 @end

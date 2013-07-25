@@ -7,14 +7,15 @@
 //
 
 #import "EditTicketTVC.h"
-#import "ImpactPickerController.h"
+#import "PickerController.h"
 #import "Ticket.h"
 #import "Utility.h"
 
 #define TYPE 0
 #define TITLE 1
 #define CONTENT 2
-#define MAX_LENGTH 3
+#define UI_OBJECT_NAME 3
+#define MAX_LENGTH 4
 
 #define TYPE_PICKER @"Picker"
 #define TYPE_TEXTBOX @"Textbox"
@@ -26,24 +27,72 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad]; // Do any additional setup after loading the view.
-    ticket = [realTicket copy];
     
-    sections = [[NSMutableArray alloc] init];
-    [sections addObject:shortDesc = [NSArray arrayWithObjects:TYPE_TEXTBOX, @"Short Description", ticket.short_description, [NSNumber numberWithInt:80], Nil]];
-    [sections addObject:impact =    [NSArray arrayWithObjects:TYPE_PICKER, @"Impact", [NSNumber numberWithInt:ticket.impact], Nil]];
-    [sections addObject:comments =  [NSArray arrayWithObjects:TYPE_TEXTBOX, @"Comments", ticket.comments, [NSNumber numberWithInt:4000], Nil]];
+    ticket = [realTicket copy];
+    pickerRow = [[SelectedRow alloc] init];
+    [self getSectionsFromTicket];
+    selectedForPickerTag = -1;
 }
 
-- (void)setTicketImpact:(int)num
+- (void)viewDidAppear:(BOOL)animated
 {
-    ticket.impact = num;
-    ticket.short_description = shortDesc.text;
-    ticket.comments = comments.text;
+    if(selectedForPickerTag != -1) {
+        if(selectedForPickerTag == impactCell.tag) {
+            ticket.impact = pickerRow.row + 1;
+        }
+        else if(selectedForPickerTag == stateCell.tag) {
+            ticket.state = pickerRow.row;
+        }
+        selectedForPickerTag = -1;
+    }
+    
+    if(shortDescTB != Nil)
+        ticket.short_description = [shortDescTB.text copy];
+    if(commentsTB != Nil)
+        ticket.comments = [commentsTB.text copy];
+    
+    [self getSectionsFromTicket];
+    
     [self.tableView reloadData];
+}
+
+- (void)getSectionsFromTicket
+{
+    // There's apparently an issue with storing UI objects in the array, so the object's name is stored instead.
+    sections = [[NSMutableArray alloc] init];
+    [sections addObject:[NSArray arrayWithObjects:
+                         TYPE_PICKER,
+                         @"Impact",
+                         [Utility impactIntToString:ticket.impact],
+                         @"impactCell",
+                         [NSNumber numberWithInt:40],
+                         Nil]];
+    [sections addObject:[NSArray arrayWithObjects:
+                         TYPE_PICKER,
+                         @"State",
+                         [Utility stateIntToString:ticket.state],
+                         @"stateCell",
+                         [NSNumber numberWithInt:40],
+                         Nil]];
+    [sections addObject:[NSArray arrayWithObjects:
+                         TYPE_TEXTBOX,
+                         @"Short Description",
+                         ticket.short_description,
+                         @"shortDescTB",
+                         [NSNumber numberWithInt:80],
+                         Nil]];
+    [sections addObject:[NSArray arrayWithObjects:
+                         TYPE_TEXTBOX,
+                         @"Comments",
+                         @"",
+                         @"commentsTB",
+                         [NSNumber numberWithInt:4000],
+                         Nil]];
 }
 
 - (IBAction)save:(id)sender
 {
+    realTicket = [ticket copy];
     NSLog(@"Saved");
 }
 
@@ -90,11 +139,15 @@
         textField.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
         textField.tag = indexPath.section;
         [cell.contentView addSubview:textField];
+        
+        [self setValue:textField forKey:[[sections objectAtIndex:indexPath.section] objectAtIndex:UI_OBJECT_NAME]];
     }
     else if([[[sections objectAtIndex:indexPath.section] objectAtIndex:TYPE] isEqual: TYPE_PICKER])
     {
-        cell.textLabel.text = [Utility impactIntToString:[(NSNumber *)[[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT] intValue]];
+        cell.textLabel.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        [self setValue:cell forKey:[[sections objectAtIndex:indexPath.section] objectAtIndex:UI_OBJECT_NAME]];
     }
     
     cell.tag = indexPath.section;
@@ -129,22 +182,34 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    switch (cell.tag) {
-        case 1:
-            [self performSegueWithIdentifier:@"pickerSegue" sender:self];
-            break;
-            
-        default:
-            break;
+    if(impactCell.tag == cell.tag)
+    {
+        selectedForPickerTag = cell.tag;
+        [self performSegueWithIdentifier:@"pickerSegue" sender:self];
+    }
+    else if(stateCell.tag == cell.tag)
+    {
+        selectedForPickerTag = cell.tag;
+        [self performSegueWithIdentifier:@"pickerSegue" sender:self];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"pickerSegue"]) {
-        ImpactPickerController *ticketViewController = segue.destinationViewController;
-        ticketViewController.delegate = self;
-        ticketViewController.selectedRow = ticket.impact - 1;
+        PickerController *sequeController = segue.destinationViewController;
+        sequeController.ticket = self.ticket;
+        
+        if(selectedForPickerTag == impactCell.tag) {
+            sequeController.pickerArray = [Utility getImpactStringArray];
+            pickerRow.row = ticket.impact - 1;
+            sequeController.pickerRow = pickerRow;
+        }
+        else if(selectedForPickerTag == stateCell.tag) {
+            sequeController.pickerArray = [Utility getStateStringArray];
+            pickerRow.row = ticket.state;
+            sequeController.pickerRow = pickerRow;
+        }
     }
 }
 
