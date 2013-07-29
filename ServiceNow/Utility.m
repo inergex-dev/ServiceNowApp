@@ -51,10 +51,14 @@ static UIAlertView *loadingAlert;
     return [NSString stringWithFormat:@"%@", [stateStringArray objectAtIndex:num]];
 }
 
++ (void) showLoadingAlert
+{
+    [self showLoadingAlert:@"Loading Data"];
+}
 
 + (void) showLoadingAlert:(NSString*)title
 {
-    loadingAlert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+    loadingAlert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@\nPlease Wait...",title] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
     [loadingAlert show];
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -64,6 +68,7 @@ static UIAlertView *loadingAlert;
     [indicator startAnimating];
     [loadingAlert addSubview:indicator];
 }
+
 + (void) dismissLoadingAlert
 {
     [loadingAlert dismissWithClickedButtonIndex:0 animated:YES];

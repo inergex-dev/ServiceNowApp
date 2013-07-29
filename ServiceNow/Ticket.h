@@ -17,6 +17,7 @@
     int impact;
     NSString *opened_at;
     NSString *closed_at;
+    NSArray *previousComments;
 }
 
 @property (nonatomic, retain) NSString *number;
@@ -27,5 +28,6 @@
 @property int impact;
 @property (nonatomic, retain) NSString *opened_at;
 @property (nonatomic, retain) NSString *closed_at;
+@property (nonatomic, retain) NSArray *previousComments;
 
 @end

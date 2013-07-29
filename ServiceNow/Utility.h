@@ -18,6 +18,7 @@
 + (NSString*) impactIntToString:(int)num;
 + (NSArray*) getStateStringArray;
 + (NSString*) stateIntToString:(int)num;
++ (void) showLoadingAlert;
 + (void) showLoadingAlert:(NSString*)title;
 + (void) dismissLoadingAlert;
 

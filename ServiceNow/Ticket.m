@@ -9,7 +9,7 @@
 #import "Ticket.h"
 
 @implementation Ticket
-@synthesize number, state, short_description, comments, severity, impact, opened_at, closed_at;
+@synthesize number, state, short_description, comments, severity, impact, opened_at, closed_at, previousComments;
 
 -(id)init {
     self = [super init];
@@ -22,6 +22,7 @@
         self.impact = 3;
         self.opened_at = @"";
         self.closed_at = @"";
+        self.previousComments = [[NSArray alloc] initWithObjects:@"comment1", @"comment2", nil];
     }
     return self;
 }
@@ -37,6 +38,7 @@
     ticket.impact               =  self.impact;
     ticket.opened_at            = [self.opened_at copyWithZone:zone];
     ticket.closed_at            = [self.closed_at copyWithZone:zone];
+    ticket.previousComments     = [self.previousComments copyWithZone:zone];
     
     return ticket;
 }

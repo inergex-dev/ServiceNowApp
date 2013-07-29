@@ -20,7 +20,14 @@
 	// Do any additional setup after loading the view.
     picker.delegate = self;
     
-    [picker reloadAllComponents];
+    [picker selectRow:pickerRow.row inComponent:0 animated:NO];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    //http://stackoverflow.com/questions/13352166/uipickerview-cant-autoselect-last-row-when-compiled-under-xcode-4-5-2-ios-6
+    // Having this in viewDidAppear is because there's a bug with auto-layout were the last row cannot be selected
+    // in viewDidLoad (others work fine, so the select row is there also to avoid un-neccisary animation).
     [picker selectRow:pickerRow.row inComponent:0 animated:YES];
 }
 

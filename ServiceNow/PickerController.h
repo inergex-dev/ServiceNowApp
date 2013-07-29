@@ -28,7 +28,7 @@
 
 
 
-
+// Allows an int value to be passed around with a pointer (without the original int value needing to be a pointer).
 @interface SelectedRow : NSObject {
     int row;
 }

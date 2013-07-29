@@ -36,8 +36,7 @@
     // Check if login information is stored.
     NSString* username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     NSString* password = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
-    //NSLog(@"%@", username ? [@"Username: " stringByAppendingString: username] : @"No Username");
-    //NSLog(@"%@", password ? [@"Password: " stringByAppendingString: password] : @"No Password");
+    //NSLog(@"Username: %@\nPassword: %@", (username ? username : @"--No Username--"), (password ? password : @"--No Password--"));
     
     // If: credentials are stored
     if (username && password) {
@@ -45,7 +44,6 @@
         usernameTextField.text = username;
         passwordTextField.text = password;
     }
-
     
     //[self autoLogin];
 }
@@ -55,9 +53,9 @@
     NSString* username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     NSString* password = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
     
-    NSLog(@"%@", username ? [@"Username: " stringByAppendingString: username] : @"No Username");
-    NSLog(@"%@", password ? [@"Password: " stringByAppendingString: password] : @"No Password");
-    
+    //NSLog(@"Username: %@", username ? username : @"--No Username--");
+    //NSLog(@"Password: %@", password ? password : @"--No Password--");
+ 
     // If: credentials are stored
     if (username && password) {
         // Then: assume valid
@@ -79,11 +77,9 @@
             [[NSUserDefaults standardUserDefaults] setObject:usernameTextField.text forKey:@"username"];
             [[NSUserDefaults standardUserDefaults] setObject:passwordTextField.text forKey:@"password"];
             
-            NSString* msg = @"Credentials stored - username:";
-            msg = [msg stringByAppendingString:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]];
-            msg = [msg stringByAppendingString: @" password:"];
-            msg = [msg stringByAppendingString:[[NSUserDefaults standardUserDefaults] valueForKey:@"password"]];
-            NSLog(@"%@",msg);
+            NSLog(@"Credentials stored - username:%@ password:%@",
+                  [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
+                  [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]);
             
             // Stops and removes it.
             [reach stopNotifier];
@@ -117,7 +113,6 @@
 
 // Keyboard disappears if user touches screen - http://mobile.tutsplus.com/tutorials/iphone/ios-sdk-uitextfield-uitextfielddelegate/
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"touchesBegan:withEvent:");
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
 }
@@ -125,11 +120,11 @@
 // Dictates how a field behaves when the return button is clicked - http://mobile.tutsplus.com/tutorials/iphone/ios-sdk-uitextfield-uitextfielddelegate/
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.tag == USERFIELD_TAG) {
-        NSLog(@"Should switch to passwordTextField");
+        // Should switch to passwordTextField
         [passwordTextField becomeFirstResponder];
     }
-    else {
-        NSLog(@"Should submit the query");
+    else if (textField.tag == PASSFIELD_TAG) {
+        // Should submit the query
         [self attemptlogin:textField];
     }
     return YES;

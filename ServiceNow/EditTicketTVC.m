@@ -14,7 +14,7 @@
 #define TYPE 0
 #define TITLE 1
 #define CONTENT 2
-#define UI_OBJECT_NAME 3
+#define UI_OBJECT 3
 #define MAX_LENGTH 4
 
 #define TYPE_PICKER @"Picker"
@@ -28,10 +28,20 @@
 {
     [super viewDidLoad]; // Do any additional setup after loading the view.
     
+    // Allows the keyboard to be hiden since touchesBegan isn't activated with tableViews
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    [tap setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:tap];
+    
     ticket = [realTicket copy];
     pickerRow = [[SelectedRow alloc] init];
-    [self getSectionsFromTicket];
+    
+    // Initalize the objects here so they aren't created every time the view appears.
+    shortDescTB = [[UITextField alloc] initWithFrame:CGRectMake(2.0, 4.0, 300.0, 30.0)];
+    commentsTB = [[UITextField alloc] initWithFrame:CGRectMake(2.0, 4.0, 300.0, 30.0)];
+    
     selectedForPickerTag = -1;
+    [self getSectionsFromTicket];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -58,42 +68,70 @@
 
 - (void)getSectionsFromTicket
 {
-    // There's apparently an issue with storing UI objects in the array, so the object's name is stored instead.
+    // TYPE, Section Header, value, UIObject, max size (Nil if TYPE_PICKER)
     sections = [[NSMutableArray alloc] init];
     [sections addObject:[NSArray arrayWithObjects:
                          TYPE_PICKER,
                          @"Impact",
                          [Utility impactIntToString:ticket.impact],
                          @"impactCell",
-                         [NSNumber numberWithInt:40],
                          Nil]];
     [sections addObject:[NSArray arrayWithObjects:
                          TYPE_PICKER,
                          @"State",
                          [Utility stateIntToString:ticket.state],
                          @"stateCell",
-                         [NSNumber numberWithInt:40],
                          Nil]];
     [sections addObject:[NSArray arrayWithObjects:
                          TYPE_TEXTBOX,
                          @"Short Description",
                          ticket.short_description,
-                         @"shortDescTB",
+                         shortDescTB,
                          [NSNumber numberWithInt:80],
                          Nil]];
     [sections addObject:[NSArray arrayWithObjects:
                          TYPE_TEXTBOX,
                          @"Comments",
-                         @"",
-                         @"commentsTB",
+                         ticket.comments,
+                         commentsTB,
                          [NSNumber numberWithInt:4000],
                          Nil]];
 }
 
 - (IBAction)save:(id)sender
 {
+    NSMutableArray *mandatoryFields = [[NSMutableArray alloc] init];
+    if(shortDescTB != Nil && [shortDescTB.text isEqual:@""]) {
+        [mandatoryFields addObject:@"Short Description"];
+    }
+    
+    if(ticket.impact == realTicket.impact && ticket.state == realTicket.state && [ticket.short_description isEqual:realTicket.short_description]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Changes"
+                                                        message:@"No changes have been made to the ticket, so it has not been saved."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+    else if(mandatoryFields.count > 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mandatory Fields"
+                                                        message:[NSString stringWithFormat:@"The following mandatory fields are not filled in:\n%@", [[mandatoryFields valueForKey:@"description"] componentsJoinedByString:@", "]]
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    } else {
+        [Utility showLoadingAlert:@"Saving Data"];
+        [NSThread detachNewThreadSelector:@selector(saveThread) toTarget:self withObject:Nil];
+    }
+}
+
+- (void)saveThread
+{
+    [NSThread sleepForTimeInterval:3];
     realTicket = [ticket copy];
-    NSLog(@"Saved");
+    [Utility dismissLoadingAlert];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)cancel:(id)sender
@@ -128,26 +166,24 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     if([[[sections objectAtIndex:indexPath.section] objectAtIndex:TYPE] isEqual: TYPE_TEXTBOX])
     {
-        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(2.0, 4.0, 300.0, 30.0)];
+        UITextField *textField = (UITextField *)[[sections objectAtIndex:indexPath.section] objectAtIndex:UI_OBJECT];
         textField.delegate = self;
         textField.placeholder = [[sections objectAtIndex:indexPath.section] objectAtIndex:TITLE];
         textField.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
         textField.tag = indexPath.section;
         [cell.contentView addSubview:textField];
-        
-        [self setValue:textField forKey:[[sections objectAtIndex:indexPath.section] objectAtIndex:UI_OBJECT_NAME]];
     }
     else if([[[sections objectAtIndex:indexPath.section] objectAtIndex:TYPE] isEqual: TYPE_PICKER])
     {
         cell.textLabel.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
-        [self setValue:cell forKey:[[sections objectAtIndex:indexPath.section] objectAtIndex:UI_OBJECT_NAME]];
+        [self setValue:cell forKey:[[sections objectAtIndex:indexPath.section] objectAtIndex:UI_OBJECT]];
     }
     
     cell.tag = indexPath.section;
@@ -170,12 +206,9 @@
     return newLength <= textFieldMaxLength || returnKey;
 }
 
-// Keyboard disappears if user touches screen - http://mobile.tutsplus.com/tutorials/iphone/ios-sdk-uitextfield-uitextfielddelegate/
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"touchesBegan:withEvent:");
-    
+- (IBAction)hideKeyboard:(id)sender
+{
     [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

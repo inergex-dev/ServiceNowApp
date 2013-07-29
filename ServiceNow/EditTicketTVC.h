@@ -31,5 +31,6 @@
 - (void)getSectionsFromTicket;
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
+- (IBAction)hideKeyboard:(id)sender;
 
 @end
