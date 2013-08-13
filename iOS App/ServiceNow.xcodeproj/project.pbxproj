@@ -23,6 +23,9 @@
 		8B3802E9176900A20068C40C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3802C1176900A10068C40C /* Foundation.framework */; };
 		8B3802F1176900A20068C40C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B3802EF176900A20068C40C /* InfoPlist.strings */; };
 		8B3802F4176900A20068C40C /* ServiceNowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3802F3176900A20068C40C /* ServiceNowTests.m */; };
+		8B99975D17B01D3300F28429 /* SOAPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B99975C17B01D3200F28429 /* SOAPRequest.m */; };
+		8B99976817BA87EF00F28429 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B99976517BA87EF00F28429 /* TBXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8B99976A17BA87EF00F28429 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B99976717BA87EF00F28429 /* TBXML+HTTP.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8B9B307D1769089400BAAFAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380301176902660068C40C /* LoginViewController.m */; };
 		8B9B307E176908AD00BAAFAE /* MainMenuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380303176902660068C40C /* MainMenuTVC.m */; };
 		8B9B3081176A037B00BAAFAE /* OpenTicketsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */; };
@@ -86,6 +89,12 @@
 		8B380305176902660068C40C /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		8B380306176902660068C40C /* XMLParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLParserDelegate.h; sourceTree = "<group>"; };
 		8B380307176902660068C40C /* XMLParserDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLParserDelegate.m; sourceTree = "<group>"; };
+		8B99975B17B01D3200F28429 /* SOAPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOAPRequest.h; sourceTree = "<group>"; };
+		8B99975C17B01D3200F28429 /* SOAPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOAPRequest.m; sourceTree = "<group>"; };
+		8B99976517BA87EF00F28429 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = TBXML/TBXML.m; sourceTree = "<group>"; };
+		8B99976717BA87EF00F28429 /* TBXML+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TBXML+HTTP.m"; path = "TBXML/TBXML+HTTP.m"; sourceTree = "<group>"; };
+		8B99976B17BA880300F28429 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = TBXML/TBXML.h; sourceTree = "<group>"; };
+		8B99976D17BA880300F28429 /* TBXML+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+HTTP.h"; path = "TBXML/TBXML+HTTP.h"; sourceTree = "<group>"; };
 		8B9B307F176A037B00BAAFAE /* OpenTicketsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTicketsTVC.h; sourceTree = "<group>"; };
 		8B9B3080176A037B00BAAFAE /* OpenTicketsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTicketsTVC.m; sourceTree = "<group>"; };
 		8B9B3082176B623700BAAFAE /* ViewOpenTicketTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOpenTicketTVC.h; sourceTree = "<group>"; };
@@ -178,20 +187,22 @@
 			children = (
 				8B9B308A1771D0F300BAAFAE /* PullToRefresh */,
 				8B9B30B5177212D300BAAFAE /*  Reachability */,
+				8B99976417BA87C800F28429 /* TBXML */,
 				8B380300176902660068C40C /* LoginViewController.h */,
 				8B380301176902660068C40C /* LoginViewController.m */,
 				8B380302176902660068C40C /* MainMenuTVC.h */,
 				8B380303176902660068C40C /* MainMenuTVC.m */,
-				8B9B3086176B90E800BAAFAE /* CreateTicketTVC.h */,
-				8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */,
+				8B9B30CC17A0201E00BAAFAE /* PickerController.h */,
+				8B9B30CD17A0201F00BAAFAE /* PickerController.m */,
+				8B99975A17A7EE8B00F28429 /* Create */,
 				8B9B30D317A17B6500BAAFAE /* Open */,
 				8B9B30D217A17B4800BAAFAE /* Closed */,
 				8B380304176902660068C40C /* Ticket.h */,
 				8B380305176902660068C40C /* Ticket.m */,
 				8B380306176902660068C40C /* XMLParserDelegate.h */,
 				8B380307176902660068C40C /* XMLParserDelegate.m */,
-				8B9B30CC17A0201E00BAAFAE /* PickerController.h */,
-				8B9B30CD17A0201F00BAAFAE /* PickerController.m */,
+				8B99975B17B01D3200F28429 /* SOAPRequest.h */,
+				8B99975C17B01D3200F28429 /* SOAPRequest.m */,
 				8B3802C6176900A10068C40C /* Supporting Files */,
 				8B9B30C9179EFBEF00BAAFAE /* Utility.h */,
 				8B9B30CA179EFBF000BAAFAE /* Utility.m */,
@@ -234,6 +245,26 @@
 				8B3802EF176900A20068C40C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8B99975A17A7EE8B00F28429 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				8B9B3086176B90E800BAAFAE /* CreateTicketTVC.h */,
+				8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */,
+			);
+			name = Create;
+			sourceTree = "<group>";
+		};
+		8B99976417BA87C800F28429 /* TBXML */ = {
+			isa = PBXGroup;
+			children = (
+				8B99976B17BA880300F28429 /* TBXML.h */,
+				8B99976517BA87EF00F28429 /* TBXML.m */,
+				8B99976D17BA880300F28429 /* TBXML+HTTP.h */,
+				8B99976717BA87EF00F28429 /* TBXML+HTTP.m */,
+			);
+			name = TBXML;
 			sourceTree = "<group>";
 		};
 		8B9B308A1771D0F300BAAFAE /* PullToRefresh */ = {
@@ -415,6 +446,9 @@
 				8B9B30CB179EFBF000BAAFAE /* Utility.m in Sources */,
 				8B9B30CE17A0202000BAAFAE /* PickerController.m in Sources */,
 				8B9B30D117A178E000BAAFAE /* ViewClosedTicketTVC.m in Sources */,
+				8B99975D17B01D3300F28429 /* SOAPRequest.m in Sources */,
+				8B99976817BA87EF00F28429 /* TBXML.m in Sources */,
+				8B99976A17BA87EF00F28429 /* TBXML+HTTP.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -63,8 +63,7 @@
                          TYPE_PICKER,
                          @"Severity",
                          [Utility severityIntToString:ticket.severity],
-                         Nil,
-                         Nil,
+                         @"severityCell",
                          Nil]];
     [sections addObject:[NSArray arrayWithObjects:
                          TYPE_TEXTBOX,
@@ -154,15 +153,18 @@
         textField.delegate = self;
         textField.placeholder = [[sections objectAtIndex:indexPath.section] objectAtIndex:TITLE];
         textField.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
+        textField.returnKeyType = UIReturnKeyNext;
+        
         textField.tag = indexPath.section;
         [cell.contentView addSubview:textField];
-        
-        //[self setValue:textField forKey:[[sections objectAtIndex:indexPath.section] objectAtIndex:UI_OBJECT_NAME]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     else if([[[sections objectAtIndex:indexPath.section] objectAtIndex:TYPE] isEqual: TYPE_PICKER])
     {
         cell.textLabel.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        [self setValue:cell forKey:[[sections objectAtIndex:indexPath.section] objectAtIndex:UI_OBJECT]];
     }
     
     cell.tag = indexPath.section;
@@ -194,10 +196,33 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if(severityCell.tag == cell.tag)
-    {
+    if(severityCell.tag == cell.tag) {
         [self performSegueWithIdentifier:@"pickerSegue" sender:self];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    int currentTag = textField.tag;
+    int lastSection = sections.count - 1;
+    // If Next (Return) is hit, the next textbox will be selected. If no text boxes are left, send/saves the form.
+    while(true)
+    {
+        if (currentTag < lastSection) {
+            currentTag++;
+            if([[[sections objectAtIndex:currentTag] objectAtIndex:TYPE] isEqual:TYPE_TEXTBOX])
+            {
+                UITextField *next = (UITextField*)[[sections objectAtIndex:currentTag] objectAtIndex:UI_OBJECT];
+                [self.view endEditing:YES]; // This closes the keyboard so it won't cover the next textField.
+                [next becomeFirstResponder]; // selects next textField, and re-opens keyboard (while moving the screen to keep the field visisble).
+                break;
+            }
+            
+        } else {
+            [self send:Nil];
+            break;
+        }
+    }
+    return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

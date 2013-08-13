@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SOAPRequest.h"
 
 @class LoginViewController;
 @class Reachability;
 
-@interface LoginViewController : UIViewController <UIAlertViewDelegate> {
+@interface LoginViewController : UIViewController <UIAlertViewDelegate, SOAPRequestDelegate> {
     Reachability *reach;
 }
 

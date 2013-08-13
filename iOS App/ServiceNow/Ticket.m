@@ -22,7 +22,7 @@
         self.impact = 3;
         self.opened_at = @"";
         self.closed_at = @"";
-        self.previousComments = [[NSArray alloc] initWithObjects:@"comment1", @"comment2", nil];
+        self.previousComments = [[NSArray alloc] initWithObjects:@"Your right, it IS broken! go figure.", @"Have you tried turning it off and on again?", nil];
     }
     return self;
 }

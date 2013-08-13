@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "Reachability.h"
+#import "SOAPRequest.h"
 #import "Utility.h"
 
 @implementation LoginViewController
@@ -48,6 +49,34 @@
     //[self autoLogin];
 }
 
+
+- (void)returnedSOAPResult:(TBXMLElement*)element
+{
+    [Utility dismissLoadingAlert];
+    
+    if([[TBXML textForElement:element] isEqual: @"true"]) {
+        // Store the passwords
+        [[NSUserDefaults standardUserDefaults] setObject:usernameTextField.text forKey:@"username"];
+        [[NSUserDefaults standardUserDefaults] setObject:passwordTextField.text forKey:@"password"];
+        
+        NSLog(@"Credentials stored - username:%@ password:%@",
+              [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
+              [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]);
+        
+        [self performSegueWithIdentifier:@"loginSegue" sender:self];
+    } else {
+        
+    }
+}
+
+
+- (void)returnedSOAPError:(NSError *)error
+{
+    //NSLog(@"SOAP XML Error:%@ %@", [error localizedDescription], [error userInfo]);
+    [Utility dismissLoadingAlert];
+    NSLog(@"SOAP XML Error:%@", [error localizedDescription]);
+}
+
 /*- (void)autoLogin
 {
     NSString* username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
@@ -70,7 +99,17 @@
 
 - (IBAction)attemptlogin:(id)sender
 {
-    if(reach.isReachable)
+    SOAPRequest* soap = [[SOAPRequest alloc] init];
+    soap.delegate = self;
+    [Utility showLoadingAlert];
+    [soap sendSOAPRequestForMethod:@"login"
+                    withParameters:[[NSDictionary alloc]
+                                    initWithObjects:[[NSArray alloc] initWithObjects:usernameTextField.text, passwordTextField.text, Nil]
+                                    forKeys:[[NSArray alloc] initWithObjects:@"username", @"password", Nil]
+                                    ]
+     ];
+    
+    /*if(reach.isReachable)
     {
         if([self confirmLoginUsername: usernameTextField.text password: passwordTextField.text]) {
             // Store the passwords
@@ -92,7 +131,7 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
-    }
+    }*/
 }
 
 - (BOOL)confirmLoginUsername:(NSString*)username password:(NSString*)password

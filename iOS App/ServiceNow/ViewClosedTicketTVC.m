@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Inergex. All rights reserved.
 //
 
-#import "ViewOpenTicketTVC.h"
+#import "ViewClosedTicketTVC.h"
 #import "EditTicketTVC.h"
 #import "Utility.h"
 #import "Ticket.h"
@@ -14,7 +14,7 @@
 #define TITLE 0
 #define CONTENT 1
 
-@implementation ViewOpenTicketTVC
+@implementation ViewClosedTicketTVC
 
 @synthesize ticket;
 
@@ -29,11 +29,11 @@
     sections = [[NSMutableArray alloc] init];
     
     [sections addObject:[NSArray arrayWithObjects:@"Short Description", ticket.short_description, Nil]];
-    [sections addObject:[NSArray arrayWithObjects:@"Opened", ticket.opened_at, Nil]];
+    [sections addObject:[NSArray arrayWithObjects:@"Closed", ticket.closed_at, Nil]];
     [sections addObject:[NSArray arrayWithObjects:@"Impact", [Utility impactIntToString:ticket.impact], Nil]];
     [sections addObject:[NSArray arrayWithObjects:@"State", [Utility stateIntToString:ticket.state], Nil]];
-    if([ticket.comments isEqualToString:@""] == NO) {
-        [sections addObject:[NSArray arrayWithObjects:@"Comments", ticket.comments, Nil]];
+    if(ticket.previousComments.count > 0) {
+        [sections addObject:[NSArray arrayWithObjects:@"Comments", ticket.previousComments, Nil]];
     }
 }
 
@@ -49,24 +49,35 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if([[[sections objectAtIndex:section] objectAtIndex:CONTENT] isKindOfClass:[NSArray class]])
+        return ((NSArray *)[[sections objectAtIndex:section] objectAtIndex:CONTENT]).count;
     return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize maximumSize1 = CGSizeMake(280, 9999);
-    NSString *myString1 = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
-    UIFont *myFont1 = [UIFont systemFontOfSize:17];
-    UILabel *lbl_Title=[[UILabel alloc] init];
+    NSString *cellText = Nil;
+    if([[[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT] isKindOfClass:[NSArray class]]) {
+        cellText = [[[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT] objectAtIndex:indexPath.row];
+    } else {
+        cellText = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
+    }
     
-    CGSize stringSize = [myString1 sizeWithFont:myFont1
-                                 constrainedToSize:maximumSize1
-                                     lineBreakMode:lbl_Title.lineBreakMode];
+    CGSize stringSize = [cellText sizeWithFont: [UIFont systemFontOfSize:17]
+                             constrainedToSize: CGSizeMake(280, 9999)
+                                 lineBreakMode: NSLineBreakByWordWrapping];
     return stringSize.height + 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *cellText = Nil;
+    if([[[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT] isKindOfClass:[NSArray class]]) {
+        cellText = [[[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT] objectAtIndex:indexPath.row];
+    } else {
+        cellText = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
+    }
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -76,18 +87,9 @@
     
     cell.textLabel.font = [UIFont systemFontOfSize:17];
     cell.textLabel.numberOfLines = 0;
-    cell.textLabel.text = [[sections objectAtIndex:indexPath.section] objectAtIndex:CONTENT];
+    cell.textLabel.text = cellText;
     
     return cell;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"editTicketSegue"]) {
-        EditTicketTVC *sequeController = segue.destinationViewController;
-        
-        sequeController.realTicket = self.ticket;
-    }
 }
 
 @end
