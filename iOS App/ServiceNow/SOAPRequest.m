@@ -8,41 +8,34 @@
 
 #import "SOAPRequest.h"
 #import "TBXML.h"
+#import "Utility.h"
 
 //http://www.devx.com/wireless/Article/43209/0/page/3
 @implementation SOAPRequest
 @synthesize delegate;
 
-- (NSString*) sendSOAPRequestForMethod:(NSString*)mName withParameters:(NSDictionary*)parameterDict
+int NO_INTERNET_CODE = -1009;
+
+- (id)initWithDelegate:(id <SOAPRequestDelegate>) myDelegate
+{
+    self = [self init];
+    
+    delegate = myDelegate;
+    
+    return self;
+}
+
+- (void) sendSOAPRequestForMethod:(NSString*)mName withParameters:(NSDictionary*)parameterDict
 {
     methodName = [mName copy];
-    // Create method string
-    NSMutableString* method = [[NSMutableString alloc] init];
-    [method appendFormat:@"<tem:%@>", methodName];
     
+    NSMutableString* method = [[NSMutableString alloc] initWithFormat:@"<tem:%@>", methodName];
     for (NSString* key in parameterDict) {
-        id value = [parameterDict objectForKey:key];
-        
-        [method appendFormat:@"<tem:%@>%@</tem:%@>"
-         , key
-         , value
-         , key
-         ];
+        [method appendFormat:@"<tem:%@>%@</tem:%@>", key, [parameterDict objectForKey:key], key];
     }
-    
-    /*for(int i=0; i < parameterArray.count; i++)
-    {
-        NSArray* current = [parameterArray objectAtIndex:i];
-        [method appendFormat:@"<tem:%@>%@</tem:%@>"
-         , [current objectAtIndex:0]
-         , [current objectAtIndex:1]
-         , [current objectAtIndex:0]
-         ];
-    }*/
     [method appendFormat:@"</tem:%@>", methodName];
     
-    NSString *soapMsg =
-    [NSString stringWithFormat:
+    NSString *soapMsg = [NSString stringWithFormat:
      @"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
      "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">"
         "<soapenv:Body>"
@@ -52,8 +45,7 @@
      , method
      ];
     
-    //---print it to the Debugger Console for verification---
-    NSLog(@"%@", soapMsg);
+    //NSLog(@"%@", soapMsg);
     
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: @"http://dev-igx02:3636/Service1.svc"]];
     [req setHTTPMethod:@"POST"];
@@ -65,13 +57,9 @@
     [req addValue:msgLength forHTTPHeaderField:@"Content-Length"];
     
     [req setHTTPBody: [soapMsg dataUsingEncoding:NSUTF8StringEncoding]];
-    //[activityIndicator startAnimating];
     
     conn = [[NSURLConnection alloc] initWithRequest:req delegate:self];
-    if (conn) {
-        webData = [NSMutableData data];
-    }
-    return Nil;
+    if (conn) webData = [NSMutableData data];
 }
 
 -(void) connection:(NSURLConnection *) connection didReceiveResponse:(NSURLResponse *) response {
@@ -98,25 +86,22 @@
     NSError *error;
     TBXML *tbxml = [TBXML newTBXMLWithXMLString:theXML error:&error];
     if (error) {
-        //NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
         [delegate returnedSOAPError:error];
-    } else {
-        TBXMLElement *root = tbxml.rootXMLElement;
-        if (root) {
+    } else if (tbxml.rootXMLElement) {
+        TBXMLElement *parent = tbxml.rootXMLElement->firstChild->firstChild;
+        if([[TBXML elementName:parent] isEqual:@"s:Fault"]) {
+            NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+            [errorDetail setValue:[TBXML textForElement:parent->firstChild] forKey:NSLocalizedDescriptionKey];
+            [delegate returnedSOAPError:[NSError errorWithDomain:@"myDomain" code:2463 userInfo:errorDetail]];
+        } else {
             //[self traverseElement:root];
-            
-            TBXMLElement *login = [TBXML childElementNamed:[NSString stringWithFormat:@"%@Result",methodName] parentElement:root->firstChild->firstChild];
-            //NSLog(@"%@", [TBXML textForElement:login]);
-            [delegate returnedSOAPResult:login];
-            return;
+            TBXMLElement *result = [TBXML childElementNamed:[NSString stringWithFormat:@"%@Result",methodName] parentElement:parent];
+            [delegate returnedSOAPResult:result];
         }
-        
-        /*NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[TBXML errorTextForCode:code], NSLocalizedDescriptionKey, nil];
-        
-        return [NSError errorWithDomain:D_TBXML_DOMAIN
-                                   code:code
-                               userInfo:userInfo];
-        [delegate returnedSOAPError:];*/
+    } else {
+        NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+        [errorDetail setValue:@"Cannot find root node." forKey:NSLocalizedDescriptionKey];
+        [delegate returnedSOAPError:[NSError errorWithDomain:@"myDomain" code:12321 userInfo:errorDetail]];
     }
 }
 
@@ -144,7 +129,7 @@
             [self traverseElement:element->firstChild];
         
         // Obtain next sibling element
-    } while ((element = element->nextSibling));  
+    } while ((element = element->nextSibling));
 }
 
 @end

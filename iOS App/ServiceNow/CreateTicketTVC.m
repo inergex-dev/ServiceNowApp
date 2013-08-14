@@ -9,6 +9,7 @@
 #import "CreateTicketTVC.h"
 #import "PickerController.h"
 #import "Ticket.h"
+#import "SOAPRequest.h"
 #import "Utility.h"
 
 #define TYPE 0
@@ -100,15 +101,15 @@
         [alert show];
     } else {
         [Utility showLoadingAlert:@"Sending Ticket"];
-        [NSThread detachNewThreadSelector:@selector(sendThread) toTarget:self withObject:Nil];
+        SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        [parameters setValue:[Utility getUsername] forKey:@"username"];
+        [parameters setValue:[Utility getPassword] forKey:@"password"];
+        [parameters setValue:shortDescTB.text forKey:@"shortDescription"];
+        [parameters setValue:commentsTB.text forKey:@"comments"];
+        //[parameters setValue:[NSString stringWithFormat:@"%i", ticket.severity] forKey:@"severity"];
+        [soap sendSOAPRequestForMethod:@"createTicket" withParameters:parameters];
     }
-}
-
-- (void)sendThread
-{
-    [NSThread sleepForTimeInterval:3];
-    [Utility dismissLoadingAlert];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)cancel:(id)sender
@@ -116,6 +117,33 @@
     //http://stackoverflow.com/questions/14143095/storyboard-prepareforsegue
     // Pops this view of the navigation controller to achieve the same effect as hitting the back key.
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)returnedSOAPResult:(TBXMLElement*)element
+{
+    [Utility dismissLoadingAlert];
+    
+    if([[TBXML textForElement:element] isEqual: @"true"]) {
+        [[[UIAlertView alloc] initWithTitle:@"Ticket Sent" message:@"You ticket has been sent succesfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Incorrect Data" message:@"Service now doesn't like this input. Try entering it again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+    }
+}
+
+- (void)returnedSOAPError:(NSError *)error
+{
+    [Utility dismissLoadingAlert];
+    
+    if(error.code == NO_INTERNET_CODE)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        alert.tag = NO_INTERNET_CODE;
+        [alert show];
+    }else{
+        [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error %i",error.code] message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        NSLog(@"SOAP XML Error:%@ %@", [error localizedDescription], [error userInfo]);
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

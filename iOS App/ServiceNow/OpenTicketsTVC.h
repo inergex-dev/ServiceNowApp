@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "PullRefreshTableViewController.h"
+#import "SOAPRequest.h"
 @class Ticket;
 @class Reachability;
 
-@interface OpenTicketsTVC : PullRefreshTableViewController {
+@interface OpenTicketsTVC : PullRefreshTableViewController <SOAPRequestDelegate> {
     Ticket *selectedTicket;
     
     Reachability *reach;
 }
 
 @property (strong, nonatomic) Ticket *selectedTicket;
-@property (nonatomic, retain) NSArray *ticketsArray;
+@property (nonatomic, retain) NSMutableArray *ticketsArray;
 @property (nonatomic, retain) Reachability *reach;
 
 @end

@@ -10,8 +10,8 @@
 #import "TBXML.h"
 
 @protocol SOAPRequestDelegate <NSObject>
-//@optional
 - (void)returnedSOAPResult:(TBXMLElement*)element;
+//@optional
 - (void)returnedSOAPError:(NSError *)error;
 @end
 
@@ -23,6 +23,8 @@
     NSURLConnection *conn;
     NSString *methodName;
 }
+extern int NO_INTERNET_CODE;
 @property (nonatomic, weak) id <SOAPRequestDelegate> delegate;
-- (NSString*) sendSOAPRequestForMethod:(NSString*)methodName withParameters:(NSDictionary*)parameterArray;
+- (id)initWithDelegate:(id <SOAPRequestDelegate>) myDelegate;
+- (void) sendSOAPRequestForMethod:(NSString*)methodName withParameters:(NSDictionary*)parameterArray;
 @end

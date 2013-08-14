@@ -9,6 +9,7 @@
 #import "EditTicketTVC.h"
 #import "PickerController.h"
 #import "Ticket.h"
+#import "SOAPRequest.h"
 #import "Utility.h"
 
 #define TYPE 0
@@ -105,7 +106,7 @@
         [mandatoryFields addObject:@"Short Description"];
     }
     
-    if(ticket.impact == realTicket.impact && ticket.state == realTicket.state && [ticket.short_description isEqual:realTicket.short_description]) {
+    if(ticket.impact == realTicket.impact && ticket.state == realTicket.state && [shortDescTB.text isEqual:realTicket.short_description] && [commentsTB.text isEqual:realTicket.comments]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Changes"
                                                         message:@"No changes have been made to the ticket, so it has not been saved."
                                                        delegate:self
@@ -122,16 +123,43 @@
         [alert show];
     } else {
         [Utility showLoadingAlert:@"Saving Data"];
-        [NSThread detachNewThreadSelector:@selector(saveThread) toTarget:self withObject:Nil];
+        SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        [parameters setValue:[Utility getUsername] forKey:@"username"];
+        [parameters setValue:[Utility getPassword] forKey:@"password"];
+        [parameters setValue:shortDescTB.text forKey:@"shortDescription"];
+        [parameters setValue:commentsTB.text forKey:@"comments"];
+        //[parameters setValue:[NSString stringWithFormat:@"%i", ticket.severity] forKey:@"severity"];
+        [soap sendSOAPRequestForMethod:@"EEEEEEEEEDDDDDDDDDIIIIIIIIITTTTTTT______TTTIIIICCCKKKKEEETTTTTT" withParameters:parameters];
     }
 }
 
-- (void)saveThread
+- (void)returnedSOAPResult:(TBXMLElement*)element
 {
-    [NSThread sleepForTimeInterval:3];
-    realTicket = [ticket copy];
     [Utility dismissLoadingAlert];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if([[TBXML textForElement:element] isEqual: @"true"]) {
+        realTicket = [ticket copy];
+        [[[UIAlertView alloc] initWithTitle:@"Ticket Saved" message:@"You ticket has been edited succesfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Incorrect Data" message:@"Service now doesn't like this input. Try entering it again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+    }
+}
+
+- (void)returnedSOAPError:(NSError *)error
+{
+    [Utility dismissLoadingAlert];
+    
+    if(error.code == NO_INTERNET_CODE)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        alert.tag = NO_INTERNET_CODE;
+        [alert show];
+    }else{
+        [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error %i",error.code] message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        NSLog(@"SOAP XML Error:%@ %@", [error localizedDescription], [error userInfo]);
+    }
 }
 
 - (IBAction)cancel:(id)sender

@@ -12,19 +12,13 @@
 @class LoginViewController;
 @class Reachability;
 
-@interface LoginViewController : UIViewController <UIAlertViewDelegate, SOAPRequestDelegate> {
-    Reachability *reach;
-}
+@interface LoginViewController : UIViewController <UIAlertViewDelegate, SOAPRequestDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-
-@property (strong, nonatomic) Reachability *reach;
 
 //- (void)autoLogin;
 - (IBAction)attemptlogin:(id)sender;
-- (BOOL)confirmLoginUsername:(NSString*)username password:(NSString*)password;
 
 @end

@@ -213,14 +213,11 @@
                                     <outlet property="delegate" destination="HyE-4v-mYc" id="h4V-kn-5b4"/>
                                 </connections>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gx9-Q4-h9e"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0Bd-j3-cd6" firstAttribute="trailing" secondItem="Obj-1D-XIp" secondAttribute="trailing" type="default" id="1En-MQ-qfp"/>
                             <constraint firstItem="vhm-EJ-Skn" firstAttribute="leading" secondItem="Obj-1D-XIp" secondAttribute="leading" type="default" id="5Q8-kq-xec"/>
-                            <constraint firstItem="Gx9-Q4-h9e" firstAttribute="leading" secondItem="sY5-8h-P4p" secondAttribute="leading" constant="146" id="A1w-Id-urc"/>
-                            <constraint firstItem="Gx9-Q4-h9e" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="58" id="aHm-eX-p6Z"/>
                             <constraint firstItem="Obj-1D-XIp" firstAttribute="trailing" secondItem="vhm-EJ-Skn" secondAttribute="trailing" type="default" id="hCb-3c-aDS"/>
                             <constraint firstItem="0Bd-j3-cd6" firstAttribute="leading" secondItem="Obj-1D-XIp" secondAttribute="leading" type="default" id="igr-gl-7lQ"/>
                             <constraint firstItem="Obj-1D-XIp" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="82" id="ilV-cw-gdI"/>
@@ -231,7 +228,6 @@
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="Obj-1D-XIp" id="ugh-CG-Obu"/>
-                        <outlet property="spinner" destination="Gx9-Q4-h9e" id="C3N-6d-zjo"/>
                         <outlet property="usernameTextField" destination="0Bd-j3-cd6" id="W4a-p3-XWQ"/>
                         <segue destination="2BR-Im-nVW" kind="modal" identifier="loginSegue" modalTransitionStyle="flipHorizontal" animates="NO" id="wNH-75-GGj"/>
                     </connections>
@@ -568,7 +564,6 @@
                 <relationship kind="action" name="attemptlogin:"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>

@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "Reachability.h"
 #import "SOAPRequest.h"
 #import "Utility.h"
 
@@ -16,27 +15,22 @@
 #define USERFIELD_TAG 1
 #define PASSFIELD_TAG 2
 
-@synthesize usernameTextField, passwordTextField, loginButton, spinner;
-@synthesize reach;
+@synthesize usernameTextField, passwordTextField, loginButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [Utility initialize];
+    [Utility initialize]; // Only needs to be done once for program, so done on first view load.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-	// Do any additional setup after view appears.
-    
-    reach = [Reachability reachabilityWithHostname:[Utility getHost]];
-    [reach startNotifier];
     
     // Check if login information is stored.
-    NSString* username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    NSString* password = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
+    NSString* username = [Utility getUsername];
+    NSString* password = [Utility getPassword];
     //NSLog(@"Username: %@\nPassword: %@", (username ? username : @"--No Username--"), (password ? password : @"--No Password--"));
     
     // If: credentials are stored
@@ -44,11 +38,19 @@
         // Then: imput them into fields
         usernameTextField.text = username;
         passwordTextField.text = password;
+        //[self attemptlogin:Nil];
     }
-    
-    //[self autoLogin];
 }
 
+- (IBAction)attemptlogin:(id)sender
+{
+    SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
+    [Utility showLoadingAlert:@"Logging In"];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:usernameTextField.text forKey:@"username"];
+    [parameters setValue:passwordTextField.text forKey:@"password"];
+    [soap sendSOAPRequestForMethod:@"login" withParameters:parameters];
+}
 
 - (void)returnedSOAPResult:(TBXMLElement*)element
 {
@@ -59,95 +61,40 @@
         [[NSUserDefaults standardUserDefaults] setObject:usernameTextField.text forKey:@"username"];
         [[NSUserDefaults standardUserDefaults] setObject:passwordTextField.text forKey:@"password"];
         
-        NSLog(@"Credentials stored - username:%@ password:%@",
-              [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
-              [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]);
+        //NSLog(@"Credentials stored - username:%@ password:%@",
+        //      [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
+        //      [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]);
         
         [self performSegueWithIdentifier:@"loginSegue" sender:self];
     } else {
-        
+        [[[UIAlertView alloc] initWithTitle:@"Incorrect Credentials" message:@"The username or password you entered isn't correct. Try entering it again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
     }
 }
-
 
 - (void)returnedSOAPError:(NSError *)error
 {
-    //NSLog(@"SOAP XML Error:%@ %@", [error localizedDescription], [error userInfo]);
     [Utility dismissLoadingAlert];
-    NSLog(@"SOAP XML Error:%@", [error localizedDescription]);
+    
+    if(error.code == NO_INTERNET_CODE)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        alert.tag = NO_INTERNET_CODE;
+        [alert show];
+    }else{
+        [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error %i",error.code] message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        NSLog(@"SOAP XML Error:%@ %@", [error localizedDescription], [error userInfo]);
+    }
 }
 
-/*- (void)autoLogin
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSString* username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    NSString* password = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
-    
-    //NSLog(@"Username: %@", username ? username : @"--No Username--");
-    //NSLog(@"Password: %@", password ? password : @"--No Password--");
- 
-    // If: credentials are stored
-    if (username && password) {
-        // Then: assume valid
-        [self performSegueWithIdentifier:@"loginSegue" sender:self];
-        
-        // Then: load them and check if true
-        //if([self confirmLoginUsername:username password:password]) {
-        //    [self performSegueWithIdentifier:@"loginSegue" sender:self];
-        //}
-    }
-}*/
-
-- (IBAction)attemptlogin:(id)sender
-{
-    SOAPRequest* soap = [[SOAPRequest alloc] init];
-    soap.delegate = self;
-    [Utility showLoadingAlert];
-    [soap sendSOAPRequestForMethod:@"login"
-                    withParameters:[[NSDictionary alloc]
-                                    initWithObjects:[[NSArray alloc] initWithObjects:usernameTextField.text, passwordTextField.text, Nil]
-                                    forKeys:[[NSArray alloc] initWithObjects:@"username", @"password", Nil]
-                                    ]
-     ];
-    
-    /*if(reach.isReachable)
+    if(alertView.tag == NO_INTERNET_CODE)
     {
-        if([self confirmLoginUsername: usernameTextField.text password: passwordTextField.text]) {
-            // Store the passwords
-            [[NSUserDefaults standardUserDefaults] setObject:usernameTextField.text forKey:@"username"];
-            [[NSUserDefaults standardUserDefaults] setObject:passwordTextField.text forKey:@"password"];
-            
-            NSLog(@"Credentials stored - username:%@ password:%@",
-                  [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
-                  [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]);
-            
-            // Stops and removes it.
-            [reach stopNotifier];
-            reach = Nil;
-            
-            [self performSegueWithIdentifier:@"loginSegue" sender:self];
+        if(buttonIndex == 0) {
+            [alertView dismissWithClickedButtonIndex:-1 animated:NO];
+            [self attemptlogin:Nil];
         }
     }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-    }*/
-}
-
-- (BOOL)confirmLoginUsername:(NSString*)username password:(NSString*)password
-{
-    BOOL correctLogin = NO;
-    
-    [self.spinner startAnimating];
-    // check if correct via internet
-    if ([username isEqualToString:@"admin"] && [password isEqualToString:@"pass"])
-    {
-        // show the login screen
-        correctLogin = YES;
-    }
-    
-    [self.spinner stopAnimating];
-    return correctLogin;
 }
 
 // Keyboard disappears if user touches screen - http://mobile.tutsplus.com/tutorials/iphone/ios-sdk-uitextfield-uitextfielddelegate/
@@ -164,7 +111,7 @@
     }
     else if (textField.tag == PASSFIELD_TAG) {
         // Should submit the query
-        [self attemptlogin:textField];
+        [self attemptlogin:Nil];
     }
     return YES;
 }

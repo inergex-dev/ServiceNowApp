@@ -10,7 +10,6 @@
 
 @implementation Utility
 
-static NSString* host = @"inergex.service-now.com";
 static NSArray* severityStringArray = Nil;
 static NSArray* impactStringArray = Nil;
 static NSArray* stateStringArray = Nil;
@@ -25,8 +24,8 @@ static UIAlertView *loadingAlert;
         stateStringArray = [NSArray arrayWithObjects:@"New", @"Assigned", @"Work in Progress", @"Pending", @"Resolved", @"Closed Complete", @"Auto Closed", nil];
 }
 
-+ (NSString*) getHost { return host; }
-
++ (NSString*) getUsername { return [[NSUserDefaults standardUserDefaults] valueForKey:@"username"]; }
++ (NSString*) getPassword { return [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]; }
 
 + (NSArray*) getSeverityStringArray { return severityStringArray; }
 /** Takes a severity (1-3) and returns the corresponding string. */
@@ -71,7 +70,10 @@ static UIAlertView *loadingAlert;
 
 + (void) dismissLoadingAlert
 {
-    [loadingAlert dismissWithClickedButtonIndex:0 animated:YES];
+    if(loadingAlert) {
+        [loadingAlert dismissWithClickedButtonIndex:0 animated:YES];
+        loadingAlert = Nil;
+    }
 }
 
 @end

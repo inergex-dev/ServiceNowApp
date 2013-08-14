@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SOAPRequest.h"
 @class Ticket;
 @class SelectedRow;
 
-@interface CreateTicketTVC : UITableViewController <UITextFieldDelegate> {
+@interface CreateTicketTVC : UITableViewController <UITextFieldDelegate, SOAPRequestDelegate> {
     Ticket *ticket;
     NSMutableArray *sections;
     

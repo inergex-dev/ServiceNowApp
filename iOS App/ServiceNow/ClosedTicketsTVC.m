@@ -9,38 +9,76 @@
 #import "ClosedTicketsTVC.h"
 #import "ViewClosedTicketTVC.h"
 #import "Ticket.h"
-#import "XMLParserDelegate.h"
-#import "Reachability.h"
+#import "SOAPRequest.h"
 #import "Utility.h"
 
 @implementation ClosedTicketsTVC
 
 @synthesize selectedTicket, ticketsArray, reach;
 
-- (void)viewDidLoad
+- (void) viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [self startLoading];
+}
+
+- (void)returnedSOAPResult:(TBXMLElement*)element
+{
+    [self performSelector:@selector(stopLoading) withObject:nil afterDelay:0.0];
     
-    reach = [Reachability reachabilityWithHostname:[Utility getHost]];
-    [reach startNotifier];
+    TBXMLElement *record = element->firstChild;
+    if(record != Nil) ticketsArray = [[NSMutableArray alloc] init];
     
-    __weak typeof(self) weakSelf = self; // Used to avoid self being retained in the blocks.
-    reach.reachableBlock = ^(Reachability*reach)
+    TBXMLElement *elem;
+    Ticket *ticket;
+    do {
+        ticket = [[Ticket alloc] init];
+        
+        elem = [TBXML childElementNamed:@"a:systemId" parentElement:record];
+        //NSLog(@"%@",[TBXML textForElement:elem]);
+        ticket.number = [TBXML textForElement:elem];
+        
+        elem = [TBXML childElementNamed:@"a:shortDescription" parentElement:record];
+        //NSLog(@"%@",[TBXML textForElement:elem]);
+        ticket.short_description = [TBXML textForElement:elem];
+        
+        elem = [TBXML childElementNamed:@"a:openDate" parentElement:record];
+        //NSLog(@"%@",[TBXML textForElement:elem]);
+        ticket.opened_at = [TBXML textForElement:elem];
+        
+        elem = [TBXML childElementNamed:@"a:closeDate" parentElement:record];
+        //NSLog(@"%@",[TBXML textForElement:elem]);
+        ticket.closed_at = [TBXML textForElement:elem];
+        
+        //elem = [TBXML childElementNamed:@"a:impact" parentElement:record];
+        //NSLog(@"%@",[TBXML textForElement:elem]);
+        //ticket.impact = [[TBXML textForElement:elem] integerValue];
+        
+        //elem = [TBXML childElementNamed:@"a:state" parentElement:record];
+        //NSLog(@"%@",[TBXML textForElement:elem]);
+        //ticket.state = [[TBXML textForElement:elem] integerValue];
+        
+        [ticketsArray addObject:ticket];
+        
+        // Obtain next sibling element
+    } while ((record = record->nextSibling));
+    
+    NSLog(@"%i",ticketsArray.count);
+    
+    [self.tableView reloadData];
+}
+
+- (void)returnedSOAPError:(NSError *)error
+{
+    [self performSelector:@selector(stopLoading) withObject:nil afterDelay:0.0];
+    if(error.code == NO_INTERNET_CODE)
     {
-        // Update the UI on the main thread
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf refresh]; // Loads information
-            weakSelf.reach.reachableBlock = Nil;
-        });
-    };
-    reach.unreachableBlock = ^(Reachability*reach)
-    {
-        // Update the UI on the main thread
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf refresh]; // Loads information
-            weakSelf.reach.unreachableBlock = Nil;
-        });
-    };
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        alert.tag = NO_INTERNET_CODE;
+        [alert show];
+    }else{
+        [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error %i",error.code] message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        NSLog(@"SOAP XML Error:%@ %@", [error localizedDescription], [error userInfo]);
+    }
 }
 
 #pragma mark - Table view data source
@@ -122,30 +160,11 @@
 
 - (void)refresh
 {
-    if(reach.isReachable)
-    {
-        NSData* xmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://people.rit.edu/tjs7664/test.xml"] ];
-        NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:xmlData];
-        XMLParserDelegate *parserDelagate = [[XMLParserDelegate alloc] init];
-        [nsXmlParser setDelegate:parserDelagate];
-        
-        BOOL success = [nsXmlParser parse];
-        if (success) {
-            NSLog(@"No errors - user count : %i", [parserDelagate.tickets count]);
-            // get array of tickets here
-            self.ticketsArray = parserDelagate.tickets;
-        } else {
-            NSLog(@"Error parsing document!");
-        }
-        [self.tableView reloadData];
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-    }
-    
-    [self performSelector:@selector(stopLoading) withObject:nil afterDelay:0.0];
+    SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[Utility getUsername] forKey:@"username"];
+    [parameters setValue:[Utility getPassword] forKey:@"password"];
+    [soap sendSOAPRequestForMethod:@"getAll" withParameters:parameters];
 }
 
 @end

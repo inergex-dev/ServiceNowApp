@@ -32,18 +32,14 @@
 		8B9B3084176B623700BAAFAE /* ViewOpenTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3083176B623700BAAFAE /* ViewOpenTicketTVC.m */; };
 		8B9B3085176B798600BAAFAE /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380305176902660068C40C /* Ticket.m */; };
 		8B9B3088176B90E900BAAFAE /* CreateTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B3087176B90E800BAAFAE /* CreateTicketTVC.m */; };
-		8B9B3089176B99F700BAAFAE /* XMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B380307176902660068C40C /* XMLParserDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8B9B30AB1771D15500BAAFAE /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30AA1771D15500BAAFAE /* PullRefreshTableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8B9B30AD1771D16400BAAFAE /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30AC1771D16400BAAFAE /* arrow.png */; };
 		8B9B30AF1771D39E00BAAFAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9B30AE1771D39E00BAAFAE /* QuartzCore.framework */; };
 		8B9B30B11771D44B00BAAFAE /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30B01771D44B00BAAFAE /* README.markdown */; };
 		8B9B30B31771D54F00BAAFAE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30B21771D54F00BAAFAE /* LICENSE */; };
-		8B9B30BA1772130900BAAFAE /* LICENCE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30B61772130900BAAFAE /* LICENCE.txt */; };
-		8B9B30BC1772130900BAAFAE /* Reachability.m in Resources */ = {isa = PBXBuildFile; fileRef = 8B9B30B91772130900BAAFAE /* Reachability.m */; };
 		8B9B30BE17723E1800BAAFAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9B30BD17723E1800BAAFAE /* SystemConfiguration.framework */; };
 		8B9B30C11778BB2D00BAAFAE /* ClosedTicketsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */; };
 		8B9B30C71799A90200BAAFAE /* EditTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30C61799A90200BAAFAE /* EditTicketTVC.m */; };
-		8B9B30C8179EECD000BAAFAE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30B91772130900BAAFAE /* Reachability.m */; };
 		8B9B30CB179EFBF000BAAFAE /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30CA179EFBF000BAAFAE /* Utility.m */; };
 		8B9B30CE17A0202000BAAFAE /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30CD17A0201F00BAAFAE /* PickerController.m */; };
 		8B9B30D117A178E000BAAFAE /* ViewClosedTicketTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9B30D017A178DF00BAAFAE /* ViewClosedTicketTVC.m */; };
@@ -87,8 +83,6 @@
 		8B380303176902660068C40C /* MainMenuTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMenuTVC.m; sourceTree = "<group>"; };
 		8B380304176902660068C40C /* Ticket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
 		8B380305176902660068C40C /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
-		8B380306176902660068C40C /* XMLParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLParserDelegate.h; sourceTree = "<group>"; };
-		8B380307176902660068C40C /* XMLParserDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLParserDelegate.m; sourceTree = "<group>"; };
 		8B99975B17B01D3200F28429 /* SOAPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOAPRequest.h; sourceTree = "<group>"; };
 		8B99975C17B01D3200F28429 /* SOAPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOAPRequest.m; sourceTree = "<group>"; };
 		8B99976517BA87EF00F28429 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = TBXML/TBXML.m; sourceTree = "<group>"; };
@@ -107,10 +101,6 @@
 		8B9B30AE1771D39E00BAAFAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8B9B30B01771D44B00BAAFAE /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.markdown; path = PullToRefresh/README.markdown; sourceTree = "<group>"; };
 		8B9B30B21771D54F00BAAFAE /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = PullToRefresh/LICENSE; sourceTree = "<group>"; };
-		8B9B30B61772130900BAAFAE /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENCE.txt; path = Reachability/LICENCE.txt; sourceTree = "<group>"; };
-		8B9B30B71772130900BAAFAE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
-		8B9B30B81772130900BAAFAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = Reachability/README.md; sourceTree = "<group>"; };
-		8B9B30B91772130900BAAFAE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		8B9B30BD17723E1800BAAFAE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8B9B30BF1778BB2C00BAAFAE /* ClosedTicketsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosedTicketsTVC.h; sourceTree = "<group>"; };
 		8B9B30C01778BB2D00BAAFAE /* ClosedTicketsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosedTicketsTVC.m; sourceTree = "<group>"; };
@@ -186,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				8B9B308A1771D0F300BAAFAE /* PullToRefresh */,
-				8B9B30B5177212D300BAAFAE /*  Reachability */,
 				8B99976417BA87C800F28429 /* TBXML */,
 				8B380300176902660068C40C /* LoginViewController.h */,
 				8B380301176902660068C40C /* LoginViewController.m */,
@@ -199,8 +188,6 @@
 				8B9B30D217A17B4800BAAFAE /* Closed */,
 				8B380304176902660068C40C /* Ticket.h */,
 				8B380305176902660068C40C /* Ticket.m */,
-				8B380306176902660068C40C /* XMLParserDelegate.h */,
-				8B380307176902660068C40C /* XMLParserDelegate.m */,
 				8B99975B17B01D3200F28429 /* SOAPRequest.h */,
 				8B99975C17B01D3200F28429 /* SOAPRequest.m */,
 				8B3802C6176900A10068C40C /* Supporting Files */,
@@ -277,17 +264,6 @@
 				8B9B30AA1771D15500BAAFAE /* PullRefreshTableViewController.m */,
 			);
 			name = PullToRefresh;
-			sourceTree = "<group>";
-		};
-		8B9B30B5177212D300BAAFAE /*  Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				8B9B30B61772130900BAAFAE /* LICENCE.txt */,
-				8B9B30B71772130900BAAFAE /* Reachability.h */,
-				8B9B30B91772130900BAAFAE /* Reachability.m */,
-				8B9B30B81772130900BAAFAE /* README.md */,
-			);
-			name = " Reachability";
 			sourceTree = "<group>";
 		};
 		8B9B30D217A17B4800BAAFAE /* Closed */ = {
@@ -394,8 +370,6 @@
 				8B9B30AD1771D16400BAAFAE /* arrow.png in Resources */,
 				8B9B30B11771D44B00BAAFAE /* README.markdown in Resources */,
 				8B9B30B31771D54F00BAAFAE /* LICENSE in Resources */,
-				8B9B30BA1772130900BAAFAE /* LICENCE.txt in Resources */,
-				8B9B30BC1772130900BAAFAE /* Reachability.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,8 +404,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B9B30C8179EECD000BAAFAE /* Reachability.m in Sources */,
-				8B9B3089176B99F700BAAFAE /* XMLParserDelegate.m in Sources */,
 				8B9B3085176B798600BAAFAE /* Ticket.m in Sources */,
 				8B3802CC176900A10068C40C /* main.m in Sources */,
 				8B3802D0176900A10068C40C /* AppDelegate.m in Sources */,
