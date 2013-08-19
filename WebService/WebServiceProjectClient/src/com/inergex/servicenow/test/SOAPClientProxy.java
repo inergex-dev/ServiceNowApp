@@ -44,12 +44,6 @@ public class SOAPClientProxy implements com.inergex.servicenow.test.SOAPClient {
     return sOAPClient;
   }
   
-  public java.lang.String getTickets(java.lang.String user, java.lang.String pass, boolean open) throws java.rmi.RemoteException{
-    if (sOAPClient == null)
-      _initSOAPClientProxy();
-    return sOAPClient.getTickets(user, pass, open);
-  }
-  
   public boolean authenticatLogin(java.lang.String user, java.lang.String pass) throws java.rmi.RemoteException{
     if (sOAPClient == null)
       _initSOAPClientProxy();
@@ -60,6 +54,12 @@ public class SOAPClientProxy implements com.inergex.servicenow.test.SOAPClient {
     if (sOAPClient == null)
       _initSOAPClientProxy();
     return sOAPClient.createIncident(user, pass, short_description, comments);
+  }
+  
+  public java.lang.String getTickets(java.lang.String user, java.lang.String pass, boolean open) throws java.rmi.RemoteException{
+    if (sOAPClient == null)
+      _initSOAPClientProxy();
+    return sOAPClient.getTickets(user, pass, open);
   }
   
   

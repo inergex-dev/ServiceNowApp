@@ -1,0 +1,5 @@
+F:\GitHub\ServiceNowWCF\ServiceNowWCF\bin\ServiceNowWCF.dll
+F:\GitHub\ServiceNowWCF\ServiceNowWCF\bin\ServiceNowWCF.pdb
+F:\GitHub\ServiceNowWCF\ServiceNowWCF\obj\Debug\ServiceNowWCF.dll
+F:\GitHub\ServiceNowWCF\ServiceNowWCF\obj\Debug\ServiceNowWCF.pdb
+F:\GitHub\ServiceNowWCF\ServiceNowWCF\obj\Debug\ServiceNowWCF.csprojResolveAssemblyReference.cache

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="F:\published\ServiceNowWebServicePublished" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="http://dev-igx02:3636/" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="locally" publishMethod="FileSystem" replaceMatchingFiles="True" userName="dmohr" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/oCU+9+4TU2flqOmrMY96QAAAAACAAAAAAADZgAAwAAAABAAAABwx484SYmV2kDMBDpP9066AAAAAASAAACgAAAAEAAAANfyyT6I1bc+5nVupBZBOlUYAAAAtgWaK3irkrlMq+rRLa48WJaJOc+NTAg+FAAAAJOcRSWY+vOiuu174C5prWN9N6fp" SelectedForPublish="True">
+    <file relUrl="Service1.svc" publishTime="07/29/2013 10:21:25" />
+    <file relUrl="inergexIcon.ico" publishTime="07/29/2013 10:58:09" />
+    <file relUrl="bin/ServiceNowWCF.dll" publishTime="08/14/2013 10:00:22" />
+    <file relUrl="Web.config" publishTime="08/14/2013 10:00:24" />
+    <file relUrl="bin/ServiceNowWCF.pdb" publishTime="08/14/2013 10:00:22" />
+  </publishProfile>
+</publishData>

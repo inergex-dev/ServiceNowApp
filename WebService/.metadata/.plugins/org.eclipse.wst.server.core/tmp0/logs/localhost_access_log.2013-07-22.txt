@@ -1,0 +1,9 @@
+127.0.0.1 - - [22/Jul/2013:10:12:37 -0400] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:10:12:37 -0400] "GET /WebServiceProjectClient/sampleSOAPClientProxy/TestClient.jsp HTTP/1.1" 200 586
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:10:12:37 -0400] "GET /WebServiceProjectClient/sampleSOAPClientProxy/Method.jsp HTTP/1.1" 200 718
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:10:12:37 -0400] "GET /WebServiceProjectClient/sampleSOAPClientProxy/Input.jsp?method=31 HTTP/1.1" 200 710
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:10:12:38 -0400] "GET /WebServiceProjectClient/sampleSOAPClientProxy/Result.jsp HTTP/1.1" 200 118
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:10:12:38 -0400] "GET /favicon.ico HTTP/1.1" 404 973
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:10:18:29 -0400] "GET /WebServiceProjectClient/sampleSOAPClientProxy/Input.jsp?method=31 HTTP/1.1" 200 710
+127.0.0.1 - - [22/Jul/2013:10:18:42 -0400] "POST /WebServiceProject/services/SOAPClient HTTP/1.0" 200 6906
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:10:18:42 -0400] "POST /WebServiceProjectClient/sampleSOAPClientProxy/Result.jsp HTTP/1.1" 200 6647

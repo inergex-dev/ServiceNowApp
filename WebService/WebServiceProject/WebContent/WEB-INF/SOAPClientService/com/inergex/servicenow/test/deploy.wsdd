@@ -10,11 +10,6 @@
       <parameter name="className" value="com.inergex.servicenow.test.SOAPClient"/>
       <parameter name="wsdlPortType" value="SOAPClient"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://test.servicenow.inergex.com" xmlns:retNS="http://test.servicenow.inergex.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getTickets" qname="operNS:getTickets" returnQName="retNS:getTicketsReturn" returnType="rtns:string" soapAction="">
-        <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
-        <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
-        <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:open" type="tns:boolean"/>
-      </operation>
       <operation xmlns:operNS="http://test.servicenow.inergex.com" xmlns:retNS="http://test.servicenow.inergex.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="authenticatLogin" qname="operNS:authenticatLogin" returnQName="retNS:authenticatLoginReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
         <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
@@ -24,6 +19,11 @@
         <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
         <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:short_description" type="tns:string"/>
         <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:comments" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://test.servicenow.inergex.com" xmlns:retNS="http://test.servicenow.inergex.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getTickets" qname="operNS:getTickets" returnQName="retNS:getTicketsReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
+        <parameter xmlns:pns="http://test.servicenow.inergex.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:open" type="tns:boolean"/>
       </operation>
       <parameter name="allowedMethods" value="createIncident authenticatLogin getTickets"/>
 
