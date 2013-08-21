@@ -18,7 +18,16 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [self startLoading];
+    [self startLoading];//startLoading calls refresh
+}
+
+- (void)refresh
+{
+    SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
+    [soap sendSOAPRequestForMethod:@"getOpened" withParameters:
+     [[SOAPRequestParameter alloc] initWithKey:@"username" value:[Utility getUsername]],
+     [[SOAPRequestParameter alloc] initWithKey:@"password" value:[Utility getPassword]],
+     nil];
 }
 
 - (void)returnedSOAPResult:(TBXMLElement*)element
@@ -34,28 +43,28 @@
         ticket = [[Ticket alloc] init];
         
         elem = [TBXML childElementNamed:@"a:systemId" parentElement:record];
-        //NSLog(@"%@",[TBXML textForElement:elem]);
-        ticket.number = [TBXML textForElement:elem];
+        NSLog(@"%@",[TBXML textForElement:elem]);
+        ticket.sys_id = [TBXML textForElement:elem];
         
         elem = [TBXML childElementNamed:@"a:shortDescription" parentElement:record];
-        //NSLog(@"%@",[TBXML textForElement:elem]);
+        NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.short_description = [TBXML textForElement:elem];
         
         elem = [TBXML childElementNamed:@"a:openDate" parentElement:record];
-        //NSLog(@"%@",[TBXML textForElement:elem]);
+        NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.opened_at = [TBXML textForElement:elem];
         
         elem = [TBXML childElementNamed:@"a:closeDate" parentElement:record];
-        //NSLog(@"%@",[TBXML textForElement:elem]);
+        NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.closed_at = [TBXML textForElement:elem];
         
-        //elem = [TBXML childElementNamed:@"a:impact" parentElement:record];
-        //NSLog(@"%@",[TBXML textForElement:elem]);
-        //ticket.impact = [[TBXML textForElement:elem] integerValue];
+        elem = [TBXML childElementNamed:@"a:impact_val" parentElement:record];
+        NSLog(@"%@",[TBXML textForElement:elem]);
+        ticket.impact = [[TBXML textForElement:elem] integerValue];
         
-        //elem = [TBXML childElementNamed:@"a:state" parentElement:record];
-        //NSLog(@"%@",[TBXML textForElement:elem]);
-        //ticket.state = [[TBXML textForElement:elem] integerValue];
+        elem = [TBXML childElementNamed:@"a:state" parentElement:record];
+        NSLog(@"%@",[TBXML textForElement:elem]);
+        ticket.state = [[TBXML textForElement:elem] integerValue];
         
         [ticketsArray addObject:ticket];
         
@@ -72,7 +81,7 @@
     [self performSelector:@selector(stopLoading) withObject:nil afterDelay:0.0];
     if(error.code == NO_INTERNET_CODE)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Cancel", Nil];
         alert.tag = NO_INTERNET_CODE;
         [alert show];
     }else{
@@ -153,15 +162,6 @@
     }
 }
 
-- (void)refresh
-{
-    SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:[Utility getUsername] forKey:@"username"];
-    [parameters setValue:[Utility getPassword] forKey:@"password"];
-    [soap sendSOAPRequestForMethod:@"getAll" withParameters:parameters];
-}
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(alertView.tag == NO_INTERNET_CODE)
@@ -169,6 +169,9 @@
         if(buttonIndex == 0) {
             [alertView dismissWithClickedButtonIndex:-1 animated:NO];
             [self startLoading];
+        } else if(buttonIndex == 1) {
+            [alertView dismissWithClickedButtonIndex:-1 animated:NO];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }

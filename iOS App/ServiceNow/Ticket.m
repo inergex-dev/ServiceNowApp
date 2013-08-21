@@ -9,12 +9,12 @@
 #import "Ticket.h"
 
 @implementation Ticket
-@synthesize number, state, short_description, comments, severity, impact, opened_at, closed_at, previousComments;
+@synthesize sys_id, state, short_description, comments, severity, impact, opened_at, closed_at, previousComments;
 
 -(id)init {
     self = [super init];
     if(self) {
-        self.number = @"";
+        self.sys_id = @"";
         self.state = 0;
         self.short_description = @"";
         self.comments = @"";
@@ -30,17 +30,23 @@
 -(id)copyWithZone:(NSZone *)zone
 {
     Ticket *ticket = [[Ticket alloc] init];
-    ticket.number               = [self.number copyWithZone:zone];
-    ticket.state                =  self.state;
-    ticket.short_description    = [self.short_description copyWithZone:zone];
-    ticket.comments             = [self.comments copyWithZone:zone];
-    ticket.severity             =  self.severity;
-    ticket.impact               =  self.impact;
-    ticket.opened_at            = [self.opened_at copyWithZone:zone];
-    ticket.closed_at            = [self.closed_at copyWithZone:zone];
-    ticket.previousComments     = [self.previousComments copyWithZone:zone];
+    [ticket replaceWithTicketCopy:self];
     
     return ticket;
+}
+
+/** Overwrites each field of the current ticket with the data of the new ticket */
+-(void)replaceWithTicketCopy:(Ticket*)ticket
+{
+    self.sys_id               = [ticket.sys_id copy];
+    self.state                =  ticket.state;
+    self.short_description    = [ticket.short_description copy];
+    self.comments             = [ticket.comments copy];
+    self.severity             =  ticket.severity;
+    self.impact               =  ticket.impact;
+    self.opened_at            = [ticket.opened_at copy];
+    self.closed_at            = [ticket.closed_at copy];
+    self.previousComments     = [ticket.previousComments copy];
 }
 
 @end

@@ -14,6 +14,7 @@
 
 + (NSString*) getUsername;
 + (NSString*) getPassword;
++ (void) setUsername:(NSString*)user password:(NSString*)pass;
 
 + (NSArray*) getSeverityStringArray;
 + (NSString*) severityIntToString:(int)num;

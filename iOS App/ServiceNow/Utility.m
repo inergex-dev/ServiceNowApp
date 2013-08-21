@@ -10,6 +10,9 @@
 
 @implementation Utility
 
+static NSString *username = Nil;
+static NSString *password = Nil;
+
 static NSArray* severityStringArray = Nil;
 static NSArray* impactStringArray = Nil;
 static NSArray* stateStringArray = Nil;
@@ -24,8 +27,9 @@ static UIAlertView *loadingAlert;
         stateStringArray = [NSArray arrayWithObjects:@"New", @"Assigned", @"Work in Progress", @"Pending", @"Resolved", @"Closed Complete", @"Auto Closed", nil];
 }
 
-+ (NSString*) getUsername { return [[NSUserDefaults standardUserDefaults] valueForKey:@"username"]; }
-+ (NSString*) getPassword { return [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]; }
++ (NSString*) getUsername { return username; }//[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]; }
++ (NSString*) getPassword { return password; }//[[NSUserDefaults standardUserDefaults] valueForKey:@"password"]; }
++ (void) setUsername:(NSString*)user password:(NSString*)pass { username = [user copy]; password = [pass copy]; }
 
 + (NSArray*) getSeverityStringArray { return severityStringArray; }
 /** Takes a severity (1-3) and returns the corresponding string. */

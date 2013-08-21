@@ -18,7 +18,16 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [self startLoading];
+    [self startLoading];//startLoading calls refresh
+}
+
+- (void)refresh
+{
+    SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
+    [soap sendSOAPRequestForMethod:@"getClosed" withParameters:
+     [[SOAPRequestParameter alloc] initWithKey:@"username" value:[Utility getUsername]],
+     [[SOAPRequestParameter alloc] initWithKey:@"password" value:[Utility getPassword]],
+     nil];
 }
 
 - (void)returnedSOAPResult:(TBXMLElement*)element
@@ -35,7 +44,7 @@
         
         elem = [TBXML childElementNamed:@"a:systemId" parentElement:record];
         //NSLog(@"%@",[TBXML textForElement:elem]);
-        ticket.number = [TBXML textForElement:elem];
+        ticket.sys_id = [TBXML textForElement:elem];
         
         elem = [TBXML childElementNamed:@"a:shortDescription" parentElement:record];
         //NSLog(@"%@",[TBXML textForElement:elem]);
@@ -49,13 +58,13 @@
         //NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.closed_at = [TBXML textForElement:elem];
         
-        //elem = [TBXML childElementNamed:@"a:impact" parentElement:record];
+        elem = [TBXML childElementNamed:@"a:impact" parentElement:record];
         //NSLog(@"%@",[TBXML textForElement:elem]);
-        //ticket.impact = [[TBXML textForElement:elem] integerValue];
+        ticket.impact = [[TBXML textForElement:elem] integerValue];
         
-        //elem = [TBXML childElementNamed:@"a:state" parentElement:record];
+        elem = [TBXML childElementNamed:@"a:state" parentElement:record];
         //NSLog(@"%@",[TBXML textForElement:elem]);
-        //ticket.state = [[TBXML textForElement:elem] integerValue];
+        ticket.state = [[TBXML textForElement:elem] integerValue];
         
         [ticketsArray addObject:ticket];
         
@@ -72,7 +81,7 @@
     [self performSelector:@selector(stopLoading) withObject:nil afterDelay:0.0];
     if(error.code == NO_INTERNET_CODE)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Cancel", Nil];
         alert.tag = NO_INTERNET_CODE;
         [alert show];
     }else{
@@ -82,14 +91,10 @@
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1; // Return the number of sections.
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return ticketsArray.count; // Return the number of rows
 }
 
@@ -145,7 +150,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     selectedTicket = [ticketsArray objectAtIndex:indexPath.row];
-    
     [self performSegueWithIdentifier:@"closedTicketSegue" sender:self];
 }
 
@@ -153,18 +157,22 @@
 {
     if ([segue.identifier isEqualToString:@"closedTicketSegue"]) {
         ViewClosedTicketTVC *sequeController = segue.destinationViewController;
-        
         sequeController.ticket = selectedTicket;
     }
 }
 
-- (void)refresh
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:[Utility getUsername] forKey:@"username"];
-    [parameters setValue:[Utility getPassword] forKey:@"password"];
-    [soap sendSOAPRequestForMethod:@"getAll" withParameters:parameters];
+    if(alertView.tag == NO_INTERNET_CODE)
+    {
+        if(buttonIndex == 0) {
+            [alertView dismissWithClickedButtonIndex:-1 animated:NO];
+            [self startLoading];
+        } else if(buttonIndex == 1) {
+            [alertView dismissWithClickedButtonIndex:-1 animated:NO];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
 }
 
 @end

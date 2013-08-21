@@ -15,7 +15,10 @@
 #define USERFIELD_TAG 1
 #define PASSFIELD_TAG 2
 
-@synthesize usernameTextField, passwordTextField, loginButton;
+#define kUsername @"username"
+#define kPassword @"password"
+
+@synthesize usernameTextField, passwordTextField, loginButton;//, rememberSwitch;
 
 - (void)viewDidLoad
 {
@@ -28,28 +31,22 @@
 {
     [super viewDidAppear:animated];
     
-    // Check if login information is stored.
-    NSString* username = [Utility getUsername];
-    NSString* password = [Utility getPassword];
-    //NSLog(@"Username: %@\nPassword: %@", (username ? username : @"--No Username--"), (password ? password : @"--No Password--"));
-    
-    // If: credentials are stored
-    if (username && password) {
-        // Then: imput them into fields
-        usernameTextField.text = username;
-        passwordTextField.text = password;
-        //[self attemptlogin:Nil];
-    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* username = [defaults valueForKey:kUsername];
+    NSString* password = [defaults valueForKey:kPassword];
+    usernameTextField.text = (username ? username : @"");
+    passwordTextField.text = (password ? password : @"");
 }
 
 - (IBAction)attemptlogin:(id)sender
 {
-    SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
     [Utility showLoadingAlert:@"Logging In"];
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:usernameTextField.text forKey:@"username"];
-    [parameters setValue:passwordTextField.text forKey:@"password"];
-    [soap sendSOAPRequestForMethod:@"login" withParameters:parameters];
+    
+    SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
+    [soap sendSOAPRequestForMethod:@"login" withParameters:
+     [[SOAPRequestParameter alloc] initWithKey:@"username" value:usernameTextField.text],
+     [[SOAPRequestParameter alloc] initWithKey:@"password" value:passwordTextField.text],
+     nil];
 }
 
 - (void)returnedSOAPResult:(TBXMLElement*)element
@@ -57,13 +54,13 @@
     [Utility dismissLoadingAlert];
     
     if([[TBXML textForElement:element] isEqual: @"true"]) {
-        // Store the passwords
-        [[NSUserDefaults standardUserDefaults] setObject:usernameTextField.text forKey:@"username"];
-        [[NSUserDefaults standardUserDefaults] setObject:passwordTextField.text forKey:@"password"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:usernameTextField.text forKey:kUsername];
+        [defaults setObject:passwordTextField.text forKey:kPassword];
+        //NSLog(@"Credentials stored - username:%@ password:%@", [defaults valueForKey:kUsername], [defaults valueForKey:kPassword]);
+        [defaults synchronize];
         
-        //NSLog(@"Credentials stored - username:%@ password:%@",
-        //      [[NSUserDefaults standardUserDefaults] valueForKey:@"username"],
-        //      [[NSUserDefaults standardUserDefaults] valueForKey:@"password"]);
+        [Utility setUsername:usernameTextField.text password:passwordTextField.text];
         
         [self performSegueWithIdentifier:@"loginSegue" sender:self];
     } else {
@@ -77,7 +74,7 @@
     
     if(error.code == NO_INTERNET_CODE)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Cancel", Nil];
         alert.tag = NO_INTERNET_CODE;
         [alert show];
     }else{

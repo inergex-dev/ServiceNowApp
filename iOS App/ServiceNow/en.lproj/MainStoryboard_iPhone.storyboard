@@ -198,7 +198,7 @@
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Bd-j3-cd6" userLabel="usernameTextField">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="xpf-Xn-XPt"/>
+                                    <constraint firstAttribute="width" constant="250" id="qbu-9l-bWc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
@@ -218,10 +218,10 @@
                         <constraints>
                             <constraint firstItem="0Bd-j3-cd6" firstAttribute="trailing" secondItem="Obj-1D-XIp" secondAttribute="trailing" type="default" id="1En-MQ-qfp"/>
                             <constraint firstItem="vhm-EJ-Skn" firstAttribute="leading" secondItem="Obj-1D-XIp" secondAttribute="leading" type="default" id="5Q8-kq-xec"/>
+                            <constraint firstItem="vhm-EJ-Skn" firstAttribute="centerX" secondItem="sY5-8h-P4p" secondAttribute="centerX" type="default" id="HqW-77-dkH"/>
                             <constraint firstItem="Obj-1D-XIp" firstAttribute="trailing" secondItem="vhm-EJ-Skn" secondAttribute="trailing" type="default" id="hCb-3c-aDS"/>
                             <constraint firstItem="0Bd-j3-cd6" firstAttribute="leading" secondItem="Obj-1D-XIp" secondAttribute="leading" type="default" id="igr-gl-7lQ"/>
                             <constraint firstItem="Obj-1D-XIp" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="82" id="ilV-cw-gdI"/>
-                            <constraint firstItem="vhm-EJ-Skn" firstAttribute="centerX" secondItem="sY5-8h-P4p" secondAttribute="centerX" type="default" id="miX-ew-YQZ"/>
                             <constraint firstItem="0Bd-j3-cd6" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="25" id="ocE-Kf-mBM"/>
                             <constraint firstItem="vhm-EJ-Skn" firstAttribute="top" secondItem="sY5-8h-P4p" secondAttribute="top" constant="139" id="zEu-Fu-vYN"/>
                         </constraints>
@@ -564,6 +564,7 @@
                 <relationship kind="action" name="attemptlogin:"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="rememberSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
@@ -603,6 +604,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="k7M-ac-Q9M"/>
+        <segue reference="VV8-vJ-YyH"/>
     </inferredMetricsTieBreakers>
 </document>

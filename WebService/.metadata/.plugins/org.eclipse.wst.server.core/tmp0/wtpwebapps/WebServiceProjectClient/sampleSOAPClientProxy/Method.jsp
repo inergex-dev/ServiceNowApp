@@ -8,9 +8,9 @@
 <LI><A HREF="Input.jsp?method=2" TARGET="inputs"> getEndpoint()</A></LI>
 <LI><A HREF="Input.jsp?method=5" TARGET="inputs"> setEndpoint(java.lang.String)</A></LI>
 <LI><A HREF="Input.jsp?method=10" TARGET="inputs"> getSOAPClient()</A></LI>
-<LI><A HREF="Input.jsp?method=13" TARGET="inputs"> authenticatLogin(java.lang.String,java.lang.String)</A></LI>
-<LI><A HREF="Input.jsp?method=20" TARGET="inputs"> createIncident(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</A></LI>
-<LI><A HREF="Input.jsp?method=31" TARGET="inputs"> getTickets(java.lang.String,java.lang.String,boolean)</A></LI>
+<LI><A HREF="Input.jsp?method=13" TARGET="inputs"> getTickets(java.lang.String,java.lang.String,boolean)</A></LI>
+<LI><A HREF="Input.jsp?method=22" TARGET="inputs"> authenticatLogin(java.lang.String,java.lang.String)</A></LI>
+<LI><A HREF="Input.jsp?method=29" TARGET="inputs"> createIncident(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</A></LI>
 </UL>
 </BODY>
 </HTML>

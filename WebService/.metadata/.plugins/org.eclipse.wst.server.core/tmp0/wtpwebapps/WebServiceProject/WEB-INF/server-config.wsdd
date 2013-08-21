@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -23,20 +23,20 @@
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:service name="SOAPClient" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="authenticatLogin" qname="ns1:authenticatLogin" returnQName="ns1:authenticatLoginReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://test.servicenow.inergex.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+  <ns2:operation name="getTickets" qname="ns1:getTickets" returnQName="ns1:getTicketsReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://test.servicenow.inergex.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
    <ns2:parameter qname="ns1:user" type="xsd:string"/>
    <ns2:parameter qname="ns1:pass" type="xsd:string"/>
+   <ns2:parameter qname="ns1:open" type="xsd:boolean"/>
   </ns2:operation>
-  <ns1:operation name="createIncident" qname="ns2:createIncident" returnQName="ns2:createIncidentReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://test.servicenow.inergex.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="authenticatLogin" qname="ns2:authenticatLogin" returnQName="ns2:authenticatLoginReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://test.servicenow.inergex.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns2:user" type="xsd:string"/>
    <ns1:parameter qname="ns2:pass" type="xsd:string"/>
-   <ns1:parameter qname="ns2:short_description" type="xsd:string"/>
-   <ns1:parameter qname="ns2:comments" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="getTickets" qname="ns3:getTickets" returnQName="ns3:getTicketsReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://test.servicenow.inergex.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="createIncident" qname="ns3:createIncident" returnQName="ns3:createIncidentReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://test.servicenow.inergex.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns3:user" type="xsd:string"/>
    <ns1:parameter qname="ns3:pass" type="xsd:string"/>
-   <ns1:parameter qname="ns3:open" type="xsd:boolean"/>
+   <ns1:parameter qname="ns3:short_description" type="xsd:string"/>
+   <ns1:parameter qname="ns3:comments" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="createIncident authenticatLogin getTickets"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>

@@ -26,5 +26,16 @@
 extern int NO_INTERNET_CODE;
 @property (nonatomic, weak) id <SOAPRequestDelegate> delegate;
 - (id)initWithDelegate:(id <SOAPRequestDelegate>) myDelegate;
-- (void) sendSOAPRequestForMethod:(NSString*)methodName withParameters:(NSDictionary*)parameterArray;
+- (void) sendSOAPRequestForMethod:(NSString*)mName withParameters:(id)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+@end
+
+
+@interface SOAPRequestParameter : NSObject {
+    NSString *key;
+    NSString *value;
+}
+@property (nonatomic, retain) NSString* key;
+@property (nonatomic, retain) NSString *value;
+
+- (id) initWithKey:myKey value:myValue;
 @end

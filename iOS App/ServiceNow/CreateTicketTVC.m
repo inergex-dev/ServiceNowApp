@@ -101,14 +101,15 @@
         [alert show];
     } else {
         [Utility showLoadingAlert:@"Sending Ticket"];
+        
         SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        [parameters setValue:[Utility getUsername] forKey:@"username"];
-        [parameters setValue:[Utility getPassword] forKey:@"password"];
-        [parameters setValue:shortDescTB.text forKey:@"shortDescription"];
-        [parameters setValue:commentsTB.text forKey:@"comments"];
-        //[parameters setValue:[NSString stringWithFormat:@"%i", ticket.severity] forKey:@"severity"];
-        [soap sendSOAPRequestForMethod:@"createTicket" withParameters:parameters];
+        [soap sendSOAPRequestForMethod:@"createTicket" withParameters:
+         [[SOAPRequestParameter alloc] initWithKey:@"username" value:[Utility getUsername]],
+         [[SOAPRequestParameter alloc] initWithKey:@"password" value:[Utility getPassword]],
+         [[SOAPRequestParameter alloc] initWithKey:@"shortDescription" value:shortDescTB.text],
+         [[SOAPRequestParameter alloc] initWithKey:@"comments" value:commentsTB.text],
+         //[[SOAPRequestParameter alloc] initWithKey:@"severity" value:[NSString stringWithFormat:@"%i", ticket.severity]],
+         nil];
     }
 }
 
@@ -137,7 +138,7 @@
     
     if(error.code == NO_INTERNET_CODE)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Cancel", Nil];
         alert.tag = NO_INTERNET_CODE;
         [alert show];
     }else{

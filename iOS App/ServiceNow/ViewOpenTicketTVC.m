@@ -18,9 +18,9 @@
 
 @synthesize ticket;
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
     
     // Display Ticket
     //self.navigationItem.title = ticket.short_description;
@@ -35,6 +35,7 @@
     if(ticket.previousComments.count > 0) {
         [sections addObject:[NSArray arrayWithObjects:@"Comments", ticket.previousComments, Nil]];
     }
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

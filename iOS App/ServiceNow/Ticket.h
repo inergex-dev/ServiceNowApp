@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Ticket : NSObject <NSCopying> {
-    NSString *number;
+    NSString *sys_id;
     int state;
     NSString *short_description;
     NSString *comments;
@@ -20,7 +20,7 @@
     NSArray *previousComments;
 }
 
-@property (nonatomic, retain) NSString *number;
+@property (nonatomic, retain) NSString *sys_id;
 @property int state;
 @property (nonatomic, retain) NSString *short_description;
 @property (nonatomic, retain) NSString *comments;
@@ -29,5 +29,7 @@
 @property (nonatomic, retain) NSString *opened_at;
 @property (nonatomic, retain) NSString *closed_at;
 @property (nonatomic, retain) NSArray *previousComments;
+
+-(void)replaceWithTicketCopy:(Ticket*)ticket;
 
 @end

@@ -73,69 +73,69 @@ case 13:
         if(!pass_2id.equals("")){
          pass_2idTemp  = pass_2id;
         }
-        boolean authenticatLogin13mtemp = sampleSOAPClientProxyid.authenticatLogin(user_1idTemp,pass_2idTemp);
-        String tempResultreturnp14 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(authenticatLogin13mtemp));
+        String open_3id=  request.getParameter("open20");
+        boolean open_3idTemp  = Boolean.valueOf(open_3id).booleanValue();
+        java.lang.String getTickets13mtemp = sampleSOAPClientProxyid.getTickets(user_1idTemp,pass_2idTemp,open_3idTemp);
+if(getTickets13mtemp == null){
+%>
+<%=getTickets13mtemp %>
+<%
+}else{
+        String tempResultreturnp14 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getTickets13mtemp));
         %>
         <%= tempResultreturnp14 %>
         <%
-break;
-case 20:
-        gotMethod = true;
-        String user_3id=  request.getParameter("user23");
-            java.lang.String user_3idTemp = null;
-        if(!user_3id.equals("")){
-         user_3idTemp  = user_3id;
-        }
-        String pass_4id=  request.getParameter("pass25");
-            java.lang.String pass_4idTemp = null;
-        if(!pass_4id.equals("")){
-         pass_4idTemp  = pass_4id;
-        }
-        String short_description_5id=  request.getParameter("short_description27");
-            java.lang.String short_description_5idTemp = null;
-        if(!short_description_5id.equals("")){
-         short_description_5idTemp  = short_description_5id;
-        }
-        String comments_6id=  request.getParameter("comments29");
-            java.lang.String comments_6idTemp = null;
-        if(!comments_6id.equals("")){
-         comments_6idTemp  = comments_6id;
-        }
-        java.lang.String createIncident20mtemp = sampleSOAPClientProxyid.createIncident(user_3idTemp,pass_4idTemp,short_description_5idTemp,comments_6idTemp);
-if(createIncident20mtemp == null){
-%>
-<%=createIncident20mtemp %>
-<%
-}else{
-        String tempResultreturnp21 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(createIncident20mtemp));
-        %>
-        <%= tempResultreturnp21 %>
-        <%
 }
 break;
-case 31:
+case 22:
         gotMethod = true;
-        String user_7id=  request.getParameter("user34");
-            java.lang.String user_7idTemp = null;
-        if(!user_7id.equals("")){
-         user_7idTemp  = user_7id;
+        String user_4id=  request.getParameter("user25");
+            java.lang.String user_4idTemp = null;
+        if(!user_4id.equals("")){
+         user_4idTemp  = user_4id;
         }
-        String pass_8id=  request.getParameter("pass36");
-            java.lang.String pass_8idTemp = null;
-        if(!pass_8id.equals("")){
-         pass_8idTemp  = pass_8id;
+        String pass_5id=  request.getParameter("pass27");
+            java.lang.String pass_5idTemp = null;
+        if(!pass_5id.equals("")){
+         pass_5idTemp  = pass_5id;
         }
-        String open_9id=  request.getParameter("open38");
-        boolean open_9idTemp  = Boolean.valueOf(open_9id).booleanValue();
-        java.lang.String getTickets31mtemp = sampleSOAPClientProxyid.getTickets(user_7idTemp,pass_8idTemp,open_9idTemp);
-if(getTickets31mtemp == null){
+        boolean authenticatLogin22mtemp = sampleSOAPClientProxyid.authenticatLogin(user_4idTemp,pass_5idTemp);
+        String tempResultreturnp23 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(authenticatLogin22mtemp));
+        %>
+        <%= tempResultreturnp23 %>
+        <%
+break;
+case 29:
+        gotMethod = true;
+        String user_6id=  request.getParameter("user32");
+            java.lang.String user_6idTemp = null;
+        if(!user_6id.equals("")){
+         user_6idTemp  = user_6id;
+        }
+        String pass_7id=  request.getParameter("pass34");
+            java.lang.String pass_7idTemp = null;
+        if(!pass_7id.equals("")){
+         pass_7idTemp  = pass_7id;
+        }
+        String short_description_8id=  request.getParameter("short_description36");
+            java.lang.String short_description_8idTemp = null;
+        if(!short_description_8id.equals("")){
+         short_description_8idTemp  = short_description_8id;
+        }
+        String comments_9id=  request.getParameter("comments38");
+            java.lang.String comments_9idTemp = null;
+        if(!comments_9id.equals("")){
+         comments_9idTemp  = comments_9id;
+        }
+        java.lang.String createIncident29mtemp = sampleSOAPClientProxyid.createIncident(user_6idTemp,pass_7idTemp,short_description_8idTemp,comments_9idTemp);
+if(createIncident29mtemp == null){
 %>
-<%=getTickets31mtemp %>
+<%=createIncident29mtemp %>
 <%
 }else{
-        String tempResultreturnp32 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getTickets31mtemp));
+        String tempResultreturnp30 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(createIncident29mtemp));
         %>
-        <%= tempResultreturnp32 %>
+        <%= tempResultreturnp30 %>
         <%
 }
 break;

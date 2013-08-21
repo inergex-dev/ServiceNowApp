@@ -16,23 +16,31 @@
 
 int NO_INTERNET_CODE = -1009;
 
+#define SERVICENOW_URL @"http://dev-igx02:3636/Service1.svc"
+
 - (id)initWithDelegate:(id <SOAPRequestDelegate>) myDelegate
 {
     self = [self init];
-    
     delegate = myDelegate;
-    
     return self;
 }
 
-- (void) sendSOAPRequestForMethod:(NSString*)mName withParameters:(NSDictionary*)parameterDict
+/** Requires the method name, and an array of comma seperate values followed by a Nil terminator */
+- (void) sendSOAPRequestForMethod:(NSString*)mName withParameters:(id)firstObj, ... NS_REQUIRES_NIL_TERMINATION
 {
     methodName = [mName copy];
     
     NSMutableString* method = [[NSMutableString alloc] initWithFormat:@"<tem:%@>", methodName];
-    for (NSString* key in parameterDict) {
-        [method appendFormat:@"<tem:%@>%@</tem:%@>", key, [parameterDict objectForKey:key], key];
-    }
+    if([firstObj class] == [SOAPRequestParameter class]) {
+        SOAPRequestParameter *param = firstObj;
+        va_list args;
+        va_start(args, firstObj);
+        // Step through each parameter until the Nil terminator is reached.
+        do {
+            [method appendFormat:@"<tem:%@>%@</tem:%@>", param.key, param.value, param.key];
+        }while ((param = va_arg(args, id)) != nil);
+        va_end(args);
+    } else { NSLog(@"SOAPRequest paramaters must be of type SOAPRequestParameter"); }
     [method appendFormat:@"</tem:%@>", methodName];
     
     NSString *soapMsg = [NSString stringWithFormat:
@@ -45,9 +53,9 @@ int NO_INTERNET_CODE = -1009;
      , method
      ];
     
-    //NSLog(@"%@", soapMsg);
+    //[self traverseElement:[TBXML newTBXMLWithXMLString:soapMsg].rootXMLElement->firstChild->firstChild];
     
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: @"http://dev-igx02:3636/Service1.svc"]];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: SERVICENOW_URL]];
     [req setHTTPMethod:@"POST"];
     //---set the headers---
     [req addValue:@"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
@@ -81,7 +89,7 @@ int NO_INTERNET_CODE = -1009;
     webData = Nil;
     
     //---shows the XML---
-    NSLog(@"%@", theXML);
+    //NSLog(@"%@", theXML);
     
     NSError *error;
     TBXML *tbxml = [TBXML newTBXMLWithXMLString:theXML error:&error];
@@ -92,7 +100,7 @@ int NO_INTERNET_CODE = -1009;
         if([[TBXML elementName:parent] isEqual:@"s:Fault"]) {
             NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
             [errorDetail setValue:[TBXML textForElement:parent->firstChild] forKey:NSLocalizedDescriptionKey];
-            [delegate returnedSOAPError:[NSError errorWithDomain:@"myDomain" code:2463 userInfo:errorDetail]];
+            [delegate returnedSOAPError:[NSError errorWithDomain:@"myDomain" code:7734 userInfo:errorDetail]];
         } else {
             //[self traverseElement:root];
             TBXMLElement *result = [TBXML childElementNamed:[NSString stringWithFormat:@"%@Result",methodName] parentElement:parent];
@@ -101,7 +109,7 @@ int NO_INTERNET_CODE = -1009;
     } else {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
         [errorDetail setValue:@"Cannot find root node." forKey:NSLocalizedDescriptionKey];
-        [delegate returnedSOAPError:[NSError errorWithDomain:@"myDomain" code:12321 userInfo:errorDetail]];
+        [delegate returnedSOAPError:[NSError errorWithDomain:@"myDomain" code:1134 userInfo:errorDetail]];
     }
 }
 
@@ -130,6 +138,20 @@ int NO_INTERNET_CODE = -1009;
         
         // Obtain next sibling element
     } while ((element = element->nextSibling));
+}
+
+@end
+
+
+@implementation SOAPRequestParameter
+@synthesize key, value;
+
+- (id) initWithKey:myKey value:myValue
+{
+    self = [self init];
+    key = myKey;
+    value = myValue;
+    return self;
 }
 
 @end

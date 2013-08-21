@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<section name="FileSystemImportWizard">
-	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="960" key="dialogWidth"/>
 		<item value="557" key="dialogHeight"/>

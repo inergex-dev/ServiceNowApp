@@ -123,14 +123,17 @@
         [alert show];
     } else {
         [Utility showLoadingAlert:@"Saving Data"];
+        
         SOAPRequest* soap = [[SOAPRequest alloc] initWithDelegate:self];
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        [parameters setValue:[Utility getUsername] forKey:@"username"];
-        [parameters setValue:[Utility getPassword] forKey:@"password"];
-        [parameters setValue:shortDescTB.text forKey:@"shortDescription"];
-        [parameters setValue:commentsTB.text forKey:@"comments"];
-        //[parameters setValue:[NSString stringWithFormat:@"%i", ticket.severity] forKey:@"severity"];
-        [soap sendSOAPRequestForMethod:@"EEEEEEEEEDDDDDDDDDIIIIIIIIITTTTTTT______TTTIIIICCCKKKKEEETTTTTT" withParameters:parameters];
+        [soap sendSOAPRequestForMethod:@"editTicket" withParameters:
+         [[SOAPRequestParameter alloc] initWithKey:@"username" value:[Utility getUsername]],
+         [[SOAPRequestParameter alloc] initWithKey:@"password" value:[Utility getPassword]],
+         [[SOAPRequestParameter alloc] initWithKey:@"sys_id" value:ticket.sys_id],
+         [[SOAPRequestParameter alloc] initWithKey:@"shortDescription" value:shortDescTB.text],
+         [[SOAPRequestParameter alloc] initWithKey:@"comments" value:commentsTB.text],
+         [[SOAPRequestParameter alloc] initWithKey:@"impact" value:[NSString stringWithFormat:@"%i", ticket.impact]],
+         [[SOAPRequestParameter alloc] initWithKey:@"state" value:[NSString stringWithFormat:@"%i", ticket.state]],
+         nil];
     }
 }
 
@@ -139,8 +142,8 @@
     [Utility dismissLoadingAlert];
     
     if([[TBXML textForElement:element] isEqual: @"true"]) {
-        realTicket = [ticket copy];
         [[[UIAlertView alloc] initWithTitle:@"Ticket Saved" message:@"You ticket has been edited succesfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [realTicket replaceWithTicketCopy:ticket];
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         [[[UIAlertView alloc] initWithTitle:@"Incorrect Data" message:@"Service now doesn't like this input. Try entering it again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
@@ -153,7 +156,7 @@
     
     if(error.code == NO_INTERNET_CODE)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Alright", Nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Not Found" message:@"No internet connection found, please connect and try again." delegate:self cancelButtonTitle:@"Retry" otherButtonTitles: @"Cancel", Nil];
         alert.tag = NO_INTERNET_CODE;
         [alert show];
     }else{
