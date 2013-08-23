@@ -191,6 +191,8 @@
 				8B99975B17B01D3200F28429 /* SOAPRequest.h */,
 				8B99975C17B01D3200F28429 /* SOAPRequest.m */,
 				8B3802C6176900A10068C40C /* Supporting Files */,
+				8B3802CE176900A10068C40C /* AppDelegate.h */,
+				8B3802CF176900A10068C40C /* AppDelegate.m */,
 				8B9B30C9179EFBEF00BAAFAE /* Utility.h */,
 				8B9B30CA179EFBF000BAAFAE /* Utility.m */,
 				8B3802D7176900A10068C40C /* MainStoryboard_iPhone.storyboard */,
@@ -202,8 +204,6 @@
 		8B3802C6176900A10068C40C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8B3802CE176900A10068C40C /* AppDelegate.h */,
-				8B3802CF176900A10068C40C /* AppDelegate.m */,
 				8B3802C7176900A10068C40C /* ServiceNow-Info.plist */,
 				8B3802C8176900A10068C40C /* InfoPlist.strings */,
 				8B3802CB176900A10068C40C /* main.m */,
@@ -490,7 +490,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -505,6 +505,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

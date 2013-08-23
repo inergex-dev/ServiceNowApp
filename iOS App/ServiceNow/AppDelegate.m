@@ -13,7 +13,29 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Attempts to activate push notifications
+    [application registerForRemoteNotificationTypes:
+                                        UIRemoteNotificationTypeBadge |
+                                        UIRemoteNotificationTypeAlert |
+                                        UIRemoteNotificationTypeSound];
+    
     return YES;
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"Token: %@", deviceToken);
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Token Error: %i: %@", error.code, error.localizedDescription);
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"Notification recieived!");
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

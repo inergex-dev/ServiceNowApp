@@ -16,7 +16,7 @@
 
 int NO_INTERNET_CODE = -1009;
 
-#define SERVICENOW_URL @"http://dev-igx02:3636/Service1.svc"
+#define WEB_SERVICE_URL @"http://dev-igx02:3636/Service1.svc"
 
 - (id)initWithDelegate:(id <SOAPRequestDelegate>) myDelegate
 {
@@ -55,7 +55,7 @@ int NO_INTERNET_CODE = -1009;
     
     //[self traverseElement:[TBXML newTBXMLWithXMLString:soapMsg].rootXMLElement->firstChild->firstChild];
     
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: SERVICENOW_URL]];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: WEB_SERVICE_URL]];
     [req setHTTPMethod:@"POST"];
     //---set the headers---
     [req addValue:@"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
