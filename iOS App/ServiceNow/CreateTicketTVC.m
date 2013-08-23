@@ -49,7 +49,7 @@
     if(shortDescTB != Nil)
         ticket.short_description = [shortDescTB.text copy];
     if(commentsTB != Nil)
-        ticket.comments = [commentsTB.text copy];
+        ticket.curComment = [commentsTB.text copy];
     
     [self createSectionsFromTicket];
     
@@ -76,7 +76,7 @@
     [sections addObject:[NSArray arrayWithObjects:
                          TYPE_TEXTBOX,
                          @"Comments",
-                         ticket.comments,
+                         ticket.curComment,
                          commentsTB,
                          [NSNumber numberWithInt:4000],
                          Nil]];

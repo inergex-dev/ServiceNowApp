@@ -12,23 +12,23 @@
     NSString *sys_id;
     int state;
     NSString *short_description;
-    NSString *comments;
+    NSString *curComment;//For keeping track of the current comment when creating / editing a ticket
     int severity;
     int impact;
     NSString *opened_at;
     NSString *closed_at;
-    NSArray *previousComments;
+    NSMutableArray *comments;
 }
 
 @property (nonatomic, retain) NSString *sys_id;
 @property int state;
 @property (nonatomic, retain) NSString *short_description;
-@property (nonatomic, retain) NSString *comments;
+@property (nonatomic, retain) NSString *curComment;
 @property int severity;
 @property int impact;
 @property (nonatomic, retain) NSString *opened_at;
 @property (nonatomic, retain) NSString *closed_at;
-@property (nonatomic, retain) NSArray *previousComments;
+@property (nonatomic, retain) NSMutableArray *comments;
 
 -(void)replaceWithTicketCopy:(Ticket*)ticket;
 

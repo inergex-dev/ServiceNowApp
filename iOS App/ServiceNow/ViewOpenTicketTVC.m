@@ -32,8 +32,8 @@
     [sections addObject:[NSArray arrayWithObjects:@"Opened", ticket.opened_at, Nil]];
     [sections addObject:[NSArray arrayWithObjects:@"Impact", [Utility impactIntToString:ticket.impact], Nil]];
     [sections addObject:[NSArray arrayWithObjects:@"State", [Utility stateIntToString:ticket.state], Nil]];
-    if(ticket.previousComments.count > 0) {
-        [sections addObject:[NSArray arrayWithObjects:@"Comments", ticket.previousComments, Nil]];
+    if(ticket.comments.count > 0) {
+        [sections addObject:[NSArray arrayWithObjects:@"Comments", ticket.comments, Nil]];
     }
     [self.tableView reloadData];
 }

@@ -43,28 +43,41 @@
         ticket = [[Ticket alloc] init];
         
         elem = [TBXML childElementNamed:@"a:systemId" parentElement:record];
-        NSLog(@"%@",[TBXML textForElement:elem]);
+        //NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.sys_id = [TBXML textForElement:elem];
         
         elem = [TBXML childElementNamed:@"a:shortDescription" parentElement:record];
-        NSLog(@"%@",[TBXML textForElement:elem]);
+        //NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.short_description = [TBXML textForElement:elem];
         
         elem = [TBXML childElementNamed:@"a:openDate" parentElement:record];
-        NSLog(@"%@",[TBXML textForElement:elem]);
+        //NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.opened_at = [TBXML textForElement:elem];
         
         elem = [TBXML childElementNamed:@"a:closeDate" parentElement:record];
-        NSLog(@"%@",[TBXML textForElement:elem]);
+        //NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.closed_at = [TBXML textForElement:elem];
         
         elem = [TBXML childElementNamed:@"a:impact_val" parentElement:record];
-        NSLog(@"%@",[TBXML textForElement:elem]);
+        //NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.impact = [[TBXML textForElement:elem] integerValue];
         
         elem = [TBXML childElementNamed:@"a:state" parentElement:record];
-        NSLog(@"%@",[TBXML textForElement:elem]);
+        //NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.state = [[TBXML textForElement:elem] integerValue];
+        
+        /*elem = [TBXML childElementNamed:@"a:comments" parentElement:record];
+        if(elem != Nil)
+        {
+            elem = elem->firstChild;
+            
+            NSString *comment = @"";
+            do {
+                comment = [TBXML textForElement:elem];
+                NSLog(@"%@",comment);
+                [ticket.comments addObject:[comment copy]];
+            } while ((elem = elem->nextSibling));
+        }*/
         
         [ticketsArray addObject:ticket];
         

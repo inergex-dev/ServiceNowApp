@@ -60,7 +60,7 @@
     if(shortDescTB != Nil)
         ticket.short_description = [shortDescTB.text copy];
     if(commentsTB != Nil)
-        ticket.comments = [commentsTB.text copy];
+        ticket.curComment = [commentsTB.text copy];
     
     [self getSectionsFromTicket];
     
@@ -93,7 +93,7 @@
     [sections addObject:[NSArray arrayWithObjects:
                          TYPE_TEXTBOX,
                          @"Comments",
-                         ticket.comments,
+                         ticket.curComment,
                          commentsTB,
                          [NSNumber numberWithInt:4000],
                          Nil]];
@@ -106,7 +106,7 @@
         [mandatoryFields addObject:@"Short Description"];
     }
     
-    if(ticket.impact == realTicket.impact && ticket.state == realTicket.state && [shortDescTB.text isEqual:realTicket.short_description] && [commentsTB.text isEqual:realTicket.comments]) {
+    if(ticket.impact == realTicket.impact && ticket.state == realTicket.state && [shortDescTB.text isEqual:realTicket.short_description] && [commentsTB.text isEqual:realTicket.curComment]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Changes"
                                                         message:@"No changes have been made to the ticket, so it has not been saved."
                                                        delegate:self
@@ -142,7 +142,10 @@
     [Utility dismissLoadingAlert];
     
     if([[TBXML textForElement:element] isEqual: @"true"]) {
-        [[[UIAlertView alloc] initWithTitle:@"Ticket Saved" message:@"You ticket has been edited succesfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Ticket Saved" message:@"Your ticket has been edited succesfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        
+        [ticket.comments addObject:[ticket.curComment copy]];
+        ticket.curComment = @"";
         [realTicket replaceWithTicketCopy:ticket];
         [self.navigationController popViewControllerAnimated:YES];
     } else {

@@ -66,6 +66,19 @@
         //NSLog(@"%@",[TBXML textForElement:elem]);
         ticket.state = [[TBXML textForElement:elem] integerValue];
         
+        /*elem = [TBXML childElementNamed:@"a:comments" parentElement:record];
+         if(elem != Nil)
+         {
+         elem = elem->firstChild;
+         
+         NSString *comment = @"";
+         do {
+         comment = [TBXML textForElement:elem];
+         NSLog(@"%@",comment);
+         [ticket.comments addObject:[comment copy]];
+         } while ((elem = elem->nextSibling));
+         }*/
+        
         [ticketsArray addObject:ticket];
         
         // Obtain next sibling element
